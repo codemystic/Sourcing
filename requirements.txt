@@ -1,0 +1,6 @@
+python-dotenv
+playwright
+groq
+pillow
+faker
+playwright-stealth
