@@ -1,0 +1,114 @@
+Sreenivasulu Goddela  
+Sr. Systems Engineer | Backend Engineer - Java/Python (Microservices | AWS | Docker)
+Publicis Sapient
+Sri Krishnadevaraya University
+Hyderabad, Telangana, India  Contact info
+138 connections
+Add
+Message
+More
+About
+About
+I am a passionate and results-driven Software Engineer with hands-on experience in designing and developing scalable Java-based microservices, integrating enterprise systems, and building robust full-stack solutions. I bring a solid background in Spring Boot, REST APIs, and DevOps practices with CI/CD pipelines, Docker, and Jenkins.
+
+I have played a key role in building and enhancing a custom Order Management System (OMS), where I implemented core backend services and successfully integrated it with Saleor, an open-source Python-based e-commerce platform, enabling seamless product and order synchronization between systems.
+
+In addition to backend services, I have also worked extensively on frontend development using React.js, creating responsive UI components and integrating CMS-driven content for a modern web experience.
+
+My tech toolbox includes strong backend development skills in Java, particularly with Spring Boot, JPA, and RESTful services, allowing me to build scalable and modular microservices. I’ve worked extensively with relational databases like PostgreSQL and MySQL, ensuring efficient data modeling and performance optimization. On the DevOps side, I’ve used Docker to containerize applications, Jenkins and GitHub Actions for CI/CD automation, and I'm comfortable deploying and monitoring services in Linux-based environments. I’ve also integrated Saleor, a Python-based e-commerce platform, with a custom-built OMS (Order Management System), enabling seamless cross-platform communication. For frontend development, I’ve worked with React.js and Tailwind CSS to build responsive, CMS-integrated user interfaces that provide clean and intuitive user experiences. Additionally, I’m experienced with Postman for API testing, Jira for agile project tracking, and I follow Git-based workflows for collaborative development
+
+I enjoy working across the stack and collaborating with cross-functional teams to deliver business-critical solutions that are efficient, secure, and maintainable
+I am a passionate and results-driven Software Engineer with hands-on experience in designing and developing scalable Java-based microservices, integrating enterprise systems, and building robust full-stack solutions. I bring a solid background in Spring Boot, REST APIs, and DevOps practices with CI/CD pipelines, Docker, and Jenkins. I have played a key role in building and enhancing a custom Order Management System (OMS), where I implemented core backend services and successfully integrated it with Saleor, an open-source Python-based e-commerce platform, enabling seamless product and order synchronization between systems. In addition to backend services, I have also worked extensively on frontend development using React.js, creating responsive UI components and integrating CMS-driven content for a modern web experience. My tech toolbox includes strong backend development skills in Java, particularly with Spring Boot, JPA, and RESTful services, allowing me to build scalable and modular microservices. I’ve worked extensively with relational databases like PostgreSQL and MySQL, ensuring efficient data modeling and performance optimization. On the DevOps side, I’ve used Docker to containerize applications, Jenkins and GitHub Actions for CI/CD automation, and I'm comfortable deploying and monitoring services in Linux-based environments. I’ve also integrated Saleor, a Python-based e-commerce platform, with a custom-built OMS (Order Management System), enabling seamless cross-platform communication. For frontend development, I’ve worked with React.js and Tailwind CSS to build responsive, CMS-integrated user interfaces that provide clean and intuitive user experiences. Additionally, I’m experienced with Postman for API testing, Jira for agile project tracking, and I follow Git-based workflows for collaborative development I enjoy working across the stack and collaborating with cross-functional teams to deliver business-critical solutions that are efficient, secure, and maintainable
+…see more
+Top skills
+Top skills
+Spring Boot • REST APIs • GRAPHQL API • Fluent commerce • Kubernetes
+Spring Boot • REST APIs • GRAPHQL API • Fluent commerce • Kubernetes
+Activity
+Activity
+
+143 followers
+143 followers
+
+Posts
+Comments
+Loaded 1 Posts post
+Sreenivasulu Goddela
+Sreenivasulu Goddela
+   • 3rd+
+Verified • 3rd+
+Sr. Systems Engineer | Backend Engineer - Java/Python (Microservices | AWS | Docker)
+Sr. Systems Engineer | Backend Engineer - Java/Python (Microservices | AWS | Docker)
+2w • 
+ 
+2 weeks ago • Visible to anyone on or off LinkedIn
+I’m happy to share that I’m starting a new position as Senior System Engineer at Publicis Sapient!
+Starting a New Position
+30
+19 comments
+Show all posts
+Experience
+Experience
+Senior System Engineer
+Senior System Engineer
+Publicis Sapient · Full-time
+Publicis Sapient · Full-time
+Sep 2025 - Present · 3 mos
+Sep 2025 to Present · 3 mos
+Hyderabad, Telangana, India · Hybrid
+Hyderabad, Telangana, India · Hybrid
+Software Engineer
+Software Engineer
+Techouts · Full-time
+Techouts · Full-time
+Apr 2022 - Sep 2025 · 3 yrs 6 mos
+Apr 2022 to Sep 2025 · 3 yrs 6 mos
+Hyderabad, Telangana, India
+Hyderabad, Telangana, India
+ helped me get this job
+LinkedIn helped me get this job
+Fluent commerce , GRAPHQL API and +8 skills
+Education
+Education
+Sri Krishnadevaraya University
+Sri Krishnadevaraya University
+SSGS Aided degree college Guntakal, Computer Science
+SSGS Aided degree college Guntakal, Computer Science
+2017 - 2020
+2017 - 2020
+Spring Framework
+AP Model & Jr College
+AP Model & Jr College
+AP Model & Jr College
+MPC
+MPC
+2015 - 2017
+2015 - 2017
+Skills
+Skills
+Warehouse Management Systems
+Warehouse Management Systems
+Hibernate
+Hibernate
+Show all 70 skills
+Interests
+Interests
+Companies
+Companies
+Groups
+Groups
+Newsletters
+Newsletters
+Schools
+Schools
+Tata Consultancy Services
+Tata Consultancy Services
+18,081,429 followers
+18,081,429 followers
+Follow
+ADP
+ADP
+1,859,185 followers
+1,859,185 followers
+Follow
+Show all companies

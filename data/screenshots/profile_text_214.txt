@@ -1,0 +1,119 @@
+Krishna Yalala
+ He/Him
+Python & Flask Developer | SQL | AS400/IBM i (RPGLE, CLLE) | Web Development Enthusiast
+BHAVANS VIVEKANANDA COLLEGE
+Hyderabad, Telangana, India  Contact info
+6 connections
+Add
+Message
+More
+Open to work
+
+Software Engineer roles
+
+Show details
+
+About
+About
+I am a passionate and dedicated developer with hands-on experience in Python, SQL, Flask, and web technologies. I learned Python during my BSc degree and continued strengthening my skills through personal projects and practice.
+
+I completed my internship at Programmars.io India Private Limited (Jun 2023 – Sep 2023), where I worked specifically on AS400/IBM i. During the internship, I learned RPGLE, CLLE, and SQL, and built a Shopping Website Project on the IBM i platform. I successfully presented the project demo and received a completion certificate.
+
+I have also built multiple projects and deployed them online using Git and GitHub, including:
+• Personal Expense Tracker (Flask, SQLite, Matplotlib) – A full web application for managing income and expenses with authentication, filters, charts, and live hosting.
+• Number Guessing Game (Python) – An interactive logic-based project uploaded and maintained on GitHub.
+
+I enjoy learning new technologies, solving real-world problems, and building practical applications. I’m continuously improving my skills in Python, web development, databases, Git/GitHub, and deployment, and I look forward to contributing to impactful software projects.
+I am a passionate and dedicated developer with hands-on experience in Python, SQL, Flask, and web technologies. I learned Python during my BSc degree and continued strengthening my skills through personal projects and practice. I completed my internship at Programmars.io India Private Limited (Jun 2023 – Sep 2023), where I worked specifically on AS400/IBM i. During the internship, I learned RPGLE, CLLE, and SQL, and built a Shopping Website Project on the IBM i platform. I successfully presented the project demo and received a completion certificate. I have also built multiple projects and deployed them online using Git and GitHub, including: • Personal Expense Tracker (Flask, SQLite, Matplotlib) – A full web application for managing income and expenses with authentication, filters, charts, and live hosting. • Number Guessing Game (Python) – An interactive logic-based project uploaded and maintained on GitHub. I enjoy learning new technologies, solving real-world problems, and building practical applications. I’m continuously improving my skills in Python, web development, databases, Git/GitHub, and deployment, and I look forward to contributing to impactful software projects.
+…see more
+Featured
+Featured
+Link
+Link
+Number Guessing Game (Python)
+Number Guessing Game (Python)
+GitHub
+GitHub
+A simple interactive game built using Python with random number generation and user hints.
+A simple interactive game built using Python with random number generation and user hints.
+Link
+Link
+Personal expense tracker – Live Demo
+Personal expense tracker – Live Demo
+expense-tracker-g7z8.onrender.com
+expense-tracker-g7z8.onrender.com
+Hosted Flask web application for tracking income and expenses with charts and filters.
+Hosted Flask web application for tracking income and expenses with charts and filters.
+Link
+Link
+Personal Expense Tracker (Flask App)
+Personal Expense Tracker (Flask App)
+GitHub
+GitHub
+A web application for tracking income and expenses with authentication, filters, and visual charts. Built using Python Flask, SQLite, and Matplotlib.
+A web application for tracking income and expenses with authentication, filters, and visual charts. Built using Python Flask, SQLite, and Matplotlib.
+Activity
+Activity
+
+6 followers
+6 followers
+
+Krishna hasn’t posted yet
+Recent posts Krishna shares will be displayed here.
+Show all activity
+Experience
+Experience
+AS400/IBM i (Training Program)
+AS400/IBM i (Training Program)
+AS400/IBM i (Training Program)
+Programmars.io India Private Limited · Trainee
+Programmars.io India Private Limited · Trainee
+Jun 2023 - Sep 2023 · 4 mos
+Jun 2023 to Sep 2023 · 4 mos
+Completed a 3-month AS400/IBM i training program focused on RPGLE, CLLE, and SQL.
+• Built a Shopping Website Project on IBM i as part of the training and presented a successful demo.
+• Gained hands-on experience working with IBM i environment, CL programs, and database operations.
+• Strengthened problem-solving skills and improved understanding of legacy enterprise systems.
+• Received a formal completion certificate from Programmars.io.
+Completed a 3-month AS400/IBM i training program focused on RPGLE, CLLE, and SQL. • Built a Shopping Website Project on IBM i as part of the training and presented a successful demo. • Gained hands-on experience working with IBM i environment, CL programs, and database operations. • Strengthened problem-solving skills and improved understanding of legacy enterprise systems. • Received a formal completion certificate from Programmars.io.
+…see more
+RPGLE, CLLE and +5 skills
+Education
+Education
+BHAVANS VIVEKANANDA COLLEGE
+BHAVANS VIVEKANANDA COLLEGE
+BHAVANS VIVEKANANDA COLLEGE
+Bachelor's degree, Computer Science
+Bachelor's degree, Computer Science
+Oct 2020 - Mar 2023
+Oct 2020 - Mar 2023
+Grade: 8.2
+Grade: 8.2
+Skills
+Skills
+RPGLE
+RPGLE
+AS400/IBM i (Training Program) at Programmars.io India Private Limited
+AS400/IBM i (Training Program) at Programmars.io India Private Limited
+CLLE
+CLLE
+AS400/IBM i (Training Program) at Programmars.io India Private Limited
+AS400/IBM i (Training Program) at Programmars.io India Private Limited
+Show all 16 skills
+Interests
+Interests
+Companies
+Companies
+Newsletters
+Newsletters
+HCLTech
+HCLTech
+8,348,673 followers
+8,348,673 followers
+Follow
+DISYS
+DISYS
+599,241 followers
+599,241 followers
+Follow
+Show all companies

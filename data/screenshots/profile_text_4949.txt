@@ -1,0 +1,265 @@
+Taruna Kumar Behera  
+ He/Him
+Python Full Stack Developer
+Berhampur University
+Hyderabad, Telangana, India  Contact info
+500+ connections
+Add
+Message
+More
+Open to work
+
+Python Developer, Frontend Developer, Database Developer, Back End Developer and User Interface Designer roles
+
+Show details
+
+Activity
+Activity
+
+1,530 followers
+1,530 followers
+
+Posts
+Comments
+Videos
+Images
+Loaded 3 Posts posts
+Taruna Kumar Behera
+Taruna Kumar Behera
+   • 3rd+
+Verified • 3rd+
+Python Full Stack Developer
+Python Full Stack Developer
+5d • Edited • 
+ 
+5 days ago • Edited • Visible to anyone on or off LinkedIn
+🎯 Final Project Completed at OutriX 
+I’m thrilled to share the successful completion of my Final Project as part of my internship at OutriX 🚀
+
+✨ Tasks I Completed:
+🔹 Project 1 – PDF Invoice Generator
+ 🧾 Designed a Python program that dynamically generates professional PDF invoices for clients.
+ 🧍 Accepted user input such as client name, purchased items, and total amount.
+ 📄 Used the ReportLab library to format and export invoice details into a downloadable PDF.
+ ⚙️ Implemented clean layouts with automatic date generation and calculated totals for accuracy.
+🔹 Project 2 – Command-Line Quiz Application
+ 🎯 Built an interactive command-line-based quiz app using Python.
+ 📚 Stored questions, options, and correct answers in structured data (lists/dictionaries).
+ 🧮 Tracked user responses, calculated total scores, and displayed results at the end.
+ 💡 Included features like question randomization and score summaries for an engaging experience.
+🔹 Project 3 – Real-Time Weather Desktop App
+ 🌦️ Developed a GUI-based desktop application to display live weather updates.
+ 🏙️ Fetched real-time weather data from an online API based on user-input city names.
+ 🪟 Built with Tkinter for the interface and Requests for API handling.
+ 🌡️ Displayed temperature, humidity, and weather conditions in a clean, user-friendly layout.
+🧠 These projects enhanced my practical skills in Python programming, GUI development, API integration, and file generation, combining both backend logic and frontend interaction.
+🧰 Tech Stack Used: Python, Tkinter, FPDF, Requests, APIs, DateTime, Random, Conditional Logic, Functions, Loops, Input/Output, Exception Handling
+
+
+hashtag
+#OutriX
+
+hashtag
+#PythonDevelopment
+
+hashtag
+#Python
+
+hashtag
+#Tkinter
+
+hashtag
+#FPDF
+
+hashtag
+#Requests
+
+hashtag
+#OpenWeatherMapAPI
+
+hashtag
+#PythonProjects
+
+hashtag
+#InvoiceGenerator
+
+hashtag
+#QuizApp
+
+hashtag
+#WeatherApp
+
+hashtag
+#PythonDeveloper
+
+hashtag
+#Automation
+
+hashtag
+#GUI
+
+hashtag
+#APIs
+
+hashtag
+#Programming
+
+hashtag
+#TechStack
+
+hashtag
+#CodeWithPython
+
+hashtag
+#PythonScripts
+
+hashtag
+#SoftwareDevelopment
+
+hashtag
+#ProjectBasedLearning
+
+hashtag
+#CodingJourney
+…more
+
+2
+Taruna Kumar Behera
+Taruna Kumar Behera
+   • 3rd+
+Verified • 3rd+
+Python Full Stack Developer
+Python Full Stack Developer
+4mo • 
+ 
+4 months ago • Visible to anyone on or off LinkedIn
+🎯 Final Project Completed at Cognifyz Technologies!
+I’m thrilled to share the successful completion of my Final Project as part of my internship at Cognifyz Technologies 🚀
+
+✨ Tasks I completed:
+🔹 Level 1 Tasks
+🔁 String Reversal: Reversed input strings using slicing and iteration
+🌡️ Temperature Converter: Converted between Celsius and Fahrenheit based on user input
+📧 Email Validator: Validated email formats with checks for @ and domain
+🧮 Basic Calculator: Performed operations like addition, subtraction, multiplication, division, and modulus
+🔄 Palindrome Checker: Verified if a string is the same forward and backward
+🎯 Guessing Game: Implemented a random number guessing game with hints
+🔹 Level 2 Tasks
+🔢 Number Guesser: Generated a number within a user-defined range and gave feedback on each guess
+🔐 Password Strength Checker: Checked password strength based on length, case, digits, and special characters
+🌀 Fibonacci Generator: Generated the Fibonacci sequence up to a specified number of terms
+📂 File Manipulation: Counted word occurrences in a file and displayed them alphabetically
+🌐 Web Scraper: Extracted specific data from web pages using BeautifulSoup and automated data collection
+🧠 This internship allowed me to build real-world solutions using core and advanced Python concepts, from string and number operations to file handling and web scraping.
+🧰 Tech Stack Used: Python, Random,File I/O, BeautifulSoup, Requests, Functions, Conditional Logic
+🔖 
+hashtag
+#cognifyztechnologies 
+hashtag
+#cognifyz 
+hashtag
+#cognifyztech 
+hashtag
+#PythonDevelopment 
+hashtag
+#WebScraping 
+hashtag
+#InternshipJourney 
+hashtag
+#PythonProjects 
+hashtag
+#InternshipExperience 
+hashtag
+#BeautifulSoup
+…more
+
+6
+Show all posts
+Experience
+Experience
+Python Developer
+Python Developer
+OutriX · Internship
+OutriX · Internship
+Sep 2025 - Oct 2025 · 2 mos
+Sep 2025 to Oct 2025 · 2 mos
+Hyderabad, Telangana, India · Remote
+Hyderabad, Telangana, India · Remote
+ helped me get this job
+LinkedIn helped me get this job
+Worked as a Python Developer Intern at OutriX, where I developed multiple real-world Python projects focused on GUI design, API integration, file handling, and data management.
+Key projects completed during the internship include:
+
+Basic Calculator (GUI) — Created a Tkinter-based calculator that performs basic arithmetic operations such as addition, subtraction, multiplication, and division using event-driven programming.
+
+Weather App (API Integration) — Built a desktop application using Tkinter, Requests, and the OpenWeatherMap API to display real-time weather information for user-entered cities.
+
+File Organizer Tool — Developed a Python script using OS and shutil modules to automatically organize files into categorized folders based on file types.
+
+Quiz Application with Score Tracker — Implemented a command-line quiz app using Random and JSON/CSV modules to display randomized questions and track user scores.
+
+PDF Invoice Generator — Designed a Python program using FPDF/ReportLab to dynamically generate professional PDF invoices from user input.
+Worked as a Python Developer Intern at OutriX, where I developed multiple real-world Python projects focused on GUI design, API integration, file handling, and data management. Key projects completed during the internship include: Basic Calculator (GUI) — Created a Tkinter-based calculator that performs basic arithmetic operations such as addition, subtraction, multiplication, and division using event-driven programming. Weather App (API Integration) — Built a desktop application using Tkinter, Requests, and the OpenWeatherMap API to display real-time weather information for user-entered cities. File Organizer Tool — Developed a Python script using OS and shutil modules to automatically organize files into categorized folders based on file types. Quiz Application with Score Tracker — Implemented a command-line quiz app using Random and JSON/CSV modules to display randomized questions and track user scores. PDF Invoice Generator — Designed a Python program using FPDF/ReportLab to dynamically generate professional PDF invoices from user input.
+…see more
+Python (Programming Language), User Experience (UX) and +2 skills
+Python Developer
+Python Developer
+Cognifyz Technologies · Internship
+Cognifyz Technologies · Internship
+Jun 2025 - Jul 2025 · 2 mos
+Jun 2025 to Jul 2025 · 2 mos
+Hyderabad, Telangana, India · Remote
+Hyderabad, Telangana, India · Remote
+ helped me get this job
+LinkedIn helped me get this job
+During my internship at Cognifyz Technologies as a Python Developer, I worked on developing and optimizing Python-based applications. My responsibilities included writing clean and efficient code, debugging existing modules, and contributing to data processing.
+During my internship at Cognifyz Technologies as a Python Developer, I worked on developing and optimizing Python-based applications. My responsibilities included writing clean and efficient code, debugging existing modules, and contributing to data processing.
+…see more
+Python (Programming Language), NumPy and +4 skills
+Taruna Kumar Behera.pdf
+Taruna Kumar Behera.pdf
+Python Developer
+Python Developer
+Naresh i Technologies · Full-time
+Naresh i Technologies · Full-time
+Nov 2024 - Jun 2025 · 8 mos
+Nov 2024 to Jun 2025 · 8 mos
+Hyderabad, Telangana, India · On-site
+Hyderabad, Telangana, India · On-site
+Python (Programming Language), Database Consulting and +10 skills
+Education
+Education
+Berhampur University
+Berhampur University
+2021 - 2024
+2021 - 2024
+Skills
+Skills
+E-Commerce
+E-Commerce
+Python Developer at Naresh i Technologies
+Python Developer at Naresh i Technologies
+HTML
+HTML
+Python Developer at Naresh i Technologies
+Python Developer at Naresh i Technologies
+Show all 22 skills
+Interests
+Interests
+Companies
+Companies
+Newsletters
+Newsletters
+Schools
+Schools
+Accenture
+Accenture
+14,045,941 followers
+14,045,941 followers
+Follow
+Infosys
+Infosys
+10,616,385 followers
+10,616,385 followers
+Follow
+Show all companies

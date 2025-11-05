@@ -1,0 +1,239 @@
+Naveen Kumar  
+Python Developer
+Infosys
+JNTUH College of Engineering Hyderabad
+Hyderabad, Telangana, India  Contact info
+118 connections
+Add
+Message
+More
+Open to work
+
+Technology Analyst roles
+
+Show details
+
+About
+About
+Experienced Data Associate with a demonstrated history of working in the computer software industry. Skilled in Analytical Skills, Data Validation, Data Visualization, Linux, and Tableau. Strong information technology professional with a Bachelor of Technology - BTech focused in Computer Science from Iare. 
+Experienced Data Associate with a demonstrated history of working in the computer software industry. Skilled in Analytical Skills, Data Validation, Data Visualization, Linux, and Tableau. Strong information technology professional with a Bachelor of Technology - BTech focused in Computer Science from Iare. 
+Activity
+Activity
+
+121 followers
+121 followers
+
+Posts
+Comments
+Loaded 6 Posts posts
+Naveen Kumar reposted this
+Kushal Parikh
+Kushal Parikh
+   • 3rd+
+Verified • 3rd+
+Test Automation Consultant at Deloitte USI | Selenium | Java | Playwright | SFPC™ Certified | Driving Quality Through Automation
+Test Automation Consultant at Deloitte USI | Selenium | Java | Playwright | SFPC™ Certified | Driving Quality Through Automation
+10mo • 
+ 
+10 months ago • Visible to anyone on or off LinkedIn
+Boeing recently asked interview questions for 
+hashtag
+#SDETs. Shared by my recent Mentee. Good news is He was able to clear the interview.
+
+↳ Technical Interviews:
+
+1. Backend Automation: How do you test a new feature in backend automation?
+2. REST Assured Basies: Explain client-server architecture in
+REST Assured and the concept of method chaining.
+3. Comparison with Postman: Why use REST Assured for backend automation instead of Postman?
+4. 00P Concepts in Test Frameworks: Which OOP concepts do you apply, and how?
+5. Data Structures: Differences between HashMap and HashTable.
+6. Java Fundamentals: Function overloading vs. overriding, static class concepts, and static initialisers.
+7. Serialization: What are serialization and deserialization?
+8. Memory Management in DSA: How are variables stored in memory?
+9. DSA Types: What are the primary data structures, and how does a stack work? (With pseudocode!)
+10. Automation Challenges: What challenges do you face during test automation?
+11. Design Patterns: What is the singleton pattern, Builder Pattern etc., and how is it used in test automation?
+12. Framework Architecture: Explain the structure of your test automation framework.
+13. Algorithm Question: Find a pair of numbers in a set that adds up to a given target (e.g., [1, 2, 3, 9] with a target of 10).
+14. Selenium Details: Explain iframes and the use of robot classes.
+15. Dynamic Locators: Discuss dynamic locator strategies and axes XPath syntax.
+16. CI/CD Experience: How have you effectively used CI/CD pipelines, and what was the outcome?
+17. Test Strategy & Estimation: How do you prepare a test strategy and estimate for new product features?
+18. Microservices Architecture: Explain microservice architecture, payloads, and their traces.
+
+↳ Managerial Interview:
+
+1. Project & Experience Discussions:
+Talk about past projects, skills, and tech stack
+2. QA Methodologies: Discuss QA best practices and methodologies
+3. Scenario-Based Testing: Situational questions related to test planning and execution
+4. Leadership Principles: Address questions reflecting leadership and decision-making skills
+
+✅Follow Kushal Parikh for more insigts about Software Testing & don't forget to check out my topmate.io link: https://lnkd.in/dEDZxwwF
+
+🚀 𝐔𝐥𝐭𝐢𝐦𝐚𝐭𝐞 𝐐𝐀/𝐒𝐃𝐄𝐓 𝐃𝐢𝐠𝐢𝐭𝐚𝐥 𝐊𝐢𝐭
+https://lnkd.in/dYPWn5xE
+
+🚀 𝐔𝐥𝐭𝐢𝐦𝐚𝐭𝐞 𝐐𝐀/𝐒𝐃𝐄𝐓 𝐈𝐧𝐭𝐞𝐫𝐯𝐢𝐞𝐰 𝐏𝐫𝐞𝐩𝐚𝐫𝐚𝐭𝐢𝐨𝐧 𝐊𝐢𝐭
+https://lnkd.in/dskETMfb
+
+🚀 𝐀𝐮𝐭𝐨𝐦𝐚𝐭𝐢𝐨𝐧 𝐓𝐞𝐬𝐭𝐢𝐧𝐠 𝐏𝐫𝐚𝐜𝐭𝐢𝐜𝐞 𝐖𝐞𝐛𝐬𝐢𝐭𝐞𝐬
+https://lnkd.in/dBzp5RAy
+
+🚀 𝐀𝐓𝐒 𝐑𝐞𝐬𝐮𝐦𝐞 𝐓𝐞𝐦𝐩𝐥𝐚𝐭𝐞𝐬 𝐊𝐢𝐭
+https://lnkd.in/d3ywVEhS
+
+❤️Like, Follow & Share it with your friends if you find it useful!
+
+𝐇𝐚𝐩𝐩𝐲 𝐓𝐞𝐬𝐭𝐢𝐧𝐠!
+
+
+hashtag
+#AutomationTesting 
+hashtag
+#Selenium 
+hashtag
+#TestAutomation
+…more
+Selenium Interview Questions • 47 pages
+1/47
+221
+2 comments
+74 reposts
+Naveen Kumar
+Naveen Kumar
+   • 3rd+
+Verified • 3rd+
+Python Developer
+Python Developer
+10mo • 
+ 
+10 months ago • Visible to anyone on or off LinkedIn
+🎉 Achievement Unlocked: Google Cloud Associate Cloud Engineer Certification 🎉I'm excited to share that I've successfully completed the Google Cloud Associate Cloud Engineer certification! 🚀This certification has been an incredible learning experience, diving deep into various aspects of cloud computing, infrastructure management, and deploying solutions on Google Cloud Platform. From understanding GCP core services to hands-on experience with tools like Compute Engine, Cloud Storage, and Kubernetes, it has truly expanded my technical skill set.
+hashtag
+#GoogleCloud 
+hashtag
+#GCP 
+hashtag
+#CloudEngineering 
+hashtag
+#Certification 
+hashtag
+#TechJourney 
+hashtag
+#CloudComputing 
+hashtag
+#AssociateCloudEngineer 
+hashtag
+#CareerGrowth 
+hashtag
+#TechCommunity
+…more
+Associate Cloud Engineer Certification was issued by Google Cloud to ARAVA NAVEEN KUMAR.
+credly.com
+3
+2 comments
+Show all posts
+Experience
+Experience
+Infosys
+Infosys
+Full-time · 3 yrs 6 mos
+Full-time · 3 yrs 6 mos
+Hyderabad, Telangana, India
+Hyderabad, Telangana, India
+Technology Analyst
+Technology Analyst
+Jan 2024 - Present · 1 yr 11 mos
+Jan 2024 to Present · 1 yr 11 mos
+Hybrid
+Hybrid
+Senior System Engineer
+Senior System Engineer
+Jun 2022 - Present · 3 yrs 6 mos
+Jun 2022 to Present · 3 yrs 6 mos
+Python (Programming Language), Linux and +2 skills
+ML Data Associate
+ML Data Associate
+atai · Full-time
+atai · Full-time
+Nov 2019 - Jul 2022 · 2 yrs 9 mos
+Nov 2019 to Jul 2022 · 2 yrs 9 mos
+India
+India
+I prepare Datasets and ground truth data for the Model Training. 
+I can versatile the data according to the project. 
+Very good at the complete workflow of the SDLC. 
+Practical experience in excel files, and json files, to ml with scripting. 
+Prepared model accuracy analysis reports. 
+Cleaning data sets using python . 
+Develop and implement quality management procedures by writing  scripts in Python. 
+knowledge in image processing. 
+I prepare Datasets and ground truth data for the Model Training. I can versatile the data according to the project. Very good at the complete workflow of the SDLC.  Practical experience in excel files, and json files, to ml with scripting.  Prepared model accuracy analysis reports.  Cleaning data sets using python . Develop and implement quality management procedures by writing  scripts in Python. knowledge in image processing. 
+…see more
+Education
+Education
+JNTUH College of Engineering Hyderabad
+JNTUH College of Engineering Hyderabad
+Bachelor of Technology - BTech, Computer Science
+Bachelor of Technology - BTech, Computer Science
+Aug 2015 - Jun 2019
+Aug 2015 - Jun 2019
+Grade: 61%
+Grade: 61%
+Iare
+Iare
+Iare
+Bachelor of Technology - BTech, Computer Science
+Bachelor of Technology - BTech, Computer Science
+2015 - 2019
+2015 - 2019
+Grade: 6.0
+Grade: 6.0
+Licenses & certifications
+Licenses & certifications
+Associate Cloud Engineer Certification
+Associate Cloud Engineer Certification
+Google
+Google
+Issued Dec 2024 · Expires Dec 2027
+Issued Dec 2024 · Expires Dec 2027
+Credential ID e3342bcc86e44cddac82ae3a76d1dfe
+Credential ID e3342bcc86e44cddac82ae3a76d1dfe
+Show credential
+GCP -ACE 
+GCP -ACE 
+Skills
+Skills
+Test Automation
+Test Automation
+Selinum
+Selinum
+Show all 17 skills
+Interests
+Interests
+Top Voices
+Top Voices
+Companies
+Companies
+Groups
+Groups
+Newsletters
+Newsletters
+Schools
+Schools
+Nidhi Chauhan, CPRW
+Nidhi Chauhan, CPRW
+Executive Coach • Certified Professional Resume Writer • 5186+ hours of coaching imparted • Interview Coach • LinkedIn Consultant • Clients from 13 countries •🔺Enabling high impact, high growth, high income 💰 careers
+Executive Coach • Certified Professional Resume Writer • 5186+ hours of coaching imparted • Interview Coach • LinkedIn Consultant • Clients from 13 countries •🔺Enabling high impact, high growth, high income 💰 careers
+499,596 followers
+499,596 followers
+Follow
+Narendra Modi
+Narendra Modi
+Prime Minister of India
+Prime Minister of India
+5,066,818 followers
+5,066,818 followers
+Follow

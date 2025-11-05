@@ -1,0 +1,2248 @@
+[
+    {
+        "url": "https://www.linkedin.com/in/kiran-chappa-965261237/",
+        "name": "Kiran Chappa",
+        "headline": "Python Developer at Naresh i Technologies",
+        "location": "Hyderabad, Telangana, India",
+        "about": "",
+        "experience": [
+            {
+                "company": "Naresh i Technologies",
+                "position": "Python Developer",
+                "duration": "",
+                "location": "",
+                "description": ""
+            }
+        ],
+        "education": [],
+        "skills": [
+            "Microsoft PowerPoint",
+            "Microsoft Outlook"
+        ],
+        "certifications": [],
+        "screenshot": "data/screenshots/profile_screenshot_5464.png",
+        "extraction_method": "OCR + AI",
+        "page_number": 1,
+        "profile_index": 1
+    },
+    {
+        "url": "https://www.linkedin.com/in/pavan-kalyan-dammadi-326910204/",
+        "name": "Pavan kalyan Dammadi",
+        "headline": "SDE I @ VassarLabs | Backend Developer | Java | Python",
+        "location": "Hyderabad, Telangana, India",
+        "about": "Enthusiastic SDE with a dynamic skill set encompassing Back-end Development.",
+        "experience": [
+            {
+                "company": "Vassar Labs",
+                "position": "Software Development Engineer",
+                "duration": "Aug 2023 - Present · 2 yrs 4 mos",
+                "location": "Hyderabad, Telangana, India · On-site",
+                "description": "PostgreSQL, Jenkins and +10 skills"
+            },
+            {
+                "company": "Vassar Labs",
+                "position": "SDE Intern",
+                "duration": "Jan 2023 - Jul 2023 · 7 mos",
+                "location": "Hyderabad, Telangana, India · On-site",
+                "description": "PostgreSQL, MySQL and +4 skills"
+            }
+        ],
+        "education": [
+            {
+                "school": "RGUKT Basar",
+                "degree": "Bachelor of Technology - BTech, Computer Programming",
+                "duration": "2017 - 2023",
+                "description": "REST APIs, Node.js and +2 skills"
+            }
+        ],
+        "skills": [
+            "Microservices",
+            "Jenkins"
+        ],
+        "certifications": [],
+        "screenshot": "data/screenshots/profile_screenshot_3982.png",
+        "extraction_method": "OCR + AI",
+        "page_number": 1,
+        "profile_index": 2
+    },
+    {
+        "url": "https://www.linkedin.com/in/lakshmi-niharika-samunuri-24b306299/",
+        "name": "Lakshmi Niharika Samunuri",
+        "headline": "python developer",
+        "location": "Hyderabad, Telangana, India",
+        "about": "I'm a passionate software engineer with a strong foundation in Python Django and expertise in various frontend and backend technologies working in Persistent Systems from 2 years. I enjoy turning ideas into useful and elegant solutions. I'm skilled at making complex problems easy to understand through user-friendly software applications. Throughout my career, I've relied on my strong technical knowledge. I believe in the power of collaboration, as it's through effective communication and working together that we can truly innovate. When I'm not coding, you can find me exploring new technologies and continually enhancing my skill set. Let's connect and explore opportunities to create innovative solutions together.",
+        "experience": [
+            {
+                "company": "Persistent Systems",
+                "position": "Software Engineer",
+                "duration": "Dec 2021 - Nov 2023",
+                "location": "Hyderabad, Telangana, India",
+                "description": "Cascading Style Sheets (CSS), REST APIs and +11 skills"
+            },
+            {
+                "company": "Persistent Systems",
+                "position": "Python Developer",
+                "duration": "Dec 2021 - Nov 2023",
+                "location": "Hyderabad, Telangana, India",
+                "description": "Object-Oriented Programming (OOP), REST APIs and +5 skills"
+            }
+        ],
+        "education": [
+            {
+                "school": "Sri Sunflower College of Engineering and Technology",
+                "degree": "Bachelor's of Technology, Computer Science and Engineering",
+                "duration": "Jun 2017 - Aug 2021",
+                "description": "Grade: 8.0"
+            }
+        ],
+        "skills": [
+            "HTML",
+            "Cascading Style Sheets (CSS)",
+            "JavaScript",
+            "Python (Programming Language)",
+            "Django",
+            "Object-Oriented Programming (OOP)",
+            "REST APIs"
+        ],
+        "certifications": [
+            {
+                "name": "Microsoft Certified: Azure Fundamentals",
+                "issuer": "Microsoft",
+                "date": "Jun 2022"
+            }
+        ],
+        "screenshot": "data/screenshots/profile_screenshot_6282.png",
+        "extraction_method": "OCR + AI",
+        "page_number": 1,
+        "profile_index": 3
+    },
+    {
+        "url": "https://www.linkedin.com/in/krishna-yalala-1b0858275/",
+        "name": "Krishna Yalala",
+        "headline": "Python & Flask Developer | SQL | AS400/IBM i (RPGLE, CLLE) | Web Development Enthusiast",
+        "location": "Hyderabad, Telangana, India",
+        "about": "I am a passionate and dedicated developer with hands-on experience in Python, SQL, Flask, and web technologies. I learned Python during my BSc degree and continued strengthening my skills through personal projects and practice. I completed my internship at Programmars.io India Private Limited (Jun 2023 – Sep 2023), where I worked specifically on AS400/IBM i. During the internship, I learned RPGLE, CLLE, and SQL, and built a Shopping Website Project on the IBM i platform. I successfully presented the project demo and received a completion certificate. I have also built multiple projects and deployed them online using Git and GitHub, including: • Personal Expense Tracker (Flask, SQLite, Matplotlib) – A full web application for managing income and expenses with authentication, filters, charts, and live hosting. • Number Guessing Game (Python) – An interactive logic-based project uploaded and maintained on GitHub. I enjoy learning new technologies, solving real-world problems, and building practical applications. I’m continuously improving my skills in Python, web development, databases, Git/GitHub, and deployment, and I look forward to contributing to impactful software projects.",
+        "experience": [
+            {
+                "company": "Programmars.io India Private Limited",
+                "position": "Trainee",
+                "duration": "Jun 2023 - Sep 2023",
+                "location": "",
+                "description": "Completed a 3-month AS400/IBM i training program focused on RPGLE, CLLE, and SQL. Built a Shopping Website Project on IBM i as part of the training and presented a successful demo. Gained hands-on experience working with IBM i environment, CL programs, and database operations. Strengthened problem-solving skills and improved understanding of legacy enterprise systems. Received a formal completion certificate from Programmars.io."
+            }
+        ],
+        "education": [
+            {
+                "school": "BHAVANS VIVEKANANDA COLLEGE",
+                "degree": "Bachelor's degree, Computer Science",
+                "duration": "Oct 2020 - Mar 2023",
+                "description": "Grade: 8.2"
+            }
+        ],
+        "skills": [
+            "RPGLE",
+            "CLLE",
+            "Python",
+            "SQL",
+            "Flask",
+            "AS400/IBM i"
+        ],
+        "certifications": [
+            {
+                "name": "Completion Certificate",
+                "issuer": "Programmars.io India Private Limited",
+                "date": "Sep 2023"
+            }
+        ],
+        "screenshot": "data/screenshots/profile_screenshot_214.png",
+        "extraction_method": "OCR + AI",
+        "page_number": 1,
+        "profile_index": 4
+    },
+    {
+        "url": "https://www.linkedin.com/in/sreenivasulu-goddela/",
+        "name": "Sreenivasulu Goddela",
+        "headline": "Sr. Systems Engineer | Backend Engineer - Java/Python (Microservices | AWS | Docker)",
+        "location": "Hyderabad, Telangana, India",
+        "about": "I am a passionate and results-driven Software Engineer with hands-on experience in designing and developing scalable Java-based microservices, integrating enterprise systems, and building robust full-stack solutions. I bring a solid background in Spring Boot, REST APIs, and DevOps practices with CI/CD pipelines, Docker, and Jenkins. I have played a key role in building and enhancing a custom Order Management System (OMS), where I implemented core backend services and successfully integrated it with Saleor, an open-source Python-based e-commerce platform, enabling seamless product and order synchronization between systems. In addition to backend services, I have also worked extensively on frontend development using React.js, creating responsive UI components and integrating CMS-driven content for a modern web experience. My tech toolbox includes strong backend development skills in Java, particularly with Spring Boot, JPA, and RESTful services, allowing me to build scalable and modular microservices. I’ve worked extensively with relational databases like PostgreSQL and MySQL, ensuring efficient data modeling and performance optimization. On the DevOps side, I’ve used Docker to containerize applications, Jenkins and GitHub Actions for CI/CD automation, and I'm comfortable deploying and monitoring services in Linux-based environments. I’ve also integrated Saleor, a Python-based e-commerce platform, with a custom-built OMS (Order Management System), enabling seamless cross-platform communication. For frontend development, I’ve worked with React.js and Tailwind CSS to build responsive, CMS-integrated user interfaces that provide clean and intuitive user experiences. Additionally, I’m experienced with Postman for API testing, Jira for agile project tracking, and I follow Git-based workflows for collaborative development I enjoy working across the stack and collaborating with cross-functional teams to deliver business-critical solutions that are efficient, secure, and maintainable",
+        "experience": [
+            {
+                "company": "Publicis Sapient",
+                "position": "Senior System Engineer",
+                "duration": "Sep 2025 - Present (3 mos)",
+                "location": "Hyderabad, Telangana, India",
+                "description": ""
+            },
+            {
+                "company": "Techouts",
+                "position": "Software Engineer",
+                "duration": "Apr 2022 - Sep 2025 (3 yrs 6 mos)",
+                "location": "Hyderabad, Telangana, India",
+                "description": ""
+            }
+        ],
+        "education": [
+            {
+                "school": "Sri Krishnadevaraya University",
+                "degree": "Computer Science",
+                "duration": "2017 - 2020",
+                "description": ""
+            },
+            {
+                "school": "AP Model & Jr College",
+                "degree": "MPC",
+                "duration": "2015 - 2017",
+                "description": ""
+            }
+        ],
+        "skills": [
+            "Spring Boot",
+            "REST APIs",
+            "GRAPHQL API",
+            "Fluent commerce",
+            "Kubernetes",
+            "Warehouse Management Systems",
+            "Hibernate"
+        ],
+        "certifications": [],
+        "screenshot": "data/screenshots/profile_screenshot_7019.png",
+        "extraction_method": "OCR + AI",
+        "page_number": 1,
+        "profile_index": 5
+    },
+    {
+        "url": "https://www.linkedin.com/in/rathnakar-reddy-2b051244/",
+        "name": "Rathnakar Reddy",
+        "headline": "Python developer",
+        "location": "Hyderabad, Telangana, India",
+        "about": "I have 11 years of IT experience, 3 years in UI, and 8+ years in Python and Django developer. I have understanding of pandas and front technology such as Angular.",
+        "experience": [
+            {
+                "company": "GLOBAL DATA RESEARCH LIMITED",
+                "position": "Team Lead",
+                "duration": "5 yrs 10 mos",
+                "location": "Hyderabad, Telangana, India",
+                "description": "Django and Python (Programming Language)"
+            },
+            {
+                "company": "GLOBAL DATA RESEARCH LIMITED",
+                "position": "Senior Module Lead",
+                "duration": "2 yrs 8 mos",
+                "location": "Hyderabad, Telangana, India",
+                "description": "Python Developer"
+            },
+            {
+                "company": "Dhanush InfoTech",
+                "position": "Frontend Developer",
+                "duration": "2 yrs 10 mos",
+                "location": "Greater Hyderabad Area",
+                "description": "Django and Python (Programming Language)"
+            },
+            {
+                "company": "Dhanush InfoTech",
+                "position": "Python Developer",
+                "duration": "2 yrs 4 mos",
+                "location": "begumpet",
+                "description": "Python (Programming Language)"
+            }
+        ],
+        "education": [
+            {
+                "school": "Kakatiya High school",
+                "degree": "",
+                "duration": "",
+                "description": ""
+            },
+            {
+                "school": "JNTUH College of Engineering Hyderabad",
+                "degree": "BTech - Bachelor of Technology, Electrical, Electronic and Communications Engineering Technology/Technician",
+                "duration": "2007 - 2011",
+                "description": "Python (Programming Language)"
+            }
+        ],
+        "skills": [
+            "Python",
+            "Django",
+            "Pandas",
+            "Databases",
+            "AWS Lambda",
+            "Cascading Style Sheets (CSS)",
+            "REST APIs"
+        ],
+        "certifications": [],
+        "screenshot": "data/screenshots/profile_screenshot_926.png",
+        "extraction_method": "OCR + AI",
+        "page_number": 1,
+        "profile_index": 6
+    },
+    {
+        "url": "https://www.linkedin.com/in/yuvraj-jadhav-788262284/",
+        "name": "Yuvraj Jadhav",
+        "headline": "Software Developer",
+        "location": "Pune, Maharashtra, India",
+        "about": "Hello, I am Yuvraj Jadhav! A Bachelor’s degree holder in Computer Applications (BCA), I am actively building my career in the dynamic world of technology. My passion lies in Full Stack Development, with a strong specialization in Python and the Django framework. With 1.3 years of hands-on experience in software development, I have strengthened my technical foundation and gained practical exposure to real-world projects. I’ve been involved in designing, developing, and maintaining web applications—contributing across both front-end and back-end layers.",
+        "experience": [
+            {
+                "company": "Gsource Technologies Pvt. Ltd.",
+                "position": "Software Developer",
+                "duration": "Aug 2024 - Present · 1 yr 4 mos",
+                "location": "",
+                "description": "Software Development and Python (Programming Language)"
+            },
+            {
+                "company": "Naresh i Technologies",
+                "position": "Trainee",
+                "duration": "Oct 2023 - May 2024 · 8 mos",
+                "location": "Hyderabad, Telangana, India",
+                "description": ""
+            }
+        ],
+        "education": [
+            {
+                "school": "Punyashlok Ahilyadevi Holkar Solapur University, Solapur",
+                "degree": "BCA, Computer Application",
+                "duration": "Jun 2020 - May 2023",
+                "description": "Grade: A"
+            }
+        ],
+        "skills": [
+            "Python",
+            "Git",
+            "PostgreSQL",
+            "Docker Products",
+            "Django REST Framework"
+        ],
+        "certifications": [],
+        "screenshot": "data/screenshots/profile_screenshot_8010.png",
+        "extraction_method": "OCR + AI",
+        "page_number": 1,
+        "profile_index": 7
+    },
+    {
+        "url": "https://www.linkedin.com/in/gorantala-supraja-119725219/",
+        "name": "Gorantala Supraja",
+        "headline": "Python developer",
+        "location": "Hyderabad, Telangana, India",
+        "about": "As a Python Developer with a focus on web application development, I bring 3 years of experience leveraging Python, Django, and Flask to create robust and scalable applications. My proficiency in MYSQL and front-end technologies enables me to deliver end-to-end solutions with exceeding client expectations through my technical expertise and dedication to continuous learning and implementation.",
+        "experience": [
+            {
+                "company": "Verisk",
+                "position": "Software Engineer",
+                "duration": "Oct 2023 - Present · 2 yrs 2 mos",
+                "location": "Hyderabad, Telangana, India · Hybrid",
+                "description": "Amazon Web Services (AWS) and Programming Languages"
+            },
+            {
+                "company": "Ojas Innovative Technologies Pvt Ltd",
+                "position": "Python Developer",
+                "duration": "Jun 2022 - Jun 2023 · 1 yr 1 mo",
+                "location": "Hyderabad, Telangana, India",
+                "description": "Data Analytics, Django and +7 skills"
+            },
+            {
+                "company": "TriGeo Technologies Pvt Ltd",
+                "position": "Software Engineer",
+                "duration": "Jul 2019 - May 2022 · 2 yrs 11 mos",
+                "location": "Hyderabad, Telangana, India · On-site",
+                "description": "There are Python libraries available that provide geocoding capabilities using Here Maps as one of the data sources. For example, the geopy library allows you to perform geocoding and reverse geocoding operations using various geocoding providers, including Here Maps. You can use geopy to convert addresses or place names into geographic coordinates (latitude and longitude) or vice versa."
+            }
+        ],
+        "education": [
+            {
+                "school": "Kakatiya University",
+                "degree": "Bachelor's degree, Information Technology",
+                "duration": "Jun 2014 - Jun 2018",
+                "description": "Grade: a, Activities and societies: exploring on new things, Engineering"
+            }
+        ],
+        "skills": [
+            "Django",
+            "Django REST Framework",
+            "Flask",
+            "MySQL",
+            "Python (Programming Language)",
+            "Amazon Web Services (AWS)",
+            "Programming Languages"
+        ],
+        "certifications": [],
+        "screenshot": "data/screenshots/profile_screenshot_9587.png",
+        "extraction_method": "OCR + AI",
+        "page_number": 1,
+        "profile_index": 8
+    },
+    {
+        "url": "https://www.linkedin.com/in/naveen-kumar-ab7359203/",
+        "name": "Naveen Kumar",
+        "headline": "Python Developer",
+        "location": "Hyderabad, Telangana, India",
+        "about": "Experienced Data Associate with a demonstrated history of working in the computer software industry. Skilled in Analytical Skills, Data Validation, Data Visualization, Linux, and Tableau. Strong information technology professional with a Bachelor of Technology - BTech focused in Computer Science from Iare.",
+        "experience": [
+            {
+                "company": "Infosys",
+                "position": "Technology Analyst",
+                "duration": "Jan 2024 - Present · 1 yr 11 mos",
+                "location": "Hyderabad, Telangana, India",
+                "description": ""
+            },
+            {
+                "company": "Infosys",
+                "position": "Senior System Engineer",
+                "duration": "Jun 2022 - Present · 3 yrs 6 mos",
+                "location": "Hyderabad, Telangana, India",
+                "description": "Python (Programming Language), Linux and +2 skills"
+            },
+            {
+                "company": "atai",
+                "position": "ML Data Associate",
+                "duration": "Nov 2019 - Jul 2022 · 2 yrs 9 mos",
+                "location": "India",
+                "description": "I prepare Datasets and ground truth data for the Model Training. I can versatile the data according to the project. Very good at the complete workflow of the SDLC. Practical experience in excel files, and json files, to ml with scripting. Prepared model accuracy analysis reports. Cleaning data sets using python . Develop and implement quality management procedures by writing scripts in Python. knowledge in image processing."
+            }
+        ],
+        "education": [
+            {
+                "school": "JNTUH College of Engineering Hyderabad",
+                "degree": "Bachelor of Technology - BTech, Computer Science",
+                "duration": "Aug 2015 - Jun 2019",
+                "description": "Grade: 61%"
+            },
+            {
+                "school": "Iare",
+                "degree": "Bachelor of Technology - BTech, Computer Science",
+                "duration": "2015 - 2019",
+                "description": "Grade: 6.0"
+            }
+        ],
+        "skills": [
+            "Test Automation",
+            "Selinum",
+            "Analytical Skills",
+            "Data Validation",
+            "Data Visualization",
+            "Linux",
+            "Tableau"
+        ],
+        "certifications": [
+            {
+                "name": "Associate Cloud Engineer Certification",
+                "issuer": "Google",
+                "date": "Issued Dec 2024 · Expires Dec 2027"
+            }
+        ],
+        "screenshot": "data/screenshots/profile_screenshot_6555.png",
+        "extraction_method": "OCR + AI",
+        "page_number": 1,
+        "profile_index": 9
+    },
+    {
+        "url": "https://www.linkedin.com/in/chitikela-gunasekhar/",
+        "name": "Chitikela Gunasekhar",
+        "headline": "Python AI Developer at KDigital",
+        "location": "Hyderabad, Telangana, India",
+        "about": "I’m Chitikela Gunasekhar, a Python AI Developer at KDigital.ai with hands-on experience in backend systems, AI integration, and scalable web applications. I have worked on real-time projects in Django, MySQL, and REST APIs, and I’m now contributing to building AI-driven solutions for clients at KDigital.ai. Previously, I built projects like an Airline Management System and a Payroll & Salary Management System, where I focused on API design, database optimization, and automation. I enjoy solving complex problems, writing clean code, and continuously learning emerging AI technologies. Tech Stack: Python, Django, MySQL, REST APIs, AI/ML, Git, HTML, CSS Soft Skills: Problem-Solving, Team Collaboration, Adaptability, Continuous Learning",
+        "experience": [
+            {
+                "company": "KDigital.ai",
+                "position": "Python AI Developer",
+                "duration": "Aug 2025 - Present · 4 mos",
+                "location": "Hyderabad, Telangana, India",
+                "description": "Building and deploying AI-powered backend systems. Automating workflows to improve scalability and performance. Collaborating with the team on model integration and RESTful API development."
+            },
+            {
+                "company": "Naresh i Technologies",
+                "position": "Internship",
+                "duration": "Mar 2025 - Jul 2025 · 5 mos",
+                "location": "Hyderabad, Telangana, India",
+                "description": "Developed and integrated backend API for payment workflows using Django + MySQL. Collaborated in an Agile team to debug and deploy web apps. Wrote and tested RESTful APIs and maintained clean database models"
+            }
+        ],
+        "education": [
+            {
+                "school": "Chaitanya Engineering College",
+                "degree": "Bachelor of Technology - BTech, Mechanical Engineering",
+                "duration": "Sep 2021 - May 2024",
+                "description": ""
+            },
+            {
+                "school": "Govt Polytechnic",
+                "degree": "Associate of Mechanical Engineering",
+                "duration": "Jun 2018 - Apr 2021",
+                "description": ""
+            }
+        ],
+        "skills": [
+            "Python",
+            "Django",
+            "MySQL",
+            "REST APIs",
+            "AI/ML",
+            "Git",
+            "HTML",
+            "CSS",
+            "Problem-Solving",
+            "Team Collaboration",
+            "Adaptability",
+            "Continuous Learning"
+        ],
+        "certifications": [],
+        "screenshot": "data/screenshots/profile_screenshot_743.png",
+        "extraction_method": "OCR + AI",
+        "page_number": 1,
+        "profile_index": 10
+    },
+    {
+        "url": "https://www.linkedin.com/in/chitikela-gunasekhar/",
+        "name": "Chitikela Gunasekhar",
+        "headline": "Python AI Developer at KDigital",
+        "location": "Hyderabad, Telangana, India",
+        "about": "I’m Chitikela Gunasekhar, a Python AI Developer at KDigital.ai with hands-on experience in backend systems, AI integration, and scalable web applications. I have worked on real-time projects in Django, MySQL, and REST APIs, and I’m now contributing to building AI-driven solutions for clients at KDigital.ai. Previously, I built projects like an Airline Management System and a Payroll & Salary Management System, where I focused on API design, database optimization, and automation. I enjoy solving complex problems, writing clean code, and continuously learning emerging AI technologies.",
+        "experience": [
+            {
+                "company": "KDigital.ai",
+                "position": "Python AI Developer",
+                "duration": "Aug 2025 - Present · 4 mos",
+                "location": "Hyderabad, Telangana, India",
+                "description": "Building and deploying AI-powered backend systems. Automating workflows to improve scalability and performance. Collaborating with the team on model integration and RESTful API development."
+            },
+            {
+                "company": "Naresh i Technologies",
+                "position": "Internship",
+                "duration": "Mar 2025 - Jul 2025 · 5 mos",
+                "location": "Hyderabad, Telangana, India",
+                "description": "Developed and integrated backend API for payment workflows using Django + MySQL. Collaborated in an Agile team to debug and deploy web apps. Wrote and tested RESTful APIs and maintained clean database models"
+            }
+        ],
+        "education": [
+            {
+                "school": "Chaitanya Engineering College",
+                "degree": "Bachelor of Technology - BTech, Mechanical Engineering",
+                "duration": "Sep 2021 - May 2024",
+                "description": ""
+            },
+            {
+                "school": "Govt Polytechnic",
+                "degree": "Associate of Mechanical Engineering",
+                "duration": "Jun 2018 - Apr 2021",
+                "description": ""
+            }
+        ],
+        "skills": [
+            "Python",
+            "Django",
+            "MySQL",
+            "REST APIs",
+            "AI/ML",
+            "Git",
+            "HTML",
+            "CSS",
+            "Problem-Solving",
+            "Team Collaboration",
+            "Adaptability",
+            "Continuous Learning"
+        ],
+        "certifications": [],
+        "screenshot": "data/screenshots/profile_screenshot_743.png",
+        "extraction_method": "OCR + AI",
+        "page_number": 2,
+        "profile_index": 1
+    },
+    {
+        "url": "https://www.linkedin.com/in/arup-gharami-227877264/",
+        "name": "Arup Gharami",
+        "headline": "Full Stack Python developer",
+        "location": "Hyderabad, Telangana, India",
+        "about": "Hii, I am Arup Gharami graduate in Bsc Computer science and looking for opportunities in the field of full stack python developer. Strong foundation in python development with skills Django, Django REST framework, Flask, CSS, HTML, SQL",
+        "experience": [],
+        "education": [
+            {
+                "school": "Osmania University",
+                "degree": "Bachelor's degree, Computer Science",
+                "duration": "Aug 2019 - Sep 2022",
+                "description": "Grade: 75.52%"
+            }
+        ],
+        "skills": [
+            "Python",
+            "SQL",
+            "Django",
+            "REST APIs",
+            "Object-Oriented Programming (OOP)",
+            "JavaScript",
+            "Data Analysis"
+        ],
+        "certifications": [],
+        "screenshot": "data/screenshots/profile_screenshot_9958.png",
+        "extraction_method": "OCR + AI",
+        "page_number": 2,
+        "profile_index": 2
+    },
+    {
+        "url": "https://www.linkedin.com/in/kalyani-rajana-397946253/",
+        "name": "Kalyani Rajana",
+        "headline": "Python Developer, Machine Learning Engineer, Machine Learning Specialist, Artificial Intelligence Developer and Artificial Intelligence Programmer",
+        "location": "Hyderabad, Telangana, India",
+        "about": "i dont have an experience, but i am fresher,i am searching for python developer,frames works are Django,SQL. any vaccany please contact me.",
+        "experience": [
+            {
+                "company": "",
+                "position": "Python Developer",
+                "duration": "Jan 2023 - Present · 2 yrs 11 mos",
+                "location": "Hyderabad, Telangana, India",
+                "description": "i am searching for jobs in python"
+            }
+        ],
+        "education": [
+            {
+                "school": "Jawaharlal Nehru Technological University, Kakinada",
+                "degree": "Bachelor of Technology - BTech, Electrical and Electronics Engineering",
+                "duration": "Aug 2018 - Jun 2021",
+                "description": "Activities and societies: reading books,i like cooking also, Grade: 7.46"
+            }
+        ],
+        "skills": [
+            "Databases",
+            "SQL"
+        ],
+        "certifications": [],
+        "screenshot": "data/screenshots/profile_screenshot_9309.png",
+        "extraction_method": "OCR + AI",
+        "page_number": 2,
+        "profile_index": 3
+    },
+    {
+        "url": "https://www.linkedin.com/in/akhil-bojja-4017751a8/",
+        "name": "AKHIL BOJJA",
+        "headline": "Software Developer | Python Developer | PySpark",
+        "location": "Hyderabad, Telangana, India",
+        "about": "I am a highly skilled software developer with a strong background in data engineering and Python backend development. My expertise lies in data analysis using Python libraries such as Pandas and PySpark, enabling me to effectively manipulate and analyze large datasets to extract valuable insights. I take pride in my ability to clean and preprocess data efficiently, ensuring data accuracy and consistency for further analysis. In addition to my data analysis capabilities, I possess knowledge of Power BI, enabling me to create interactive and visually appealing data visualizations and reports that facilitate data-driven decision-making. My proficiency in SQL Server and PostgreSQL databases allows me to design and optimize database structures, write complex queries, and ensure data integrity. Moreover, I am well-versed in cloud services, particularly in utilizing Azure Databricks, Azure Data Factory, and Azure Storage Account. This expertise enables me to build scalable and robust data pipelines that efficiently process and transform data in the cloud environment. Throughout my career, I have actively contributed to cross-functional teams, effectively communicating complex technical concepts to non-technical stakeholders. I have a proactive approach to learning, staying updated with the latest advancements in data engineering and software development, ensuring that I deliver cutting-edge solutions that align with industry best practices. In summary, my combined skills in data analysis using Python libraries, knowledge of Power BI and databases like SQL Server and PostgreSQL, and expertise in cloud services like Azure Databricks, Azure Data Factory, and Azure Storage Account make me a versatile and valuable software developer in the domain of data engineering. I am confident in my ability to deliver high-quality solutions that drive data-centric decision-making and contribute to the success of any software development project.",
+        "experience": [
+            {
+                "company": "Infosys",
+                "position": "Senior Associate Consultant",
+                "duration": "Jul 2025 - Present · 5 mos",
+                "location": "Hyderabad, Telangana, India · Hybrid",
+                "description": ""
+            },
+            {
+                "company": "Xyenta",
+                "position": "Software Developer",
+                "duration": "Oct 2021 - Jun 2025 · 3 yrs 9 mos",
+                "location": "Hyderabad, Telangana, India · On-site",
+                "description": ""
+            }
+        ],
+        "education": [
+            {
+                "school": "MVSR Engineering College",
+                "degree": "B.E, Automobile engineering",
+                "duration": "2016 - 2020",
+                "description": "Grade: 6.62/10"
+            }
+        ],
+        "skills": [
+            "API Development",
+            "Data Engineering",
+            "Code Review",
+            "Analytical Skills"
+        ],
+        "certifications": [],
+        "screenshot": "data/screenshots/profile_screenshot_7996.png",
+        "extraction_method": "OCR + AI",
+        "page_number": 2,
+        "profile_index": 4
+    },
+    {
+        "url": "https://www.linkedin.com/in/ranjith01/",
+        "name": "Ranjith Kumar Katla",
+        "headline": "Python Developer",
+        "location": "Hyderabad, Telangana, India",
+        "about": "1.I have no experience as I'm fresher 2.Aspiring Developer | PYTHON , SQL | 3.Graduated at 2023 Satavahana University",
+        "experience": [],
+        "education": [
+            {
+                "school": "Satavahana University, Karimnagar",
+                "degree": "Bachelor's science , Data science",
+                "duration": "Jun 2020 - Aug 2023",
+                "description": ""
+            }
+        ],
+        "skills": [
+            "Data Science",
+            "Data Analytics"
+        ],
+        "certifications": [],
+        "screenshot": "data/screenshots/profile_screenshot_9338.png",
+        "extraction_method": "OCR + AI",
+        "page_number": 2,
+        "profile_index": 5
+    },
+    {
+        "url": "https://www.linkedin.com/in/nivasgopathi/",
+        "name": "Nivas Gopathi",
+        "headline": "Python full stack developer",
+        "location": "Hyderabad, Telangana, India",
+        "about": "Being passionate about the topic of computer science and technology, I hope to contribute my skills and abilities for the betterment of the organization, in return for me a platform to implement my skills in real-life situations. In addition to this, to achieve excellence in the area of my interest and to work in innovative projects and learn continuously. With my skills like team building, interpersonal as well as logical reasoning i believe that I can be a successful employee in any esteemed organisation by delivering the best of my capabilities. And also ready to adapt any type of environment.",
+        "experience": [
+            {
+                "company": "HCLTech",
+                "position": "Associate",
+                "duration": "Dec 2023 - Aug 2024",
+                "location": "Hyderabad, Telangana, India",
+                "description": "Software Infrastructure and Engineering"
+            },
+            {
+                "company": "CSS Corp",
+                "position": "Network Engineer",
+                "duration": "Jan 2022 - May 2022",
+                "location": "Chennai, Tamil Nadu, India",
+                "description": "I have worked as intern as network engineer trainee .I have worked on the IP addressing,packet flow, TCP model , UDP I have used putty ."
+            }
+        ],
+        "education": [
+            {
+                "school": "Guru Nanak Institutions(GNI)",
+                "degree": "Bachelor of Technology - BTech, Electrical and Electronics Engineering",
+                "duration": "Jul 2018 - Aug 2022",
+                "description": ""
+            }
+        ],
+        "skills": [
+            "Software Infrastructure",
+            "Engineering",
+            "Team building",
+            "Interpersonal",
+            "Logical reasoning",
+            "Transmission Control Protocol (TCP)"
+        ],
+        "certifications": [
+            {
+                "name": "Developer Foundations",
+                "issuer": "NxtWave",
+                "date": "May 2023"
+            },
+            {
+                "name": "Introduction to Databases",
+                "issuer": "NxtWave",
+                "date": "Mar 2023"
+            }
+        ],
+        "screenshot": "data/screenshots/profile_screenshot_6339.png",
+        "extraction_method": "OCR + AI",
+        "page_number": 2,
+        "profile_index": 6
+    },
+    {
+        "url": "https://www.linkedin.com/in/gudipati-vineela-66366132a/",
+        "name": "Gudipati Vineela",
+        "headline": "Python Developer at Naresh i Technologies",
+        "location": "Hyderabad, Telangana, India",
+        "about": "",
+        "experience": [
+            {
+                "company": "Naresh i Technologies",
+                "position": "Python Developer",
+                "duration": "Mar 2024 - Present · 1 yr 9 mos",
+                "location": "Andhra Pradesh, India",
+                "description": ""
+            }
+        ],
+        "education": [],
+        "skills": [],
+        "certifications": [],
+        "screenshot": "data/screenshots/profile_screenshot_6601.png",
+        "extraction_method": "OCR + AI",
+        "page_number": 2,
+        "profile_index": 7
+    },
+    {
+        "url": "https://www.linkedin.com/in/taruna-kumar-behera/",
+        "name": "Taruna Kumar Behera",
+        "headline": "Python Full Stack Developer",
+        "location": "Hyderabad, Telangana, India",
+        "about": "",
+        "experience": [
+            {
+                "company": "OutriX",
+                "position": "Python Developer Intern",
+                "duration": "Sep 2025 - Oct 2025",
+                "location": "Hyderabad, Telangana, India",
+                "description": "Worked as a Python Developer Intern at OutriX, where I developed multiple real-world Python projects focused on GUI design, API integration, file handling, and data management."
+            },
+            {
+                "company": "Cognifyz Technologies",
+                "position": "Python Developer Intern",
+                "duration": "Jun 2025 - Jul 2025",
+                "location": "Hyderabad, Telangana, India",
+                "description": "During my internship at Cognifyz Technologies as a Python Developer, I worked on developing and optimizing Python-based applications."
+            },
+            {
+                "company": "Naresh i Technologies",
+                "position": "Python Developer",
+                "duration": "Nov 2024 - Jun 2025",
+                "location": "Hyderabad, Telangana, India",
+                "description": ""
+            }
+        ],
+        "education": [
+            {
+                "school": "Berhampur University",
+                "degree": "",
+                "duration": "2021 - 2024",
+                "description": ""
+            }
+        ],
+        "skills": [
+            "Python",
+            "HTML",
+            "E-Commerce",
+            "User Experience (UX)",
+            "NumPy",
+            "Database Consulting"
+        ],
+        "certifications": [],
+        "screenshot": "data/screenshots/profile_screenshot_4949.png",
+        "extraction_method": "OCR + AI",
+        "page_number": 2,
+        "profile_index": 8
+    },
+    {
+        "url": "https://www.linkedin.com/in/harshitha-harshu-49b0a5334/",
+        "name": "harshitha harshu",
+        "headline": "Python Developer at I-Connect007",
+        "location": "Secunderābād, Telangana, India",
+        "about": "",
+        "experience": [
+            {
+                "company": "I-Connect007",
+                "position": "Python Developer",
+                "duration": "",
+                "location": "",
+                "description": ""
+            }
+        ],
+        "education": [],
+        "skills": [],
+        "certifications": [],
+        "screenshot": "",
+        "extraction_method": "OCR + AI",
+        "page_number": 2,
+        "profile_index": 9
+    },
+    {
+        "url": "https://www.linkedin.com/in/nikhila-talla-3b3663258/",
+        "name": "Nikhila Talla",
+        "headline": "Python Developer, Oracle Developer, SQL Programmer and HTML Developer",
+        "location": "Hyderabad, Telangana, India",
+        "about": "I'm looking for immediate joining company. I'm fresher I completed my btech in 2024",
+        "experience": [
+            {
+                "company": "Airbaclabs",
+                "position": "Front-End Web Development",
+                "duration": "",
+                "location": "Santhiram Engineering College",
+                "description": "Participated in workshop on \"Front-End Web Development\" conducted by Airbaclabs"
+            }
+        ],
+        "education": [
+            {
+                "school": "JNTU Anantapur",
+                "degree": "Bachelor of Technology - BTech, Computer Science",
+                "duration": "Dec 2020 - May 2024",
+                "description": "Grade: 78"
+            }
+        ],
+        "skills": [
+            "Python",
+            "HTML",
+            "SQL",
+            "C",
+            "Machine Learning"
+        ],
+        "certifications": [
+            {
+                "name": "Responsive Web Design",
+                "issuer": "freeCodeCamp",
+                "date": "Sep 2023"
+            }
+        ],
+        "screenshot": "data/screenshots/profile_screenshot_703.png",
+        "extraction_method": "OCR + AI",
+        "page_number": 2,
+        "profile_index": 10
+    },
+    {
+        "url": "https://www.linkedin.com/in/chitikela-gunasekhar/",
+        "name": "Chitikela Gunasekhar",
+        "headline": "Python AI Developer at KDigital",
+        "location": "Hyderabad, Telangana, India",
+        "about": "I’m Chitikela Gunasekhar, a Python AI Developer at KDigital.ai with hands-on experience in backend systems, AI integration, and scalable web applications. I have worked on real-time projects in Django, MySQL, and REST APIs, and I’m now contributing to building AI-driven solutions for clients at KDigital.ai. Previously, I built projects like an Airline Management System and a Payroll & Salary Management System, where I focused on API design, database optimization, and automation. I enjoy solving complex problems, writing clean code, and continuously learning emerging AI technologies.",
+        "experience": [
+            {
+                "company": "KDigital.ai",
+                "position": "Python AI Developer",
+                "duration": "Aug 2025 - Present · 4 mos",
+                "location": "Hyderabad, Telangana, India",
+                "description": "Building and deploying AI-powered backend systems. Automating workflows to improve scalability and performance. Collaborating with the team on model integration and RESTful API development."
+            },
+            {
+                "company": "Naresh i Technologies",
+                "position": "Internship",
+                "duration": "Mar 2025 - Jul 2025 · 5 mos",
+                "location": "Hyderabad, Telangana, India",
+                "description": "Developed and integrated backend API for payment workflows using Django + MySQL. Collaborated in an Agile team to debug and deploy web apps. Wrote and tested RESTful APIs and maintained clean database models"
+            }
+        ],
+        "education": [
+            {
+                "school": "Chaitanya Engineering College",
+                "degree": "Bachelor of Technology - BTech, Mechanical Engineering",
+                "duration": "Sep 2021 - May 2024",
+                "description": ""
+            },
+            {
+                "school": "Govt Polytechnic",
+                "degree": "Associate of Mechanical Engineering",
+                "duration": "Jun 2018 - Apr 2021",
+                "description": ""
+            }
+        ],
+        "skills": [
+            "Python",
+            "Django",
+            "MySQL",
+            "REST APIs",
+            "AI/ML",
+            "Git",
+            "HTML",
+            "CSS",
+            "Problem-Solving",
+            "Team Collaboration",
+            "Adaptability",
+            "Continuous Learning"
+        ],
+        "certifications": [],
+        "screenshot": "data/screenshots/profile_screenshot_743.png",
+        "extraction_method": "OCR + AI",
+        "page_number": 3,
+        "profile_index": 1
+    },
+    {
+        "url": "https://www.linkedin.com/in/arup-gharami-227877264/",
+        "name": "Arup Gharami",
+        "headline": "Full Stack Python developer",
+        "location": "Hyderabad, Telangana, India",
+        "about": "Hii, I am Arup Gharami graduate in Bsc Computer science and looking for opportunities in the field of full stack python developer. Strong foundation in python development with skills Django, Django REST framework, Flask, CSS, HTML, SQL",
+        "experience": [],
+        "education": [
+            {
+                "school": "Osmania University",
+                "degree": "Bachelor's degree, Computer Science",
+                "duration": "Aug 2019 - Sep 2022",
+                "description": "Grade: 75.52%"
+            }
+        ],
+        "skills": [
+            "Python",
+            "SQL",
+            "Django",
+            "REST APIs",
+            "Object-Oriented Programming (OOP)",
+            "JavaScript",
+            "Data Analysis"
+        ],
+        "certifications": [],
+        "screenshot": "data/screenshots/profile_screenshot_9958.png",
+        "extraction_method": "OCR + AI",
+        "page_number": 3,
+        "profile_index": 2
+    },
+    {
+        "url": "https://www.linkedin.com/in/kalyani-rajana-397946253/",
+        "name": "Kalyani Rajana",
+        "headline": "Python Developer, Machine Learning Engineer, Machine Learning Specialist, Artificial Intelligence Developer and Artificial Intelligence Programmer",
+        "location": "Hyderabad, Telangana, India",
+        "about": "i dont have an experience, but i am fresher,i am searching for python developer,frames works are Django,SQL. any vaccany please contact me.",
+        "experience": [
+            {
+                "company": "",
+                "position": "Python Developer",
+                "duration": "Jan 2023 - Present · 2 yrs 11 mos",
+                "location": "Hyderabad, Telangana, India",
+                "description": "i am searching for jobs in python"
+            }
+        ],
+        "education": [
+            {
+                "school": "Jawaharlal Nehru Technological University, Kakinada",
+                "degree": "Bachelor of Technology - BTech, Electrical and Electronics Engineering",
+                "duration": "Aug 2018 - Jun 2021",
+                "description": "Activities and societies: reading books,i like cooking also, Grade: 7.46"
+            }
+        ],
+        "skills": [
+            "Databases",
+            "SQL"
+        ],
+        "certifications": [],
+        "screenshot": "data/screenshots/profile_screenshot_9309.png",
+        "extraction_method": "OCR + AI",
+        "page_number": 3,
+        "profile_index": 3
+    },
+    {
+        "url": "https://www.linkedin.com/in/akhil-bojja-4017751a8/",
+        "name": "AKHIL BOJJA",
+        "headline": "Software Developer | Python Developer | PySpark",
+        "location": "Hyderabad, Telangana, India",
+        "about": "I am a highly skilled software developer with a strong background in data engineering and Python backend development. My expertise lies in data analysis using Python libraries such as Pandas and PySpark, enabling me to effectively manipulate and analyze large datasets to extract valuable insights. I take pride in my ability to clean and preprocess data efficiently, ensuring data accuracy and consistency for further analysis. In addition to my data analysis capabilities, I possess knowledge of Power BI, enabling me to create interactive and visually appealing data visualizations and reports that facilitate data-driven decision-making. My proficiency in SQL Server and PostgreSQL databases allows me to design and optimize database structures, write complex queries, and ensure data integrity. Moreover, I am well-versed in cloud services, particularly in utilizing Azure Databricks, Azure Data Factory, and Azure Storage Account. This expertise enables me to build scalable and robust data pipelines that efficiently process and transform data in the cloud environment. Throughout my career, I have actively contributed to cross-functional teams, effectively communicating complex technical concepts to non-technical stakeholders. I have a proactive approach to learning, staying updated with the latest advancements in data engineering and software development, ensuring that I deliver cutting-edge solutions that align with industry best practices. In summary, my combined skills in data analysis using Python libraries, knowledge of Power BI and databases like SQL Server and PostgreSQL, and expertise in cloud services like Azure Databricks, Azure Data Factory, and Azure Storage Account make me a versatile and valuable software developer in the domain of data engineering. I am confident in my ability to deliver high-quality solutions that drive data-centric decision-making and contribute to the success of any software development project.",
+        "experience": [
+            {
+                "company": "Infosys",
+                "position": "Senior Associate Consultant",
+                "duration": "Jul 2025 - Present · 5 mos",
+                "location": "Hyderabad, Telangana, India · Hybrid",
+                "description": ""
+            },
+            {
+                "company": "Xyenta",
+                "position": "Software Developer",
+                "duration": "Oct 2021 - Jun 2025 · 3 yrs 9 mos",
+                "location": "Hyderabad, Telangana, India · On-site",
+                "description": ""
+            }
+        ],
+        "education": [
+            {
+                "school": "MVSR Engineering College",
+                "degree": "B.E, Automobile engineering",
+                "duration": "2016 - 2020",
+                "description": "Grade: 6.62/10"
+            }
+        ],
+        "skills": [
+            "API Development",
+            "Data Engineering",
+            "Code Review",
+            "Analytical Skills"
+        ],
+        "certifications": [],
+        "screenshot": "data/screenshots/profile_screenshot_7996.png",
+        "extraction_method": "OCR + AI",
+        "page_number": 3,
+        "profile_index": 4
+    },
+    {
+        "url": "https://www.linkedin.com/in/ranjith01/",
+        "name": "Ranjith Kumar Katla",
+        "headline": "Python Developer",
+        "location": "Hyderabad, Telangana, India",
+        "about": "1.I have no experience as I'm fresher 2.Aspiring Developer | PYTHON , SQL | 3.Graduated at 2023 Satavahana University",
+        "experience": [],
+        "education": [
+            {
+                "school": "Satavahana University, Karimnagar",
+                "degree": "Bachelor's science , Data science",
+                "duration": "Jun 2020 - Aug 2023",
+                "description": ""
+            }
+        ],
+        "skills": [
+            "Data Science",
+            "Data Analytics"
+        ],
+        "certifications": [],
+        "screenshot": "data/screenshots/profile_screenshot_9338.png",
+        "extraction_method": "OCR + AI",
+        "page_number": 3,
+        "profile_index": 5
+    },
+    {
+        "url": "https://www.linkedin.com/in/nivasgopathi/",
+        "name": "Nivas Gopathi",
+        "headline": "Python full stack developer",
+        "location": "Hyderabad, Telangana, India",
+        "about": "Being passionate about the topic of computer science and technology, I hope to contribute my skills and abilities for the betterment of the organization, in return for me a platform to implement my skills in real-life situations. In addition to this, to achieve excellence in the area of my interest and to work in innovative projects and learn continuously. With my skills like team building, interpersonal as well as logical reasoning i believe that I can be a successful employee in any esteemed organisation by delivering the best of my capabilities. And also ready to adapt any type of environment.",
+        "experience": [
+            {
+                "company": "HCLTech",
+                "position": "Associate",
+                "duration": "Dec 2023 - Aug 2024",
+                "location": "Hyderabad, Telangana, India",
+                "description": "Software Infrastructure and Engineering"
+            },
+            {
+                "company": "CSS Corp",
+                "position": "Network Engineer",
+                "duration": "Jan 2022 - May 2022",
+                "location": "Chennai, Tamil Nadu, India",
+                "description": "I have worked as intern as network engineer trainee .I have worked on the IP addressing,packet flow, TCP model , UDP I have used putty ."
+            }
+        ],
+        "education": [
+            {
+                "school": "Guru Nanak Institutions(GNI)",
+                "degree": "Bachelor of Technology - BTech, Electrical and Electronics Engineering",
+                "duration": "Jul 2018 - Aug 2022",
+                "description": ""
+            }
+        ],
+        "skills": [
+            "Software Infrastructure",
+            "Engineering",
+            "Team building",
+            "Interpersonal",
+            "Logical reasoning",
+            "Transmission Control Protocol (TCP)"
+        ],
+        "certifications": [
+            {
+                "name": "Developer Foundations",
+                "issuer": "NxtWave",
+                "date": "May 2023"
+            },
+            {
+                "name": "Introduction to Databases",
+                "issuer": "NxtWave",
+                "date": "Mar 2023"
+            }
+        ],
+        "screenshot": "data/screenshots/profile_screenshot_6339.png",
+        "extraction_method": "OCR + AI",
+        "page_number": 3,
+        "profile_index": 6
+    },
+    {
+        "url": "https://www.linkedin.com/in/gudipati-vineela-66366132a/",
+        "name": "Gudipati Vineela",
+        "headline": "Python Developer at Naresh i Technologies",
+        "location": "Hyderabad, Telangana, India",
+        "about": "",
+        "experience": [
+            {
+                "company": "Naresh i Technologies",
+                "position": "Python Developer",
+                "duration": "Mar 2024 - Present · 1 yr 9 mos",
+                "location": "Andhra Pradesh, India",
+                "description": ""
+            }
+        ],
+        "education": [],
+        "skills": [],
+        "certifications": [],
+        "screenshot": "data/screenshots/profile_screenshot_6601.png",
+        "extraction_method": "OCR + AI",
+        "page_number": 3,
+        "profile_index": 7
+    },
+    {
+        "url": "https://www.linkedin.com/in/taruna-kumar-behera/",
+        "name": "Taruna Kumar Behera",
+        "headline": "Python Full Stack Developer",
+        "location": "Hyderabad, Telangana, India",
+        "about": "",
+        "experience": [
+            {
+                "company": "OutriX",
+                "position": "Python Developer",
+                "duration": "Sep 2025 - Oct 2025",
+                "location": "Hyderabad, Telangana, India",
+                "description": "Worked as a Python Developer Intern at OutriX, where I developed multiple real-world Python projects focused on GUI design, API integration, file handling, and data management."
+            },
+            {
+                "company": "Cognifyz Technologies",
+                "position": "Python Developer",
+                "duration": "Jun 2025 - Jul 2025",
+                "location": "Hyderabad, Telangana, India",
+                "description": "During my internship at Cognifyz Technologies as a Python Developer, I worked on developing and optimizing Python-based applications."
+            },
+            {
+                "company": "Naresh i Technologies",
+                "position": "Python Developer",
+                "duration": "Nov 2024 - Jun 2025",
+                "location": "Hyderabad, Telangana, India",
+                "description": ""
+            }
+        ],
+        "education": [
+            {
+                "school": "Berhampur University",
+                "degree": "",
+                "duration": "2021 - 2024",
+                "description": ""
+            }
+        ],
+        "skills": [
+            "Python",
+            "HTML",
+            "E-Commerce",
+            "User Experience (UX)",
+            "NumPy",
+            "Database Consulting"
+        ],
+        "certifications": [],
+        "screenshot": "data/screenshots/profile_screenshot_4949.png",
+        "extraction_method": "OCR + AI",
+        "page_number": 3,
+        "profile_index": 8
+    },
+    {
+        "url": "https://www.linkedin.com/in/harshitha-harshu-49b0a5334/",
+        "name": "harshitha harshu",
+        "headline": "Python Developer at I-Connect007",
+        "location": "Secunderābād, Telangana, India",
+        "about": "",
+        "experience": [
+            {
+                "company": "I-Connect007",
+                "position": "Python Developer",
+                "duration": "",
+                "location": "",
+                "description": ""
+            }
+        ],
+        "education": [],
+        "skills": [],
+        "certifications": [],
+        "screenshot": "data/screenshots/profile_screenshot_9816.png",
+        "extraction_method": "OCR + AI",
+        "page_number": 3,
+        "profile_index": 9
+    },
+    {
+        "url": "https://www.linkedin.com/in/nikhila-talla-3b3663258/",
+        "name": "Nikhila Talla",
+        "headline": "Python Developer, Oracle Developer, SQL Programmer and HTML Developer",
+        "location": "Hyderabad, Telangana, India",
+        "about": "I'm looking for immediate joining company. I'm fresher I completed my btech in 2024",
+        "experience": [
+            {
+                "company": "Airbaclabs",
+                "position": "Front-End Web Development",
+                "duration": "",
+                "location": "Santhiram Engineering College",
+                "description": "Participated in workshop on \"Front-End Web Development\" conducted by Airbaclabs"
+            }
+        ],
+        "education": [
+            {
+                "school": "JNTU Anantapur",
+                "degree": "Bachelor of Technology - BTech, Computer Science",
+                "duration": "Dec 2020 - May 2024",
+                "description": "Grade: 78"
+            }
+        ],
+        "skills": [
+            "Python",
+            "HTML",
+            "SQL",
+            "C",
+            "Machine Learning"
+        ],
+        "certifications": [
+            {
+                "name": "Responsive Web Design",
+                "issuer": "freeCodeCamp",
+                "date": "Sep 2023"
+            }
+        ],
+        "screenshot": "data/screenshots/profile_screenshot_703.png",
+        "extraction_method": "OCR + AI",
+        "page_number": 3,
+        "profile_index": 10
+    },
+    {
+        "url": "https://www.linkedin.com/in/chitikela-gunasekhar/overlay/1752753771688/single-media-viewer/",
+        "name": "Chitikela Gunasekhar",
+        "headline": "Python AI Developer at KDigital",
+        "location": "Hyderabad, Telangana, India",
+        "about": "I’m Chitikela Gunasekhar, a Python AI Developer at KDigital.ai with hands-on experience in backend systems, AI integration, and scalable web applications. I have worked on real-time projects in Django, MySQL, and REST APIs, and I’m now contributing to building AI-driven solutions for clients at KDigital.ai. Previously, I built projects like an Airline Management System and a Payroll & Salary Management System, where I focused on API design, database optimization, and automation. I enjoy solving complex problems, writing clean code, and continuously learning emerging AI technologies.",
+        "experience": [
+            {
+                "company": "KDigital.ai",
+                "position": "Python AI Developer",
+                "duration": "Aug 2025 - Present · 4 mos",
+                "location": "Hyderabad, Telangana, India",
+                "description": "Building and deploying AI-powered backend systems. Automating workflows to improve scalability and performance. Collaborating with the team on model integration and RESTful API development."
+            },
+            {
+                "company": "Naresh i Technologies",
+                "position": "Internship",
+                "duration": "Mar 2025 - Jul 2025 · 5 mos",
+                "location": "Hyderabad, Telangana, India",
+                "description": "Developed and integrated backend API for payment workflows using Django + MySQL. Collaborated in an Agile team to debug and deploy web apps. Wrote and tested RESTful APIs and maintained clean database models"
+            }
+        ],
+        "education": [
+            {
+                "school": "Chaitanya Engineering College",
+                "degree": "Bachelor of Technology - BTech, Mechanical Engineering",
+                "duration": "Sep 2021 - May 2024",
+                "description": ""
+            },
+            {
+                "school": "Govt Polytechnic",
+                "degree": "Associate of Mechanical Engineering",
+                "duration": "Jun 2018 - Apr 2021",
+                "description": ""
+            }
+        ],
+        "skills": [
+            "Python",
+            "Django",
+            "MySQL",
+            "REST APIs",
+            "AI/ML",
+            "Git",
+            "HTML",
+            "CSS",
+            "Problem-Solving",
+            "Team Collaboration",
+            "Adaptability",
+            "Continuous Learning"
+        ],
+        "certifications": [],
+        "screenshot": "data/screenshots/profile_screenshot_61.png",
+        "extraction_method": "OCR + AI",
+        "page_number": 4,
+        "profile_index": 1
+    },
+    {
+        "url": "https://www.linkedin.com/in/chitikela-gunasekhar/overlay/1752753659255/single-media-viewer/",
+        "name": "Chitikela Gunasekhar",
+        "headline": "Python AI Developer at KDigital",
+        "location": "Hyderabad, Telangana, India",
+        "about": "I’m Chitikela Gunasekhar, a Python AI Developer at KDigital.ai with hands-on experience in backend systems, AI integration, and scalable web applications. I have worked on real-time projects in Django, MySQL, and REST APIs, and I’m now contributing to building AI-driven solutions for clients at KDigital.ai. Previously, I built projects like an Airline Management System and a Payroll & Salary Management System, where I focused on API design, database optimization, and automation. I enjoy solving complex problems, writing clean code, and continuously learning emerging AI technologies. Tech Stack: Python, Django, MySQL, REST APIs, AI/ML, Git, HTML, CSS Soft Skills: Problem-Solving, Team Collaboration, Adaptability, Continuous Learning",
+        "experience": [
+            {
+                "company": "KDigital.ai",
+                "position": "Python AI Developer",
+                "duration": "Aug 2025 - Present · 4 mos",
+                "location": "Hyderabad, Telangana, India",
+                "description": "Building and deploying AI-powered backend systems. Automating workflows to improve scalability and performance. Collaborating with the team on model integration and RESTful API development."
+            },
+            {
+                "company": "Naresh i Technologies",
+                "position": "Internship",
+                "duration": "Mar 2025 - Jul 2025 · 5 mos",
+                "location": "Hyderabad, Telangana, India",
+                "description": "Developed and integrated backend API for payment workflows using Django + MySQL. Collaborated in an Agile team to debug and deploy web apps. Wrote and tested RESTful APIs and maintained clean database models"
+            }
+        ],
+        "education": [
+            {
+                "school": "Chaitanya Engineering College",
+                "degree": "Bachelor of Technology - BTech, Mechanical Engineering",
+                "duration": "Sep 2021 - May 2024",
+                "description": ""
+            },
+            {
+                "school": "Govt Polytechnic",
+                "degree": "Associate of Mechanical Engineering",
+                "duration": "Jun 2018 - Apr 2021",
+                "description": ""
+            }
+        ],
+        "skills": [
+            "Python",
+            "Django",
+            "MySQL",
+            "REST APIs",
+            "AI/ML",
+            "Git",
+            "HTML",
+            "CSS",
+            "Problem-Solving",
+            "Team Collaboration",
+            "Adaptability",
+            "Continuous Learning"
+        ],
+        "certifications": [],
+        "screenshot": "data/screenshots/profile_screenshot_4113.png",
+        "extraction_method": "OCR + AI",
+        "page_number": 4,
+        "profile_index": 2
+    },
+    {
+        "url": "https://www.linkedin.com/in/chitikela-gunasekhar/overlay/1752753584857/single-media-viewer/",
+        "name": "Chitikela Gunasekhar",
+        "headline": "Python AI Developer at KDigital",
+        "location": "Hyderabad, Telangana, India",
+        "about": "I’m Chitikela Gunasekhar, a Python AI Developer at KDigital.ai with hands-on experience in backend systems, AI integration, and scalable web applications. I have worked on real-time projects in Django, MySQL, and REST APIs, and I’m now contributing to building AI-driven solutions for clients at KDigital.ai. Previously, I built projects like an Airline Management System and a Payroll & Salary Management System, where I focused on API design, database optimization, and automation. I enjoy solving complex problems, writing clean code, and continuously learning emerging AI technologies. Tech Stack: Python, Django, MySQL, REST APIs, AI/ML, Git, HTML, CSS Soft Skills: Problem-Solving, Team Collaboration, Adaptability, Continuous Learning",
+        "experience": [
+            {
+                "company": "KDigital.ai",
+                "position": "Python AI Developer",
+                "duration": "Aug 2025 - Present · 4 mos",
+                "location": "Hyderabad, Telangana, India",
+                "description": "Building and deploying AI-powered backend systems. Automating workflows to improve scalability and performance. Collaborating with the team on model integration and RESTful API development."
+            },
+            {
+                "company": "Naresh i Technologies",
+                "position": "Internship",
+                "duration": "Mar 2025 - Jul 2025 · 5 mos",
+                "location": "Hyderabad, Telangana, India",
+                "description": "Developed and integrated backend API for payment workflows using Django + MySQL. Collaborated in an Agile team to debug and deploy web apps. Wrote and tested RESTful APIs and maintained clean database models"
+            }
+        ],
+        "education": [
+            {
+                "school": "Chaitanya Engineering College",
+                "degree": "Bachelor of Technology - BTech, Mechanical Engineering",
+                "duration": "Sep 2021 - May 2024",
+                "description": ""
+            },
+            {
+                "school": "Govt Polytechnic",
+                "degree": "Associate of Mechanical Engineering",
+                "duration": "Jun 2018 - Apr 2021",
+                "description": ""
+            }
+        ],
+        "skills": [
+            "Python",
+            "Django",
+            "MySQL",
+            "REST APIs",
+            "AI/ML",
+            "Git",
+            "HTML",
+            "CSS",
+            "Problem-Solving",
+            "Team Collaboration",
+            "Adaptability",
+            "Continuous Learning"
+        ],
+        "certifications": [],
+        "screenshot": "data/screenshots/profile_screenshot_7851.png",
+        "extraction_method": "OCR + AI",
+        "page_number": 4,
+        "profile_index": 3
+    },
+    {
+        "url": "https://www.linkedin.com/in/chitikela-gunasekhar/",
+        "name": "Chitikela Gunasekhar",
+        "headline": "Python AI Developer at KDigital",
+        "location": "Hyderabad, Telangana, India",
+        "about": "I’m Chitikela Gunasekhar, a Python AI Developer at KDigital.ai with hands-on experience in backend systems, AI integration, and scalable web applications. I have worked on real-time projects in Django, MySQL, and REST APIs, and I’m now contributing to building AI-driven solutions for clients at KDigital.ai. Previously, I built projects like an Airline Management System and a Payroll & Salary Management System, where I focused on API design, database optimization, and automation. I enjoy solving complex problems, writing clean code, and continuously learning emerging AI technologies.",
+        "experience": [
+            {
+                "company": "KDigital.ai",
+                "position": "Python AI Developer",
+                "duration": "Aug 2025 - Present · 4 mos",
+                "location": "Hyderabad, Telangana, India",
+                "description": "Building and deploying AI-powered backend systems. Automating workflows to improve scalability and performance. Collaborating with the team on model integration and RESTful API development."
+            },
+            {
+                "company": "Naresh i Technologies",
+                "position": "Internship",
+                "duration": "Mar 2025 - Jul 2025 · 5 mos",
+                "location": "Hyderabad, Telangana, India",
+                "description": "Developed and integrated backend API for payment workflows using Django + MySQL. Collaborated in an Agile team to debug and deploy web apps. Wrote and tested RESTful APIs and maintained clean database models."
+            }
+        ],
+        "education": [
+            {
+                "school": "Chaitanya Engineering College",
+                "degree": "Bachelor of Technology - BTech, Mechanical Engineering",
+                "duration": "Sep 2021 - May 2024",
+                "description": ""
+            },
+            {
+                "school": "Govt Polytechnic",
+                "degree": "Associate of Mechanical Engineering",
+                "duration": "Jun 2018 - Apr 2021",
+                "description": ""
+            }
+        ],
+        "skills": [
+            "Python",
+            "Django",
+            "MySQL",
+            "REST APIs",
+            "AI/ML",
+            "Git",
+            "HTML",
+            "CSS",
+            "Problem-Solving",
+            "Team Collaboration",
+            "Adaptability",
+            "Continuous Learning"
+        ],
+        "certifications": [],
+        "screenshot": "data/screenshots/profile_screenshot_743.png",
+        "extraction_method": "OCR + AI",
+        "page_number": 4,
+        "profile_index": 4
+    },
+    {
+        "url": "https://www.linkedin.com/in/chitikela-gunasekhar/recent-activity/all/",
+        "name": "Chitikela Gunasekhar",
+        "headline": "Python AI Developer at KDigital",
+        "location": "India",
+        "about": "",
+        "experience": [
+            {
+                "company": "KDigital",
+                "position": "Python AI Developer",
+                "duration": "",
+                "location": "",
+                "description": ""
+            }
+        ],
+        "education": [],
+        "skills": [
+            "Python",
+            "AI",
+            "Backend Development",
+            "DSA"
+        ],
+        "certifications": [],
+        "screenshot": "data/screenshots/profile_screenshot_2593.png",
+        "extraction_method": "OCR + AI",
+        "page_number": 4,
+        "profile_index": 5
+    },
+    {
+        "url": "https://www.linkedin.com/in/chitikela-gunasekhar/overlay/urn:li:fsd_profilePosition:(ACoAAFqF0n4BWrkyMkhtQGuFmxmFIrCvkVy3OQ4,2670413808)/skill-associations-details/",
+        "name": "Chitikela Gunasekhar",
+        "headline": "Python AI Developer at KDigital",
+        "location": "Hyderabad, Telangana, India",
+        "about": "I’m Chitikela Gunasekhar, a Python AI Developer at KDigital.ai with hands-on experience in backend systems, AI integration, and scalable web applications. I have worked on real-time projects in Django, MySQL, and REST APIs, and I’m now contributing to building AI-driven solutions for clients at KDigital.ai. Previously, I built projects like an Airline Management System and a Payroll & Salary Management System, where I focused on API design, database optimization, and automation. I enjoy solving complex problems, writing clean code, and continuously learning emerging AI technologies. Tech Stack: Python, Django, MySQL, REST APIs, AI/ML, Git, HTML, CSS Soft Skills: Problem-Solving, Team Collaboration, Adaptability, Continuous Learning",
+        "experience": [
+            {
+                "company": "KDigital.ai",
+                "position": "Python AI Developer",
+                "duration": "Aug 2025 - Present · 4 mos",
+                "location": "Hyderabad, Telangana, India",
+                "description": "Building and deploying AI-powered backend systems. Automating workflows to improve scalability and performance. Collaborating with the team on model integration and RESTful API development."
+            },
+            {
+                "company": "Naresh i Technologies",
+                "position": "Internship",
+                "duration": "Mar 2025 - Jul 2025 · 5 mos",
+                "location": "Hyderabad, Telangana, India",
+                "description": "Developed and integrated backend API for payment workflows using Django + MySQL. Collaborated in an Agile team to debug and deploy web apps. Wrote and tested RESTful APIs and maintained clean database models"
+            }
+        ],
+        "education": [
+            {
+                "school": "Chaitanya Engineering College",
+                "degree": "Bachelor of Technology - BTech, Mechanical Engineering",
+                "duration": "Sep 2021 - May 2024",
+                "description": ""
+            },
+            {
+                "school": "Govt Polytechnic",
+                "degree": "Associate of Mechanical Engineering",
+                "duration": "Jun 2018 - Apr 2021",
+                "description": ""
+            }
+        ],
+        "skills": [
+            "Python",
+            "Django",
+            "MySQL",
+            "REST APIs",
+            "AI/ML",
+            "Git",
+            "HTML",
+            "CSS",
+            "Problem-Solving",
+            "Team Collaboration",
+            "Adaptability",
+            "Continuous Learning"
+        ],
+        "certifications": [],
+        "screenshot": "data/screenshots/profile_screenshot_676.png",
+        "extraction_method": "OCR + AI",
+        "page_number": 4,
+        "profile_index": 6
+    },
+    {
+        "url": "https://www.linkedin.com/in/chitikela-gunasekhar/overlay/urn:li:fsd_profileProject:(ACoAAFqF0n4BWrkyMkhtQGuFmxmFIrCvkVy3OQ4,409425495)/skill-associations-details/",
+        "name": "Chitikela Gunasekhar",
+        "headline": "Python AI Developer at KDigital",
+        "location": "Hyderabad, Telangana, India",
+        "about": "I’m Chitikela Gunasekhar, a Python AI Developer at KDigital.ai with hands-on experience in backend systems, AI integration, and scalable web applications. I have worked on real-time projects in Django, MySQL, and REST APIs, and I’m now contributing to building AI-driven solutions for clients at KDigital.ai. Previously, I built projects like an Airline Management System and a Payroll & Salary Management System, where I focused on API design, database optimization, and automation. I enjoy solving complex problems, writing clean code, and continuously learning emerging AI technologies.",
+        "experience": [
+            {
+                "company": "KDigital.ai",
+                "position": "Python AI Developer",
+                "duration": "Aug 2025 - Present · 4 mos",
+                "location": "Hyderabad, Telangana, India",
+                "description": "Building and deploying AI-powered backend systems. Automating workflows to improve scalability and performance. Collaborating with the team on model integration and RESTful API development."
+            },
+            {
+                "company": "Naresh i Technologies",
+                "position": "Internship",
+                "duration": "Mar 2025 - Jul 2025 · 5 mos",
+                "location": "Hyderabad, Telangana, India",
+                "description": "Developed and integrated backend API for payment workflows using Django + MySQL. Collaborated in an Agile team to debug and deploy web apps. Wrote and tested RESTful APIs and maintained clean database models"
+            }
+        ],
+        "education": [
+            {
+                "school": "Chaitanya Engineering College",
+                "degree": "Bachelor of Technology - BTech, Mechanical Engineering",
+                "duration": "Sep 2021 - May 2024",
+                "description": ""
+            },
+            {
+                "school": "Govt Polytechnic",
+                "degree": "Associate of Mechanical Engineering",
+                "duration": "Jun 2018 - Apr 2021",
+                "description": ""
+            }
+        ],
+        "skills": [
+            "Python",
+            "Django",
+            "MySQL",
+            "REST APIs",
+            "AI/ML",
+            "Git",
+            "HTML",
+            "CSS",
+            "Problem-Solving",
+            "Team Collaboration",
+            "Adaptability",
+            "Continuous Learning"
+        ],
+        "certifications": [],
+        "screenshot": "data/screenshots/profile_screenshot_178.png",
+        "extraction_method": "OCR + AI",
+        "page_number": 4,
+        "profile_index": 7
+    },
+    {
+        "url": "https://www.linkedin.com/in/chitikela-gunasekhar/overlay/1752756082671/single-media-viewer/",
+        "name": "Chitikela Gunasekhar",
+        "headline": "Python AI Developer at KDigital",
+        "location": "Hyderabad, Telangana, India",
+        "about": "I’m Chitikela Gunasekhar, a Python AI Developer at KDigital.ai with hands-on experience in backend systems, AI integration, and scalable web applications. I have worked on real-time projects in Django, MySQL, and REST APIs, and I’m now contributing to building AI-driven solutions for clients at KDigital.ai. Previously, I built projects like an Airline Management System and a Payroll & Salary Management System, where I focused on API design, database optimization, and automation. I enjoy solving complex problems, writing clean code, and continuously learning emerging AI technologies. Tech Stack: Python, Django, MySQL, REST APIs, AI/ML, Git, HTML, CSS Soft Skills: Problem-Solving, Team Collaboration, Adaptability, Continuous Learning",
+        "experience": [
+            {
+                "company": "KDigital.ai",
+                "position": "Python AI Developer",
+                "duration": "Aug 2025 - Present · 4 mos",
+                "location": "Hyderabad, Telangana, India",
+                "description": "Building and deploying AI-powered backend systems. Automating workflows to improve scalability and performance. Collaborating with the team on model integration and RESTful API development."
+            },
+            {
+                "company": "Naresh i Technologies",
+                "position": "Internship",
+                "duration": "Mar 2025 - Jul 2025 · 5 mos",
+                "location": "Hyderabad, Telangana, India",
+                "description": "Developed and integrated backend API for payment workflows using Django + MySQL. Collaborated in an Agile team to debug and deploy web apps. Wrote and tested RESTful APIs and maintained clean database models"
+            }
+        ],
+        "education": [
+            {
+                "school": "Chaitanya Engineering College",
+                "degree": "Bachelor of Technology - BTech, Mechanical Engineering",
+                "duration": "Sep 2021 - May 2024",
+                "description": ""
+            },
+            {
+                "school": "Govt Polytechnic",
+                "degree": "Associate of Mechanical Engineering",
+                "duration": "Jun 2018 - Apr 2021",
+                "description": ""
+            }
+        ],
+        "skills": [
+            "Python",
+            "Django",
+            "MySQL",
+            "REST APIs",
+            "AI/ML",
+            "Git",
+            "HTML",
+            "CSS",
+            "Problem-Solving",
+            "Team Collaboration",
+            "Adaptability",
+            "Continuous Learning"
+        ],
+        "certifications": [],
+        "screenshot": "data/screenshots/profile_screenshot_4743.png",
+        "extraction_method": "OCR + AI",
+        "page_number": 4,
+        "profile_index": 8
+    },
+    {
+        "url": "https://www.linkedin.com/in/chitikela-gunasekhar/overlay/urn:li:fsd_profileProject:(ACoAAFqF0n4BWrkyMkhtQGuFmxmFIrCvkVy3OQ4,476468962)/skill-associations-details/",
+        "name": "Chitikela Gunasekhar",
+        "headline": "Python AI Developer at KDigital",
+        "location": "Hyderabad, Telangana, India",
+        "about": "I’m Chitikela Gunasekhar, a Python AI Developer at KDigital.ai with hands-on experience in backend systems, AI integration, and scalable web applications. I have worked on real-time projects in Django, MySQL, and REST APIs, and I’m now contributing to building AI-driven solutions for clients at KDigital.ai. Previously, I built projects like an Airline Management System and a Payroll & Salary Management System, where I focused on API design, database optimization, and automation. I enjoy solving complex problems, writing clean code, and continuously learning emerging AI technologies. Tech Stack: Python, Django, MySQL, REST APIs, AI/ML, Git, HTML, CSS Soft Skills: Problem-Solving, Team Collaboration, Adaptability, Continuous Learning",
+        "experience": [
+            {
+                "company": "KDigital.ai",
+                "position": "Python AI Developer",
+                "duration": "Aug 2025 - Present · 4 mos",
+                "location": "Hyderabad, Telangana, India",
+                "description": "Building and deploying AI-powered backend systems. Automating workflows to improve scalability and performance. Collaborating with the team on model integration and RESTful API development."
+            },
+            {
+                "company": "Naresh i Technologies",
+                "position": "Internship",
+                "duration": "Mar 2025 - Jul 2025 · 5 mos",
+                "location": "Hyderabad, Telangana, India",
+                "description": "Developed and integrated backend API for payment workflows using Django + MySQL. Collaborated in an Agile team to debug and deploy web apps. Wrote and tested RESTful APIs and maintained clean database models"
+            }
+        ],
+        "education": [
+            {
+                "school": "Chaitanya Engineering College",
+                "degree": "Bachelor of Technology - BTech, Mechanical Engineering",
+                "duration": "Sep 2021 - May 2024",
+                "description": ""
+            },
+            {
+                "school": "Govt Polytechnic",
+                "degree": "Associate of Mechanical Engineering",
+                "duration": "Jun 2018 - Apr 2021",
+                "description": ""
+            }
+        ],
+        "skills": [
+            "Python",
+            "Django",
+            "MySQL",
+            "REST APIs",
+            "AI/ML",
+            "Git",
+            "HTML",
+            "CSS",
+            "Problem-Solving",
+            "Team Collaboration",
+            "Adaptability",
+            "Continuous Learning"
+        ],
+        "certifications": [],
+        "screenshot": "data/screenshots/profile_screenshot_2728.png",
+        "extraction_method": "OCR + AI",
+        "page_number": 4,
+        "profile_index": 9
+    },
+    {
+        "url": "https://www.linkedin.com/in/chitikela-gunasekhar/details/projects/",
+        "name": "",
+        "headline": "",
+        "location": "",
+        "about": "",
+        "experience": [
+            {
+                "company": "",
+                "position": "",
+                "duration": "",
+                "location": "",
+                "description": "Airline Management System - A full-stack Django project that supports flight listings, bookings, and admin panel management. Built with user roles (admin, customer), authentication, and MySQL backend."
+            },
+            {
+                "company": "",
+                "position": "",
+                "duration": "May 2025 - Jun 2025",
+                "location": "",
+                "description": "Payroll-Salary-Management-System - A complete Payroll and Salary Management System built using Django and MySQL, with features like Employee Management, Attendance Tracking, Leave Applications, Salary Generation, and Admin Login Authentication."
+            },
+            {
+                "company": "",
+                "position": "",
+                "duration": "",
+                "location": "",
+                "description": "Employee-Information-System - A web-based Employee Information System built using Python, Django, and Mongodb. This system is designed for HR departments or administrators to manage employee records, attendance, departments, and roles efficiently in a centralized platform."
+            },
+            {
+                "company": "",
+                "position": "",
+                "duration": "",
+                "location": "",
+                "description": "Haberman-Survival-Analytics - A data analysis project using the Haberman’s Survival Dataset, focused on exploring and visualizing the survival patterns of breast cancer patients who underwent surgery. The project leverages Python libraries like Pandas, NumPy, Matplotlib, and Seaborn to extract insights from the dataset."
+            },
+            {
+                "company": "",
+                "position": "",
+                "duration": "",
+                "location": "",
+                "description": "Iris Explorer - This project conducts an Exploratory Data Analysis (EDA) on the classic Iris dataset. The primary objective is to analyze and visualize the distribution and relationships among various Iris species based on their morphological features — sepal length, sepal width, petal length, and petal width. This analysis helps in understanding the distinguishing characteristics of each species."
+            }
+        ],
+        "education": [],
+        "skills": [
+            "Python",
+            "Django",
+            "MySQL",
+            "Cascading Style Sheets (CSS)",
+            "HTML5",
+            "REST APIs",
+            "NumPy",
+            "Pandas",
+            "Matplotlib",
+            "Seaborn",
+            "SciPy",
+            "MongoDB"
+        ],
+        "certifications": [],
+        "screenshot": "data/screenshots/profile_screenshot_2012.png",
+        "extraction_method": "OCR + AI",
+        "page_number": 4,
+        "profile_index": 10
+    },
+    {
+        "url": "https://www.linkedin.com/in/chitikela-gunasekhar/overlay/1752753771688/single-media-viewer/",
+        "name": "Chitikela Gunasekhar",
+        "headline": "Python AI Developer at KDigital",
+        "location": "Hyderabad, Telangana, India",
+        "about": "I’m Chitikela Gunasekhar, a Python AI Developer at KDigital.ai with hands-on experience in backend systems, AI integration, and scalable web applications. I have worked on real-time projects in Django, MySQL, and REST APIs, and I’m now contributing to building AI-driven solutions for clients at KDigital.ai. Previously, I built projects like an Airline Management System and a Payroll & Salary Management System, where I focused on API design, database optimization, and automation. I enjoy solving complex problems, writing clean code, and continuously learning emerging AI technologies.",
+        "experience": [
+            {
+                "company": "KDigital.ai",
+                "position": "Python AI Developer",
+                "duration": "Aug 2025 - Present · 4 mos",
+                "location": "Hyderabad, Telangana, India",
+                "description": "Building and deploying AI-powered backend systems. Automating workflows to improve scalability and performance. Collaborating with the team on model integration and RESTful API development."
+            },
+            {
+                "company": "Naresh i Technologies",
+                "position": "Internship",
+                "duration": "Mar 2025 - Jul 2025 · 5 mos",
+                "location": "Hyderabad, Telangana, India",
+                "description": "Developed and integrated backend API for payment workflows using Django + MySQL. Collaborated in an Agile team to debug and deploy web apps. Wrote and tested RESTful APIs and maintained clean database models."
+            }
+        ],
+        "education": [
+            {
+                "school": "Chaitanya Engineering College",
+                "degree": "Bachelor of Technology - BTech, Mechanical Engineering",
+                "duration": "Sep 2021 - May 2024",
+                "description": ""
+            },
+            {
+                "school": "Govt Polytechnic",
+                "degree": "Associate of Mechanical Engineering",
+                "duration": "Jun 2018 - Apr 2021",
+                "description": ""
+            }
+        ],
+        "skills": [
+            "Python",
+            "Django",
+            "MySQL",
+            "REST APIs",
+            "AI/ML",
+            "Git",
+            "HTML",
+            "CSS",
+            "Problem-Solving",
+            "Team Collaboration",
+            "Adaptability",
+            "Continuous Learning"
+        ],
+        "certifications": [],
+        "screenshot": "data/screenshots/profile_screenshot_61.png",
+        "extraction_method": "OCR + AI",
+        "page_number": 5,
+        "profile_index": 1
+    },
+    {
+        "url": "https://www.linkedin.com/in/chitikela-gunasekhar/overlay/1752753659255/single-media-viewer/",
+        "name": "Chitikela Gunasekhar",
+        "headline": "Python AI Developer at KDigital",
+        "location": "Hyderabad, Telangana, India",
+        "about": "I’m Chitikela Gunasekhar, a Python AI Developer at KDigital.ai with hands-on experience in backend systems, AI integration, and scalable web applications. I have worked on real-time projects in Django, MySQL, and REST APIs, and I’m now contributing to building AI-driven solutions for clients at KDigital.ai. Previously, I built projects like an Airline Management System and a Payroll & Salary Management System, where I focused on API design, database optimization, and automation. I enjoy solving complex problems, writing clean code, and continuously learning emerging AI technologies. Tech Stack: Python, Django, MySQL, REST APIs, AI/ML, Git, HTML, CSS Soft Skills: Problem-Solving, Team Collaboration, Adaptability, Continuous Learning",
+        "experience": [
+            {
+                "company": "KDigital.ai",
+                "position": "Python AI Developer",
+                "duration": "Aug 2025 - Present · 4 mos",
+                "location": "Hyderabad, Telangana, India",
+                "description": "Building and deploying AI-powered backend systems. Automating workflows to improve scalability and performance. Collaborating with the team on model integration and RESTful API development."
+            },
+            {
+                "company": "Naresh i Technologies",
+                "position": "Internship",
+                "duration": "Mar 2025 - Jul 2025 · 5 mos",
+                "location": "Hyderabad, Telangana, India",
+                "description": "Developed and integrated backend API for payment workflows using Django + MySQL. Collaborated in an Agile team to debug and deploy web apps. Wrote and tested RESTful APIs and maintained clean database models"
+            }
+        ],
+        "education": [
+            {
+                "school": "Chaitanya Engineering College",
+                "degree": "Bachelor of Technology - BTech, Mechanical Engineering",
+                "duration": "Sep 2021 - May 2024",
+                "description": ""
+            },
+            {
+                "school": "Govt Polytechnic",
+                "degree": "Associate of Mechanical Engineering",
+                "duration": "Jun 2018 - Apr 2021",
+                "description": ""
+            }
+        ],
+        "skills": [
+            "Python",
+            "Django",
+            "MySQL",
+            "REST APIs",
+            "AI/ML",
+            "Git",
+            "HTML",
+            "CSS",
+            "Problem-Solving",
+            "Team Collaboration",
+            "Adaptability",
+            "Continuous Learning"
+        ],
+        "certifications": [],
+        "screenshot": "data/screenshots/profile_screenshot_4113.png",
+        "extraction_method": "OCR + AI",
+        "page_number": 5,
+        "profile_index": 2
+    },
+    {
+        "url": "https://www.linkedin.com/in/chitikela-gunasekhar/overlay/1752753584857/single-media-viewer/",
+        "name": "Chitikela Gunasekhar",
+        "headline": "Python AI Developer at KDigital",
+        "location": "Hyderabad, Telangana, India",
+        "about": "I’m Chitikela Gunasekhar, a Python AI Developer at KDigital.ai with hands-on experience in backend systems, AI integration, and scalable web applications. I have worked on real-time projects in Django, MySQL, and REST APIs, and I’m now contributing to building AI-driven solutions for clients at KDigital.ai. Previously, I built projects like an Airline Management System and a Payroll & Salary Management System, where I focused on API design, database optimization, and automation. I enjoy solving complex problems, writing clean code, and continuously learning emerging AI technologies. Tech Stack: Python, Django, MySQL, REST APIs, AI/ML, Git, HTML, CSS Soft Skills: Problem-Solving, Team Collaboration, Adaptability, Continuous Learning",
+        "experience": [
+            {
+                "company": "KDigital.ai",
+                "position": "Python AI Developer",
+                "duration": "Aug 2025 - Present · 4 mos",
+                "location": "Hyderabad, Telangana, India",
+                "description": "Building and deploying AI-powered backend systems. Automating workflows to improve scalability and performance. Collaborating with the team on model integration and RESTful API development."
+            },
+            {
+                "company": "Naresh i Technologies",
+                "position": "Internship",
+                "duration": "Mar 2025 - Jul 2025 · 5 mos",
+                "location": "Hyderabad, Telangana, India",
+                "description": "Developed and integrated backend API for payment workflows using Django + MySQL. Collaborated in an Agile team to debug and deploy web apps. Wrote and tested RESTful APIs and maintained clean database models"
+            }
+        ],
+        "education": [
+            {
+                "school": "Chaitanya Engineering College",
+                "degree": "Bachelor of Technology - BTech, Mechanical Engineering",
+                "duration": "Sep 2021 - May 2024",
+                "description": ""
+            },
+            {
+                "school": "Govt Polytechnic",
+                "degree": "Associate of Mechanical Engineering",
+                "duration": "Jun 2018 - Apr 2021",
+                "description": ""
+            }
+        ],
+        "skills": [
+            "Python",
+            "Django",
+            "MySQL",
+            "REST APIs",
+            "AI/ML",
+            "Git",
+            "HTML",
+            "CSS",
+            "Problem-Solving",
+            "Team Collaboration",
+            "Adaptability",
+            "Continuous Learning"
+        ],
+        "certifications": [],
+        "screenshot": "data/screenshots/profile_screenshot_7851.png",
+        "extraction_method": "OCR + AI",
+        "page_number": 5,
+        "profile_index": 3
+    },
+    {
+        "url": "https://www.linkedin.com/in/chitikela-gunasekhar/",
+        "name": "Chitikela Gunasekhar",
+        "headline": "Python AI Developer at KDigital",
+        "location": "Hyderabad, Telangana, India",
+        "about": "I’m Chitikela Gunasekhar, a Python AI Developer at KDigital.ai with hands-on experience in backend systems, AI integration, and scalable web applications. I have worked on real-time projects in Django, MySQL, and REST APIs, and I’m now contributing to building AI-driven solutions for clients at KDigital.ai. Previously, I built projects like an Airline Management System and a Payroll & Salary Management System, where I focused on API design, database optimization, and automation. I enjoy solving complex problems, writing clean code, and continuously learning emerging AI technologies.",
+        "experience": [
+            {
+                "company": "KDigital.ai",
+                "position": "Python AI Developer",
+                "duration": "Aug 2025 - Present · 4 mos",
+                "location": "Hyderabad, Telangana, India",
+                "description": "Building and deploying AI-powered backend systems. Automating workflows to improve scalability and performance. Collaborating with the team on model integration and RESTful API development."
+            },
+            {
+                "company": "Naresh i Technologies",
+                "position": "Internship",
+                "duration": "Mar 2025 - Jul 2025 · 5 mos",
+                "location": "Hyderabad, Telangana, India",
+                "description": "Developed and integrated backend API for payment workflows using Django + MySQL. Collaborated in an Agile team to debug and deploy web apps. Wrote and tested RESTful APIs and maintained clean database models"
+            }
+        ],
+        "education": [
+            {
+                "school": "Chaitanya Engineering College",
+                "degree": "Bachelor of Technology - BTech, Mechanical Engineering",
+                "duration": "Sep 2021 - May 2024",
+                "description": ""
+            },
+            {
+                "school": "Govt Polytechnic",
+                "degree": "Associate of Mechanical Engineering",
+                "duration": "Jun 2018 - Apr 2021",
+                "description": ""
+            }
+        ],
+        "skills": [
+            "Python",
+            "Django",
+            "MySQL",
+            "REST APIs",
+            "AI/ML",
+            "Git",
+            "HTML",
+            "CSS",
+            "Problem-Solving",
+            "Team Collaboration",
+            "Adaptability",
+            "Continuous Learning"
+        ],
+        "certifications": [],
+        "screenshot": "data/screenshots/profile_screenshot_743.png",
+        "extraction_method": "OCR + AI",
+        "page_number": 5,
+        "profile_index": 4
+    },
+    {
+        "url": "https://www.linkedin.com/in/chitikela-gunasekhar/recent-activity/all/",
+        "name": "Chitikela Gunasekhar",
+        "headline": "Python AI Developer at KDigital",
+        "location": "India",
+        "about": "",
+        "experience": [
+            {
+                "company": "KDigital",
+                "position": "Python AI Developer",
+                "duration": "",
+                "location": "",
+                "description": ""
+            }
+        ],
+        "education": [],
+        "skills": [
+            "Python",
+            "AI",
+            "Backend Development",
+            "DSA"
+        ],
+        "certifications": [],
+        "screenshot": "data/screenshots/profile_screenshot_2593.png",
+        "extraction_method": "OCR + AI",
+        "page_number": 5,
+        "profile_index": 5
+    },
+    {
+        "url": "https://www.linkedin.com/in/chitikela-gunasekhar/overlay/urn:li:fsd_profilePosition:(ACoAAFqF0n4BWrkyMkhtQGuFmxmFIrCvkVy3OQ4,2670413808)/skill-associations-details/",
+        "name": "Chitikela Gunasekhar",
+        "headline": "Python AI Developer at KDigital",
+        "location": "Hyderabad, Telangana, India",
+        "about": "I’m Chitikela Gunasekhar, a Python AI Developer at KDigital.ai with hands-on experience in backend systems, AI integration, and scalable web applications. I have worked on real-time projects in Django, MySQL, and REST APIs, and I’m now contributing to building AI-driven solutions for clients at KDigital.ai. Previously, I built projects like an Airline Management System and a Payroll & Salary Management System, where I focused on API design, database optimization, and automation. I enjoy solving complex problems, writing clean code, and continuously learning emerging AI technologies. Tech Stack: Python, Django, MySQL, REST APIs, AI/ML, Git, HTML, CSS Soft Skills: Problem-Solving, Team Collaboration, Adaptability, Continuous Learning",
+        "experience": [
+            {
+                "company": "KDigital.ai",
+                "position": "Python AI Developer",
+                "duration": "Aug 2025 - Present · 4 mos",
+                "location": "Hyderabad, Telangana, India",
+                "description": "Building and deploying AI-powered backend systems. Automating workflows to improve scalability and performance. Collaborating with the team on model integration and RESTful API development."
+            },
+            {
+                "company": "Naresh i Technologies",
+                "position": "Internship",
+                "duration": "Mar 2025 - Jul 2025 · 5 mos",
+                "location": "Hyderabad, Telangana, India",
+                "description": "Developed and integrated backend API for payment workflows using Django + MySQL. Collaborated in an Agile team to debug and deploy web apps. Wrote and tested RESTful APIs and maintained clean database models"
+            }
+        ],
+        "education": [
+            {
+                "school": "Chaitanya Engineering College",
+                "degree": "Bachelor of Technology - BTech, Mechanical Engineering",
+                "duration": "Sep 2021 - May 2024",
+                "description": ""
+            },
+            {
+                "school": "Govt Polytechnic",
+                "degree": "Associate of Mechanical Engineering",
+                "duration": "Jun 2018 - Apr 2021",
+                "description": ""
+            }
+        ],
+        "skills": [
+            "Python",
+            "Django",
+            "MySQL",
+            "REST APIs",
+            "AI/ML",
+            "Git",
+            "HTML",
+            "CSS",
+            "Problem-Solving",
+            "Team Collaboration",
+            "Adaptability",
+            "Continuous Learning"
+        ],
+        "certifications": [],
+        "screenshot": "data/screenshots/profile_screenshot_676.png",
+        "extraction_method": "OCR + AI",
+        "page_number": 5,
+        "profile_index": 6
+    },
+    {
+        "url": "https://www.linkedin.com/in/chitikela-gunasekhar/overlay/urn:li:fsd_profileProject:(ACoAAFqF0n4BWrkyMkhtQGuFmxmFIrCvkVy3OQ4,409425495)/skill-associations-details/",
+        "name": "Chitikela Gunasekhar",
+        "headline": "Python AI Developer at KDigital",
+        "location": "Hyderabad, Telangana, India",
+        "about": "I’m Chitikela Gunasekhar, a Python AI Developer at KDigital.ai with hands-on experience in backend systems, AI integration, and scalable web applications. I have worked on real-time projects in Django, MySQL, and REST APIs, and I’m now contributing to building AI-driven solutions for clients at KDigital.ai. Previously, I built projects like an Airline Management System and a Payroll & Salary Management System, where I focused on API design, database optimization, and automation. I enjoy solving complex problems, writing clean code, and continuously learning emerging AI technologies.",
+        "experience": [
+            {
+                "company": "KDigital.ai",
+                "position": "Python AI Developer",
+                "duration": "Aug 2025 - Present",
+                "location": "Hyderabad, Telangana, India",
+                "description": "Building and deploying AI-powered backend systems. Automating workflows to improve scalability and performance. Collaborating with the team on model integration and RESTful API development."
+            },
+            {
+                "company": "Naresh i Technologies",
+                "position": "Internship",
+                "duration": "Mar 2025 - Jul 2025",
+                "location": "Hyderabad, Telangana, India",
+                "description": "Developed and integrated backend API for payment workflows using Django + MySQL. Collaborated in an Agile team to debug and deploy web apps. Wrote and tested RESTful APIs and maintained clean database models."
+            }
+        ],
+        "education": [
+            {
+                "school": "Chaitanya Engineering College",
+                "degree": "Bachelor of Technology - BTech, Mechanical Engineering",
+                "duration": "Sep 2021 - May 2024",
+                "description": ""
+            },
+            {
+                "school": "Govt Polytechnic",
+                "degree": "Associate of Mechanical Engineering",
+                "duration": "Jun 2018 - Apr 2021",
+                "description": ""
+            }
+        ],
+        "skills": [
+            "Python",
+            "Django",
+            "MySQL",
+            "REST APIs",
+            "AI/ML",
+            "Git",
+            "HTML",
+            "CSS",
+            "Problem-Solving",
+            "Team Collaboration",
+            "Adaptability",
+            "Continuous Learning"
+        ],
+        "certifications": [],
+        "screenshot": "data/screenshots/profile_screenshot_178.png",
+        "extraction_method": "OCR + AI",
+        "page_number": 5,
+        "profile_index": 7
+    },
+    {
+        "url": "https://www.linkedin.com/in/chitikela-gunasekhar/overlay/1752756082671/single-media-viewer/",
+        "name": "Chitikela Gunasekhar",
+        "headline": "Python AI Developer at KDigital",
+        "location": "Hyderabad, Telangana, India",
+        "about": "I’m Chitikela Gunasekhar, a Python AI Developer at KDigital.ai with hands-on experience in backend systems, AI integration, and scalable web applications. I have worked on real-time projects in Django, MySQL, and REST APIs, and I’m now contributing to building AI-driven solutions for clients at KDigital.ai. Previously, I built projects like an Airline Management System and a Payroll & Salary Management System, where I focused on API design, database optimization, and automation. I enjoy solving complex problems, writing clean code, and continuously learning emerging AI technologies. Tech Stack: Python, Django, MySQL, REST APIs, AI/ML, Git, HTML, CSS Soft Skills: Problem-Solving, Team Collaboration, Adaptability, Continuous Learning",
+        "experience": [
+            {
+                "company": "KDigital.ai",
+                "position": "Python AI Developer",
+                "duration": "Aug 2025 - Present · 4 mos",
+                "location": "Hyderabad, Telangana, India",
+                "description": "Building and deploying AI-powered backend systems. Automating workflows to improve scalability and performance. Collaborating with the team on model integration and RESTful API development."
+            },
+            {
+                "company": "Naresh i Technologies",
+                "position": "Internship",
+                "duration": "Mar 2025 - Jul 2025 · 5 mos",
+                "location": "Hyderabad, Telangana, India",
+                "description": "Developed and integrated backend API for payment workflows using Django + MySQL. Collaborated in an Agile team to debug and deploy web apps. Wrote and tested RESTful APIs and maintained clean database models"
+            }
+        ],
+        "education": [
+            {
+                "school": "Chaitanya Engineering College",
+                "degree": "Bachelor of Technology - BTech, Mechanical Engineering",
+                "duration": "Sep 2021 - May 2024",
+                "description": ""
+            },
+            {
+                "school": "Govt Polytechnic",
+                "degree": "Associate of Mechanical Engineering",
+                "duration": "Jun 2018 - Apr 2021",
+                "description": ""
+            }
+        ],
+        "skills": [
+            "Python",
+            "Django",
+            "MySQL",
+            "REST APIs",
+            "AI/ML",
+            "Git",
+            "HTML",
+            "CSS",
+            "Problem-Solving",
+            "Team Collaboration",
+            "Adaptability",
+            "Continuous Learning"
+        ],
+        "certifications": [],
+        "screenshot": "data/screenshots/profile_screenshot_4743.png",
+        "extraction_method": "OCR + AI",
+        "page_number": 5,
+        "profile_index": 8
+    },
+    {
+        "error": "Page.goto: Navigation to \"https://www.linkedin.com/in/chitikela-gunasekhar/overlay/urn:li:fsd_profileProject:(ACoAAFqF0n4BWrkyMkhtQGuFmxmFIrCvkVy3OQ4,476468962)/skill-associations-details\" is interrupted by another navigation to \"https://www.linkedin.com/in/chitikela-gunasekhar/overlay/urn:li:fsd_profileProject:(ACoAAFqF0n4BWrkyMkhtQGuFmxmFIrCvkVy3OQ4,409425495)/skill-associations-details/\"\nCall log:\n  - navigating to \"https://www.linkedin.com/in/chitikela-gunasekhar/overlay/urn:li:fsd_profileProject:(ACoAAFqF0n4BWrkyMkhtQGuFmxmFIrCvkVy3OQ4,476468962)/skill-associations-details\", waiting until \"load\"\n",
+        "url": "https://www.linkedin.com/in/chitikela-gunasekhar/overlay/urn:li:fsd_profileProject:(ACoAAFqF0n4BWrkyMkhtQGuFmxmFIrCvkVy3OQ4,476468962)/skill-associations-details",
+        "extraction_method": "OCR + AI",
+        "page_number": 5,
+        "profile_index": 9
+    },
+    {
+        "url": "https://www.linkedin.com/in/chitikela-gunasekhar/details/projects/",
+        "name": "",
+        "headline": "",
+        "location": "",
+        "about": "",
+        "experience": [],
+        "education": [],
+        "skills": [
+            "Python",
+            "Django",
+            "MySQL",
+            "Cascading Style Sheets (CSS)",
+            "HTML5",
+            "REST APIs",
+            "NumPy",
+            "Pandas",
+            "Matplotlib",
+            "Seaborn",
+            "SciPy",
+            "MongoDB"
+        ],
+        "certifications": [],
+        "screenshot": "data/screenshots/profile_screenshot_2012.png",
+        "extraction_method": "OCR + AI",
+        "page_number": 5,
+        "profile_index": 10
+    }
+]

@@ -236,7 +236,7 @@
 
 **Statistical Mastery:**
 - 📊 **Regression Theory:** Mathematical foundations and statistical principles
-- 📈 **Hypothesis Testing:** Statistical validation and significance testing
+- 📊 **Hypothesis Testing:** Statistical validation and significance testing
 - 🔢 **Feature Engineering:** Variable selection and transformation techniques
 - 🎯 **Model Evaluation:** R-squared, RMSE, and comprehensive diagnostics
 - 💼 **Business Applications:** Real-world predictive modeling scenarios

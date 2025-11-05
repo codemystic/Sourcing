@@ -1,0 +1,55 @@
+Projects
+Airline Management System
+Airline Management System
+Jul 2025 - Present
+Jul 2025 - Present
+A full-stack Django project that supports flight listings, bookings, and admin panel management. Built with user roles (admin, customer), authentication, and MySQL backend.
+A full-stack Django project that supports flight listings, bookings, and admin panel management. Built with user roles (admin, customer), authentication, and MySQL backend.
+Skills: Python (Programming Language) · Django · MySQL · Cascading Style Sheets (CSS) · HTML5 · REST APIs
+Skills: Python (Programming Language) · Django · MySQL · Cascading Style Sheets (CSS) · HTML5 · REST APIs
+GitHub - chitikelaguna/Airlines-Booking-System
+GitHub - chitikelaguna/Airlines-Booking-System
+A full-stack Django project that supports flight listings, bookings, and admin panel management. Built with user roles (admin, customer), authentication, and MySQL backend.
+A full-stack Django project that supports flight listings, bookings, and admin panel management. Built with user roles (admin, customer), authentication, and MySQL backend.
+Payroll-Salary-Management-System
+Payroll-Salary-Management-System
+May 2025 - Jun 2025
+May 2025 - Jun 2025
+A complete Payroll and Salary Management System built using Django and MySQL, with features like Employee Management, Attendance Tracking, Leave Applications, Salary Generation, and Admin Login Authentication.
+A complete Payroll and Salary Management System built using Django and MySQL, with features like Employee Management, Attendance Tracking, Leave Applications, Salary Generation, and Admin Login Authentication.
+Skills: Python (Programming Language) · Django’s built-in authentication · Django · MySQL · HTML5 · Cascading Style Sheets (CSS)
+Skills: Python (Programming Language) · Django’s built-in authentication · Django · MySQL · HTML5 · Cascading Style Sheets (CSS)
+GitHub - chitikelaguna/Payroll-Salary-Management-System
+GitHub - chitikelaguna/Payroll-Salary-Management-System
+Employee-Information-System
+Employee-Information-System
+A web-based Employee Information System built using Python, Django, and Mongodb. This system is designed for HR departments or administrators to manage employee records, attendance, departments, and roles efficiently in a centralized platform.
+A web-based Employee Information System built using Python, Django, and Mongodb. This system is designed for HR departments or administrators to manage employee records, attendance, departments, and roles efficiently in a centralized platform.
+Skills: Python (Programming Language) · Django · MongoDB · Cascading Style Sheets (CSS) · HTML5 · Django’s built-in authentication
+Skills: Python (Programming Language) · Django · MongoDB · Cascading Style Sheets (CSS) · HTML5 · Django’s built-in authentication
+Employee-Information-System
+Employee-Information-System
+Haberman-Survival-Analytics
+Haberman-Survival-Analytics
+A data analysis project using the Haberman’s Survival Dataset, focused on exploring and visualizing the survival patterns of breast cancer patients who underwent surgery. The project leverages Python libraries like Pandas, NumPy, Matplotlib, and Seaborn to extract insights from the dataset
+A data analysis project using the Haberman’s Survival Dataset, focused on exploring and visualizing the survival patterns of breast cancer patients who underwent surgery. The project leverages Python libraries like Pandas, NumPy, Matplotlib, and Seaborn to extract insights from the dataset
+Skills: Python · NumPy · Pandas (Software) · Matplotlib · Seaborn
+Skills: Python · NumPy · Pandas (Software) · Matplotlib · Seaborn
+GitHub - chitikelaguna/Haberman-Survival-Analytics
+GitHub - chitikelaguna/Haberman-Survival-Analytics
+A data analysis project using the Haberman’s Survival Dataset, focused on exploring and visualizing the survival patterns of breast cancer patients who underwent surgery. The project leverages Python libraries like Pandas, NumPy, Matplotlib, and Seaborn to extract insights from the dataset.
+A data analysis project using the Haberman’s Survival Dataset, focused on exploring and visualizing the survival patterns of breast cancer patients who underwent surgery. The project leverages Python libraries like Pandas, NumPy, Matplotlib, and Seaborn to extract insights from the dataset.
+Iris Explorer
+Iris Explorer
+This project conducts an Exploratory Data Analysis (EDA) on the classic Iris dataset. The primary objective is to analyze and visualize the distribution and relationships among various Iris species based on their morphological features — sepal length, sepal width, petal length, and petal width. This analysis helps in understanding the distinguishing characteristics of each species.
+This project conducts an Exploratory Data Analysis (EDA) on the classic Iris dataset. The primary objective is to analyze and visualize the distribution and relationships among various Iris species based on their morphological features — sepal length, sepal width, petal length, and petal width. This analysis helps in understanding the distinguishing characteristics of each species.
+Skills: Python (Programming Language) · NumPy · Pandas (Software) · Matplotlib · Seaborn · SciPy
+Skills: Python (Programming Language) · NumPy · Pandas (Software) · Matplotlib · Seaborn · SciPy
+GitHub - chitikelaguna/IrisExplorer
+GitHub - chitikelaguna/IrisExplorer
+Payroll & Salary Management System
+Payroll & Salary Management System
+A complete Payroll and Salary Management System built using Django and MySQL, with features like Employee Management, Attendance Tracking, Leave Applications, Salary Generation, and Admin Login Authentication.
+A complete Payroll and Salary Management System built using Django and MySQL, with features like Employee Management, Attendance Tracking, Leave Applications, Salary Generation, and Admin Login Authentication.
+Skills: Python (Programming Language) · Django’s built-in authentication · Django · MySQL · HTML5 · Cascading Style Sheets (CSS)
+Skills: Python (Programming Language) · Django’s built-in authentication · Django · MySQL · HTML5 · Cascading Style Sheets (CSS)
