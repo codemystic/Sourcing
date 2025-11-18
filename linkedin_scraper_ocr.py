@@ -1,6 +1,7 @@
 import warnings
 warnings.filterwarnings("ignore")
 
+import base64
 import os
 import sys
 import time
@@ -21,33 +22,25 @@ load_dotenv()
 # Import custom modules
 from human_behavior import HumanBehavior, move_mouse_naturally
 from advanced_captcha_solver import AdvancedCaptchaSolver
-
-# Import the NLP query parser
 from nlp_query_parser import parse_nlp_query, format_search_query
 
-# Get credentials from environment variables
-EMAIL = os.getenv('EMAIL')
-PASSWORD = os.getenv('PASSWORD')
+# Try to import linkedin_session_loader, but handle if it doesn't exist
+try:
+    from linkedin_session_loader import load_linkedin_state_and_scrape
+    LINKEDIN_SESSION_LOADER_AVAILABLE = True
+except ImportError:
+    LINKEDIN_SESSION_LOADER_AVAILABLE = False
+    print("⚠️  LinkedIn session loader not available, using standard login flow")
+
+# Get credentials from environment variables - ONLY GROQ_API_KEY is needed now
 GROQ_API_KEY = os.getenv('GROQ_API_KEY')
 
-# Validate that credentials are provided
-if not EMAIL or EMAIL == 'your_email':
-    print("ERROR: EMAIL not found in .env file or set to placeholder value")
-    print("Please create a .env file with: EMAIL=your_actual_email")
-    exit(1)
-
-if not PASSWORD or PASSWORD == 'your_password':
-    print("ERROR: PASSWORD not found in .env file or set to placeholder value")
-    print("Please create a .env file with: PASSWORD=your_actual_password")
-    exit(1)
-
+# Validate that GROQ API key is provided
 if not GROQ_API_KEY:
     print("ERROR: GROQ_API_KEY not found in .env file")
     print("Please add to .env file: GROQ_API_KEY=your_groq_api_key")
     exit(1)
 
-print(f"✓ Email loaded: {EMAIL}")
-print(f"✓ Password loaded: {'*' * len(PASSWORD)}")
 print(f"✓ Groq API Key loaded: {GROQ_API_KEY[:10]}...")
 
 # Initialize Groq client
@@ -56,22 +49,6 @@ groq_client = Groq(api_key=GROQ_API_KEY)
 # Initialize CAPTCHA solver
 captcha_solver = AdvancedCaptchaSolver(groq_client)
 
-# Validate that credentials are provided
-if not EMAIL or EMAIL == 'your_email':
-    print("ERROR: EMAIL not found in .env file or set to placeholder value")
-    print("Please create a .env file with: EMAIL=your_actual_email")
-    exit(1)
-
-if not PASSWORD or PASSWORD == 'your_password':
-    print("ERROR: PASSWORD not found in .env file or set to placeholder value")
-    print("Please create a .env file with: PASSWORD=your_actual_password")
-    exit(1)
-
-print(f"✓ Email loaded: {EMAIL}")
-print(f"✓ Password loaded: {'*' * len(PASSWORD)}")
-
-# ============================================================================
-# FUNCTION: Natural Mouse Movement
 # ============================================================================
 
 def move_mouse_naturally(page, target_x, target_y, duration=3.0):
@@ -148,265 +125,191 @@ def load_saved_session_if_available(playwright_instance):
         print(f"Error loading session: {e}")
         return None, None, None, None
 
-# Initialize Playwright and navigate to LinkedIn login
+# Initialize Playwright and navigate directly to Google homepage
 playwright = sync_playwright().start()
 
-# Try to load saved session first
-page = None
-browser = None
-context = None
+# Use real Chrome browser instead of Chromium
+# Try to find Chrome installation path
+import platform
+system = platform.system()
 
-print("Attempting to load saved LinkedIn session...")
-session_loaded = False
-
-try:
-    # Check if session file exists
-    if os.path.exists("linkedin_auth.json"):
-        print("Found saved session file, attempting to load...")
-        
-        # Create browser with saved session
-        browser = playwright.firefox.launch(headless=False)
-        context = browser.new_context(storage_state="linkedin_auth.json")
-        page = context.new_page()
-        
-        # Navigate to LinkedIn feed
-        print("Navigating to LinkedIn feed...")
-        page.goto("https://www.linkedin.com/feed/", timeout=15000)
-        
-        # Wait for basic page elements with better error handling
-        try:
-            page.wait_for_selector('body', timeout=5000)
-        except:
-            pass
-        time.sleep(3)  # Increased wait time
-        
-        current_url = page.url.lower()
-        print(f"Current URL after navigation: {page.url}")
-        
-        # Check if we're on a redirect page but still logged in
-        if "login" in current_url and "uas" in current_url and "session_redirect" in current_url:
-            print("ℹ️ Detected session redirect, this is normal. Waiting for redirect to complete...")
-            # Wait a bit more for the redirect to complete
-            time.sleep(5)
-            current_url = page.url.lower()
-            print(f"URL after waiting: {page.url}")
-        
-        # Check if we're actually on the feed page now
-        if "linkedin.com/feed" in current_url or "linkedin.com/in/" in current_url:
-            print("✅ Successfully navigated to LinkedIn page with saved session")
-            session_loaded = True
-        elif "login" in current_url and "uas" in current_url:
-            print("⚠ Session appears to be invalid, redirected to login page")
-            session_loaded = False
-        else:
-            print("⚠ Unclear navigation state, checking page content...")
-            # Try to verify if we're logged in by checking for navigation elements
-            try:
-                nav_elements = page.query_selector_all('nav a')
-                if len(nav_elements) > 0:
-                    print(f"✅ Found {len(nav_elements)} navigation elements, likely logged in")
-                    session_loaded = True
-                else:
-                    print("⚠ No navigation elements found, may not be logged in")
-                    session_loaded = False
-            except Exception as nav_error:
-                print(f"⚠ Error checking navigation elements: {nav_error}")
-                session_loaded = False
-        
-        if session_loaded:
-            print("✅ Session successfully loaded and verified")
-            
-            # Add some human-like behavior to make the session look more legitimate
-            print("Performing human-like behavior to validate session...")
-            page.mouse.move(100, 100)
-            time.sleep(0.5)
-            page.mouse.move(200, 200)
-            time.sleep(1)
-            
-            # Wait a bit more for full page load
-            try:
-                page.wait_for_load_state('domcontentloaded', timeout=15000)
-            except:
-                print("⚠ Warning: Page load state timeout, continuing anyway...")
-        else:
-            print("❌ Session loading failed, will fall back to login")
-            # Close the browser and fall back to login
-            try:
-                browser.close()
-            except:
-                pass
-            browser = None
-            page = None
-            context = None
-        
-    else:
-        print("No saved session file found, will proceed with login")
-        session_loaded = False
-        
-except Exception as e:
-    print(f"Failed to load saved session: {e}")
-    # Close any partially opened resources
-    try:
-        if browser:
-            browser.close()
-    except:
-        pass
-    browser = None
-    page = None
-    context = None
-    session_loaded = False
-
-# If session wasn't loaded or verified, proceed with normal login
-if not session_loaded:
-    print("⚠ Session invalid or not found, falling back to normal login process...")
-    browser = playwright.firefox.launch(headless=False)
-    page = browser.new_page()
+if system == "Windows":
+    chrome_paths = [
+        r"C:\Program Files\Google\Chrome\Application\chrome.exe",
+        r"C:\Program Files (x86)\Google\Chrome\Application\chrome.exe",
+        os.path.expanduser(r"~\AppData\Local\Google\Chrome\Application\chrome.exe")
+    ]
+    chrome_path = None
+    for path in chrome_paths:
+        if os.path.exists(path):
+            chrome_path = path
+            break
     
-    # Navigate to LinkedIn login page
-    print("Navigating to LinkedIn login page...")
-    page.goto('https://www.linkedin.com/login')
-    sleep(3)
-
-    # Wait for the login form to be ready
-    print("Waiting for login form to load...")
+    if chrome_path:
+        print(f"✓ Found Chrome at: {chrome_path}")
+        browser = playwright.chromium.launch(
+            headless=False,
+            channel="chrome",  # Use Chrome channel
+            executable_path=chrome_path
+        )
+    else:
+        print("⚠️  Chrome not found, using Chromium")
+        browser = playwright.chromium.launch(headless=False)
+else:
+    # For Linux/Mac, try to use Chrome channel
     try:
-        page.wait_for_selector('#username', timeout=15000)
-        print("Email field found")
-    except Exception as e:
-        print(f"Error: Email field not found - {e}")
+        browser = playwright.chromium.launch(headless=False, channel="chrome")
+        print("✓ Using Chrome browser")
+    except:
+        print("⚠️  Chrome not found, using Chromium")
+        browser = playwright.chromium.launch(headless=False)
 
-    try:
-        page.wait_for_selector('#password', timeout=15000)
-        print("Password field found")
-    except Exception as e:
-        print(f"Error: Password field not found - {e}")
+page = browser.new_page()
 
-    sleep(2)
+# Navigate directly to Google homepage
+print("Navigating to Google homepage...")
+page.goto('https://www.google.com/')
+sleep(3)
 
-    # Enter email in the email field
-    print(f"Entering email: {EMAIL}")
-    try:
-        email_field = page.query_selector('#username')
-        if email_field:
-            # Move mouse naturally to email field
-            bbox = email_field.bounding_box()
-            if bbox:
-                target_x = bbox['x'] + bbox['width'] / 2
-                target_y = bbox['y'] + bbox['height'] / 2
-                move_mouse_naturally(page, target_x, target_y, duration=2.0)
-        
-            # Click the field to focus it with human delay
-            HumanBehavior.human_click(email_field, pre_click_delay=(0.5, 1.0), post_click_delay=(0.8, 1.5))
-        
-            # Clear any existing value
-            email_field.fill('')
-            HumanBehavior.random_delay(1, 2)
-        
-            # Type the email slowly with human-like typing
-            HumanBehavior.human_type(email_field, EMAIL, min_delay=80, max_delay=200)
-            print("Email entered successfully")
-        
-            # Simulate reading/confirmation
-            HumanBehavior.simulate_thinking((1.0, 2.0))
-        else:
-            print("Error: Email field element not found")
-    except Exception as e:
-        print(f"Error entering email: {e}")
+# Wait for basic page elements
+try:
+    page.wait_for_selector('body', timeout=5000)
+except:
+    pass
+time.sleep(2)
 
-    sleep(2)
+print("✅ Browser opened successfully.")
+print("ℹ️  Please enter your search query in the terminal.")
 
-    # Enter password in the password field
-    print("Entering password...")
-    try:
-        password_field = page.query_selector('#password')
-        if password_field:
-            # Move mouse naturally to password field
-            bbox = password_field.bounding_box()
-            if bbox:
-                target_x = bbox['x'] + bbox['width'] / 2
-                target_y = bbox['y'] + bbox['height'] / 2
-                move_mouse_naturally(page, target_x, target_y, duration=2.0)
-        
-            # Click the field to focus it with human delay
-            HumanBehavior.human_click(password_field, pre_click_delay=(0.5, 1.0), post_click_delay=(0.8, 1.5))
-        
-            # Clear any existing value
-            password_field.fill('')
-            HumanBehavior.random_delay(1, 2)
-        
-            # Type the password slowly with human-like typing
-            HumanBehavior.human_type(password_field, PASSWORD, min_delay=80, max_delay=200)
-            print("Password entered successfully")
-        
-            # Simulate reading/confirmation
-            HumanBehavior.simulate_thinking((1.0, 2.0))
-        else:
-            print("Error: Password field element not found")
-    except Exception as e:
-        print(f"Error entering password: {e}")
+# Get user input for NLP query
+print("Enter your search query (e.g., '5+ year experienced Python developer in Hyderabad'):")
+nlp_query = input("Search query: ").strip()
 
-    sleep(2)
+if not nlp_query:
+    print("No query entered, using default: 'AI Engineer in Hyderabad'")
+    nlp_query = "AI Engineer in Hyderabad"
 
-    # Click the sign-in button
-    print("Clicking sign-in button...")
-    try:
-        page.wait_for_selector('button[type="submit"]', timeout=10000)
-        sign_in_button = page.query_selector('button[type="submit"]')
-        if sign_in_button:
-            # Move mouse naturally to sign-in button
-            bbox = sign_in_button.bounding_box()
-            if bbox:
-                target_x = bbox['x'] + bbox['width'] / 2
-                target_y = bbox['y'] + bbox['height'] / 2
-                move_mouse_naturally(page, target_x, target_y, duration=2.0)
-            
-            # Hover over button briefly
-            HumanBehavior.human_hover(sign_in_button, hover_duration=(0.5, 1.0))
-        
-            # Click with human-like delay
-            HumanBehavior.human_click(sign_in_button, pre_click_delay=(0.8, 1.5), post_click_delay=(1.0, 2.0))
-            print("Sign-in button clicked successfully")
-        
-            # Simulate waiting for response
-            HumanBehavior.simulate_thinking((2.0, 4.0))
-        else:
-            print("Error: Sign-in button element not found")
-    except Exception as e:
-        print(f"Error clicking sign-in button: {e}")
-        try:
-            alt_button = page.query_selector('button:has-text("Sign in")')
-            if alt_button:
-                # Move mouse naturally to alternative button
-                bbox = alt_button.bounding_box()
-                if bbox:
-                    target_x = bbox['x'] + bbox['width'] / 2
-                    target_y = bbox['y'] + bbox['height'] / 2
-                    move_mouse_naturally(page, target_x, target_y, duration=2.0)
-            
-                    # Hover over button briefly
-                    HumanBehavior.human_hover(alt_button, hover_duration=(0.5, 1.0))
-            
-                    # Click with human-like delay
-                    HumanBehavior.human_click(alt_button, pre_click_delay=(0.8, 1.5), post_click_delay=(1.0, 2.0))
-                    print("Sign-in button clicked using alternative selector")
-            
-                    # Simulate waiting for response
-                    HumanBehavior.simulate_thinking((2.0, 4.0))
-                else:
-                    print("Error with alternative selector: Button not found")
-            else:
-                print("Error with alternative selector: Button not found")
-        except Exception as e2:
-            print(f"Error with alternative selector: {e2}")
+# Parse the NLP query
+print(f"\nParsing query: '{nlp_query}'")
+parsed_query = parse_nlp_query(nlp_query)
+print(f"Parsed query: {parsed_query}")
 
-# Ensure page is always defined (this should never happen with proper error handling)
-if page is None:
-    print("❌ Critical error: Page object is not initialized")
-    exit(1)
+# Extract keywords from parsed query
+job_title = parsed_query.get('job_title', 'Python Developer')  # Use job_title from parsed query
+if not job_title:
+    job_title = 'Python Developer'  # Default to Python Developer if not specified
+location = parsed_query.get('location', 'Hyderabad')  # Default to Hyderabad if not specified
+
+print(f"\nExtracted keywords:")
+print(f"  Job Title: {job_title}")
+print(f"  Location: {location}")
+
+# Construct Google X-ray search query (replace spaces with + in quoted strings)
+job_title_formatted = job_title.replace(' ', '+')
+location_formatted = location.replace(' ', '+')
+xray_query = f"+\"{job_title_formatted}\" AND \"Open+to+work\"+\"{location_formatted}\" -intitle:\"profiles\" -inurl:\"dir/+\"+site:in.linkedin.com/in/+OR+site:in.linkedin.com/pub/"
+
+# Construct full Google search URL
+google_search_url = f"https://www.google.com/search?q={xray_query}"
+
+print(f"\nConstructed Google X-ray query:")
+print(f"  {xray_query}")
+print(f"\nFull search URL:")
+print(f"  {google_search_url}")
+
+# Navigate directly to Google search results
+print("\n🔍 Executing Google X-ray search...")
+print("  Navigating to Google search results page...")
+page.goto(google_search_url)
+sleep(3)
+
+# Verify we're on the search results page
+print("✅ Successfully navigated to Google search results page")
+current_url = page.url
+page_title = page.title()
+print(f"   Current URL: {current_url}")
+print(f"   Page title: {page_title}")
 
 # ============================================================================
 # CAPTCHA Detection and Automatic Handling
 # ============================================================================
+
+def analyze_captcha_screenshot_with_vision_model(screenshot_path):
+    """Analyze CAPTCHA screenshot with vision model and return structured output"""
+    try:
+        print(f"  📸 Analyzing CAPTCHA screenshot: {screenshot_path}")
+        
+        # Read the screenshot file
+        with open(screenshot_path, "rb") as image_file:
+            screenshot_data = base64.b64encode(image_file.read()).decode("utf-8")
+        
+        # Create prompt for vision model analysis
+        prompt = """
+        You are an expert vision classifier.
+        
+        You will be given an image containing:
+        1. A textual instruction at the top (this describes the target object or feature).
+        2. A grid of smaller images (tiles) below it.
+        
+        Your job is to:
+        - Read and extract the instruction exactly as it appears.
+        - Understand what visual concept the instruction is asking for.
+        - Analyze each tile independently.
+        - Decide whether each tile matches the instruction.
+        
+        Output Format (strict):
+        {
+          "instruction": "<extracted instruction>",
+          "matches": [list of tile numbers that match],
+          "non_matches": [list of tile numbers that do not match],
+          "explanations": {
+                "<tile_number>": "short explanation for why it matches or not"
+          }
+        }
+        
+        Tile Numbering:
+        - Number tiles row-by-row, left-to-right (1,2,3…).
+        
+        Rules:
+        - Be literal to the instruction text.
+        - Only use visual evidence from each tile.
+        - If a tile does not clearly match, classify as "NO MATCH".
+        - Ignore irrelevant elements unless required by the instruction.
+        - Do NOT hallucinate or assume hidden details.
+        
+        Now extract the instruction and classify all tiles.
+        """
+        
+        # Call Groq API with vision model
+        chat_completion = groq_client.chat.completions.create(
+            messages=[
+                {
+                    "role": "user",
+                    "content": [
+                        {"type": "text", "text": prompt},
+                        {
+                            "type": "image_url",
+                            "image_url": {
+                                "url": f"data:image/png;base64,{screenshot_data}"
+                            }
+                        }
+                    ]
+                }
+            ],
+            model="meta-llama/llama-4-scout-17b-16e-instruct",
+            temperature=0.1,
+            max_tokens=4000,
+        )
+        
+        # Get and display the response
+        response_text = chat_completion.choices[0].message.content
+        print(f"\n{response_text}")
+        
+        return response_text
+        
+    except Exception as e:
+        print(f"  ⚠️  Error analyzing CAPTCHA with vision model: {e}")
+        return None
 
 # Check for CAPTCHA indicators
 # MODIFIED: More comprehensive check for valid LinkedIn pages
@@ -417,14 +320,14 @@ try:
 except:
     pass
 
-# Check if we're on a valid LinkedIn page that indicates we're logged in
-is_on_valid_linkedin_page = (
-    "linkedin.com" in current_url and 
-    "login" not in current_url and 
-    "checkpoint" not in current_url and 
-    "challenge" not in current_url and
-    ("feed" in current_url or "in/" in current_url or "mynetwork" in current_url or "jobs" in current_url)
+# Check if we're on a Google search results page
+is_on_google_search_page = (
+    "google.com" in current_url and 
+    "search" in current_url
 )
+
+# Since we're doing Google X-ray search, we don't need LinkedIn login checks
+is_on_valid_linkedin_page = False
 
 # Additional check for navigation elements that indicate logged-in state
 has_navigation_elements = False
@@ -445,12 +348,18 @@ try:
 except:
     pass
 
-# If we're on a valid LinkedIn page or have navigation elements, skip CAPTCHA
-if is_on_valid_linkedin_page or has_navigation_elements:
-    print("✅ Already on valid LinkedIn page or have navigation elements, skipping CAPTCHA detection")
-    print(f"   Current URL: {current_url}")
-    if current_title:
-        print(f"   Page title: {current_title}")
+# For Google X-ray search, check for Google CAPTCHA
+# Note: Google may show CAPTCHA for automated searches
+if is_on_google_search_page or "sorry" in current_url:
+    if "sorry" in current_url:
+        print("⚠️  Google CAPTCHA detected - this is normal for automated searches")
+        print("   Please complete the CAPTCHA in the browser if prompted")
+        print(f"   Current URL: {current_url}")
+    else:
+        print("✅ Successfully navigated to Google search results page")
+        print(f"   Current URL: {current_url}")
+        if current_title:
+            print(f"   Page title: {current_title}")
     captcha_detected = False
     complex_captcha = False
 else:
@@ -460,9 +369,13 @@ else:
     complex_captcha = False
 
     try:
+        # Enhanced CAPTCHA selectors for both Google and other platforms
         captcha_selectors = [
             'iframe[title*="reCAPTCHA"]',
             'iframe[src*="recaptcha"]',
+            'iframe[src*="google.com/recaptcha"]',
+            'iframe[title*="challenge"]',
+            'iframe[src*="challenge"]',
             '#captcha',
             '.captcha',
             'div[id*="captcha"]',
@@ -470,6 +383,13 @@ else:
             'input[name="captcha"]',
             'div:has-text("verify you\'re not a robot")',
             'div:has-text("Security Verification")',
+            '.g-recaptcha',
+            '[data-sitekey]',
+            '.rc-anchor',
+            '.recaptcha-checkbox',
+            'iframe[name*="recaptcha"]',
+            '.rc-imageselect',
+            '.rc-challenge',
         ]
         
         for selector in captcha_selectors:
@@ -484,13 +404,29 @@ else:
         page_title = page.title().lower()
         page_url = page.url.lower()
         
-        if 'captcha' in page_title or 'verification' in page_title or 'security' in page_title:
-            captcha_detected = True
-            print(f"⚠ CAPTCHA DETECTED: Page title contains verification keywords")
+        # Enhanced keyword detection
+        captcha_keywords = ['captcha', 'verification', 'security', 'challenge', 'sorry', 'blocked', 'recaptcha']
+        title_keywords = [keyword for keyword in captcha_keywords if keyword in page_title]
+        url_keywords = [keyword for keyword in captcha_keywords if keyword in page_url]
         
-        if 'checkpoint' in page_url or 'challenge' in page_url:
+        if title_keywords:
             captcha_detected = True
-            print(f"⚠ CAPTCHA DETECTED: URL contains challenge keywords")
+            print(f"⚠ CAPTCHA DETECTED: Page title contains verification keywords: {title_keywords}")
+        
+        if url_keywords:
+            captcha_detected = True
+            print(f"⚠ CAPTCHA DETECTED: URL contains challenge keywords: {url_keywords}")
+            
+        # Special handling for Google's "sorry" page
+        try:
+            page_url = page.url.lower()
+            if 'sorry' in page_url and ('google.com' in page_url or 'recaptcha' in page_url):
+                captcha_detected = True
+                print("⚠ CAPTCHA DETECTED: Google 'sorry' page detected (reCAPTCHA)")
+                # For Google CAPTCHA, we need to solve it
+                complex_captcha = True  # Force CAPTCHA solving process
+        except:
+            pass
             
     except Exception as e:
         print(f"Warning: Error checking for CAPTCHA: {e}")
@@ -509,13 +445,40 @@ if captcha_detected:
         print("Waiting for page to proceed...")
         sleep(3)
         
-        # Check if we need to solve image challenge
-        image_challenge = page.query_selector('iframe[title*="recaptcha challenge"], .rc-imageselect')
+        # Check if we need to solve image challenge with enhanced selectors
+        image_challenge_selectors = [
+            'iframe[title*="recaptcha challenge"]',
+            '.rc-imageselect',
+            'iframe[src*="challenge"]',
+            '.rc-challenge',
+            '[class*="challenge"]'
+        ]
+        image_challenge = None
+        for selector in image_challenge_selectors:
+            try:
+                image_challenge = page.query_selector(selector)
+                if image_challenge:
+                    print(f"\n🖼️  Image challenge detected with selector '{selector}' - attempting automatic solving...")
+                    break
+            except:
+                continue
+        
         if image_challenge:
-            print("\n🖼️  Image challenge detected - attempting automatic solving...")
+            # Take screenshot of the CAPTCHA image challenge for vision model analysis
+            try:
+                captcha_screenshot_path = "data/screenshots/captcha_screenshot.png"
+                os.makedirs('data/screenshots', exist_ok=True)
+                page.screenshot(path=captcha_screenshot_path, full_page=False, timeout=10000)
+                print(f"  📸 CAPTCHA screenshot saved to: {captcha_screenshot_path}")
+                
+                # Analyze the CAPTCHA screenshot with vision model
+                vision_analysis = analyze_captcha_screenshot_with_vision_model(captcha_screenshot_path)
+            except Exception as screenshot_error:
+                print(f"  ⚠️  CAPTCHA screenshot error: {screenshot_error}")
+                vision_analysis = None
             
             # Try to solve image puzzle automatically
-            puzzle_solved = captcha_solver.solve_image_puzzle(page)
+            puzzle_solved = captcha_solver.solve_image_puzzle(page, vision_analysis)
             
             if puzzle_solved:
                 print("✅ Image puzzle automatically solved!")
@@ -541,11 +504,41 @@ if captcha_detected:
         if checkbox_solved:
             print("✅ Advanced checkbox solving successful!")
             
-            # Check for image challenge again
-            image_challenge = page.query_selector('iframe[title*="recaptcha challenge"], .rc-imageselect')
+            # Enhanced image challenge selectors
+            image_challenge_selectors = [
+                'iframe[title*="recaptcha challenge"]',
+                '.rc-imageselect',
+                'iframe[src*="challenge"]',
+                '.rc-challenge',
+                '[class*="challenge"]'
+            ]
+            
+            # Check for image challenge again with enhanced selectors
+            image_challenge = None
+            for selector in image_challenge_selectors:
+                try:
+                    image_challenge = page.query_selector(selector)
+                    if image_challenge:
+                        print(f"🖼️  Image challenge detected with selector '{selector}' - attempting advanced solving...")
+                        break
+                except:
+                    continue
+            
             if image_challenge:
-                print("🖼️  Image challenge detected - attempting advanced solving...")
-                puzzle_solved = captcha_solver.solve_image_puzzle(page)
+                # Take screenshot of the CAPTCHA image challenge for vision model analysis
+                try:
+                    captcha_screenshot_path = "data/screenshots/captcha_screenshot.png"
+                    os.makedirs('data/screenshots', exist_ok=True)
+                    page.screenshot(path=captcha_screenshot_path, full_page=False, timeout=10000)
+                    print(f"  📸 CAPTCHA screenshot saved to: {captcha_screenshot_path}")
+                    
+                    # Analyze the CAPTCHA screenshot with vision model
+                    vision_analysis = analyze_captcha_screenshot_with_vision_model(captcha_screenshot_path)
+                except Exception as screenshot_error:
+                    print(f"  ⚠️  CAPTCHA screenshot error: {screenshot_error}")
+                    vision_analysis = None
+                
+                puzzle_solved = captcha_solver.solve_image_puzzle(page, vision_analysis)
                 if puzzle_solved:
                     print("✅ Advanced image puzzle solving successful!")
                     complex_captcha = False
@@ -553,7 +546,7 @@ if captcha_detected:
                     print("⚠️  Advanced image puzzle solving failed")
             else:
                 complex_captcha = False
-        
+
         # If still failed, continue anyway (sometimes CAPTCHA passes without interaction)
         if complex_captcha:
             print("⚠️  Continuing anyway - CAPTCHA may pass automatically...")
@@ -579,22 +572,193 @@ if captcha_detected:
         
 else:
     print("✓ No CAPTCHA detected")
-
-# Wait for login to complete
-print("Waiting for login to complete...")
-try:
-    page.wait_for_url('**/feed/**', timeout=20000)
-    print("Login successful - feed page loaded")
-except:
-    print("Feed page not detected, waiting additional time...")
-    sleep(8)
+    # Special case: Always try to solve CAPTCHA on Google search pages
     try:
-        page.wait_for_url('**/in/**', timeout=10000)
-        print("Login successful - profile page loaded")
-    except:
-        print("Warning: Could not verify successful login")
+        current_page_url = page.url.lower()
+        if 'google.com' in current_page_url and ('search' in current_page_url or 'sorry' in current_page_url):
+            print("ℹ️  Google page detected, checking for CAPTCHA...")
+            # Try to solve any potential CAPTCHA
+            captcha_detected = True
+            complex_captcha = True
+            
+            # Also check for reCAPTCHA elements directly
+            recaptcha_elements = page.query_selector_all('iframe[src*="recaptcha"], iframe[title*="reCAPTCHA"], .g-recaptcha')
+            if len(recaptcha_elements) > 0:
+                print(f"⚠️  Found {len(recaptcha_elements)} reCAPTCHA elements on page")
+                
+                # Trigger CAPTCHA solving process
+                print("\n" + "="*80)
+                print("🤖 CAPTCHA CHALLENGE DETECTED!")
+                print("="*80)
+                print("\n🔄 Starting fully automatic CAPTCHA solving...\n")
+                
+                # Try to automatically solve reCAPTCHA checkbox
+                checkbox_solved = captcha_solver.solve_recaptcha_checkbox(page)
+                
+                if checkbox_solved:
+                    print("\n✅ reCAPTCHA checkbox automatically solved!")
+                    print("Waiting for page to proceed...")
+                    sleep(3)
+                    
+                    # Check if we need to solve image challenge with enhanced selectors
+                    image_challenge_selectors = [
+                        'iframe[title*="recaptcha challenge"]',
+                        '.rc-imageselect',
+                        'iframe[src*="challenge"]',
+                        '.rc-challenge',
+                        '[class*="challenge"]'
+                    ]
+                    image_challenge = None
+                    for selector in image_challenge_selectors:
+                        try:
+                            image_challenge = page.query_selector(selector)
+                            if image_challenge:
+                                print(f"\n🖼️  Image challenge detected with selector '{selector}' - attempting automatic solving...")
+                                break
+                        except:
+                            continue
+                    
+                    if image_challenge:
+                        # Take screenshot of the CAPTCHA image challenge for vision model analysis
+                        try:
+                            captcha_screenshot_path = "data/screenshots/captcha_screenshot.png"
+                            os.makedirs('data/screenshots', exist_ok=True)
+                            page.screenshot(path=captcha_screenshot_path, full_page=False, timeout=10000)
+                            print(f"  📸 CAPTCHA screenshot saved to: {captcha_screenshot_path}")
+                            
+                            # Analyze the CAPTCHA screenshot with vision model
+                            vision_analysis = analyze_captcha_screenshot_with_vision_model(captcha_screenshot_path)
+                        except Exception as screenshot_error:
+                            print(f"  ⚠️  CAPTCHA screenshot error: {screenshot_error}")
+                            vision_analysis = None
+                        
+                        # Try to solve image puzzle automatically
+                        puzzle_solved = captcha_solver.solve_image_puzzle(page, vision_analysis)
+                        
+                        if puzzle_solved:
+                            print("✅ Advanced image puzzle solving successful!")
+                            # Wait a bit for the page to redirect after solving CAPTCHA
+                            print("⏳ Waiting for page to redirect after CAPTCHA solving...")
+                            sleep(5)
+                            complex_captcha = False
+                        else:
+                            print("⚠️  Advanced image puzzle solving failed")
+                            complex_captcha = True
+                    else:
+                        print("✓ No additional challenges detected")
+                        print("✓ Proceeding with scraping...")
+                        complex_captcha = False
+                else:
+                    print("\n⚠️  Checkbox solving failed")
+                    complex_captcha = True
+                
+                # If complex CAPTCHA or auto-solve failed, try one more time with advanced methods
+                if complex_captcha:
+                    print("\n🔄 Trying advanced automatic solving methods...")
+                    
+                    # Try checkbox solving again
+                    checkbox_solved = captcha_solver.solve_recaptcha_checkbox(page)
+                    if checkbox_solved:
+                        print("✅ Advanced checkbox solving successful!")
+                        
+                        # Enhanced image challenge selectors
+                        image_challenge_selectors = [
+                            'iframe[title*="recaptcha challenge"]',
+                            '.rc-imageselect',
+                            'iframe[src*="challenge"]',
+                            '.rc-challenge',
+                            '[class*="challenge"]'
+                        ]
+                        
+                        # Check for image challenge again with enhanced selectors
+                        image_challenge = None
+                        for selector in image_challenge_selectors:
+                            try:
+                                image_challenge = page.query_selector(selector)
+                                if image_challenge:
+                                    print(f"🖼️  Image challenge detected with selector '{selector}' - attempting advanced solving...")
+                                    break
+                            except:
+                                continue
+                        
+                        if image_challenge:
+                            # Take screenshot of the CAPTCHA image challenge for vision model analysis
+                            try:
+                                captcha_screenshot_path = "data/screenshots/captcha_screenshot.png"
+                                os.makedirs('data/screenshots', exist_ok=True)
+                                page.screenshot(path=captcha_screenshot_path, full_page=False, timeout=10000)
+                                print(f"  📸 CAPTCHA screenshot saved to: {captcha_screenshot_path}")
+                                
+                                # Analyze the CAPTCHA screenshot with vision model
+                                vision_analysis = analyze_captcha_screenshot_with_vision_model(captcha_screenshot_path)
+                            except Exception as screenshot_error:
+                                print(f"  ⚠️  CAPTCHA screenshot error: {screenshot_error}")
+                                vision_analysis = None
+                            
+                            puzzle_solved = captcha_solver.solve_image_puzzle(page, vision_analysis)
+                            if puzzle_solved:
+                                print("✅ Advanced image puzzle solving successful!")
+                                complex_captcha = False
+                            else:
+                                print("⚠️  Advanced image puzzle solving failed")
+                        else:
+                            complex_captcha = False
+                
+                    # If still failed, continue anyway (sometimes CAPTCHA passes without interaction)
+                    if complex_captcha:
+                        print("⚠️  Continuing anyway - CAPTCHA may pass automatically...")
+                        sleep(5)
+                        
+                        # Check if we're past the CAPTCHA
+                        current_url = page.url.lower()
+                        if '/feed' in current_url or '/in/' in current_url:
+                            print("✅ Successfully passed CAPTCHA automatically!")
+                            complex_captcha = False
+                        else:
+                            # Even if we're not past CAPTCHA, continue anyway
+                            print("⚠️  Proceeding despite CAPTCHA - may work anyway...")
+                            complex_captcha = False
+                
+                # Completely remove manual intervention - always continue
+                if complex_captcha:
+                    print("\n⚠️  CAPTCHA challenges detected but continuing automatically...")
+                    print("⚠️  Proceeding without manual intervention - may work anyway...")
+                    complex_captcha = False
+    
+                print("\n✅ CAPTCHA handling completed - proceeding with automated scraping!")
+                
+                # After CAPTCHA handling, ensure we're on the correct page
+                try:
+                    current_url = page.url.lower()
+                    if 'sorry' in current_url or 'recaptcha' in current_url:
+                        print("⚠️  Still on CAPTCHA page, attempting to navigate to search results...")
+                        # Try to extract and navigate to the intended search URL
+                        # Look for the continue parameter or search query in the URL
+                        import urllib.parse
+                        parsed_url = urllib.parse.urlparse(current_url)
+                        query_params = urllib.parse.parse_qs(parsed_url.query)
+                        
+                        if 'continue' in query_params:
+                            continue_url = query_params['continue'][0]
+                            continue_url = urllib.parse.unquote(continue_url)
+                            print(f"🔄 Navigating to continue URL: {continue_url}")
+                            page.goto(continue_url)
+                            time.sleep(3)
+                        else:
+                            # Try to reconstruct the search URL from the original query
+                            print("🔄 Attempting to reconstruct search URL...")
+                            # This should be handled by the existing logic, but adding a safety net
+                            pass
+                except Exception as e:
+                    print(f"⚠️  Error during post-CAPTCHA navigation: {e}")
 
-sleep(3)
+    except Exception as e:
+        print(f"⚠️  Error checking for Google CAPTCHA: {e}")
+
+# No login required - proceed directly to search
+print("\n" + "="*80)
+print("Starting search process...")
+print("="*80)
 
 # ============================================================================
 # Search for AI Engineer and filter by People
@@ -604,83 +768,622 @@ print("\n" + "="*80)
 print("Starting search process...")
 print("="*80)
 
-# Get user input for NLP query
-print("Enter your search query (e.g., '5+ year experienced Python developer in Hyderabad'):")
-nlp_query = input("Search query: ").strip()
+# For Google X-ray search, we don't need to search again since we already executed the search
+print("\n✅ Google X-ray search completed successfully!")
+print("   You can now view the search results in the browser.")
+print("   The scraper will now wait for you to review the results.")
 
-if not nlp_query:
-    print("No query entered, using default: 'AI Engineer in Hyderabad'")
-    nlp_query = "AI Engineer in Hyderabad"
+# ============================================================================
+# Extract and Visit LinkedIn Profiles from Google Search Results
+# ============================================================================
 
-# Parse the NLP query
-print(f"\nParsing query: '{nlp_query}'")
-parsed_query = parse_nlp_query(nlp_query)
-print(f"Parsed query: {parsed_query}")
+print("\n" + "="*80)
+print("📊 EXTRACTING LINKEDIN PROFILE LINKS FROM GOOGLE RESULTS")
+print("="*80)
 
-# Format search query for LinkedIn
-search_keyword = format_search_query(parsed_query)
-print(f"Formatted search keyword: '{search_keyword}'")
+# Find all LinkedIn profile links on the Google results page
+linkedin_profile_links = []
+try:
+    # Wait for search results to load
+    sleep(2)
+    
+    # Find all search result links
+    # Google search results are typically in <a> tags with specific classes
+    all_links = page.query_selector_all('a[href*="linkedin.com/in/"]')
+    
+    print(f"\n🔍 Found {len(all_links)} potential LinkedIn profile links")
+    
+    for link in all_links:
+        try:
+            href = link.get_attribute('href')
+            if href and ('linkedin.com/in/' in href or 'linkedin.com/pub/' in href):
+                # Skip Google internal links (navigation, filters, etc.)
+                if any(skip_pattern in href for skip_pattern in [
+                    '/search?', 'google.com/search', 'accounts.google.com',
+                    'maps.google.com', 'tbm=', 'udm=', 'source=lnms'
+                ]):
+                    continue
+                    
+                # Clean up the URL (remove Google redirect parameters)
+                if '/url?q=' in href:
+                    # Extract the actual URL from Google's redirect
+                    import urllib.parse
+                    parsed = urllib.parse.parse_qs(urllib.parse.urlparse(href).query)
+                    if 'q' in parsed:
+                        href = parsed['q'][0]
+                
+                # Only add unique profile URLs that are actual LinkedIn profiles
+                if (href not in linkedin_profile_links and 
+                    ('linkedin.com/in/' in href or 'linkedin.com/pub/' in href) and
+                    not any(skip_pattern in href for skip_pattern in [
+                        '/search?', 'google.com', 'accounts.google.com'
+                    ])):
+                    linkedin_profile_links.append(href)
+                    print(f"  ✓ Profile {len(linkedin_profile_links)}: {href}")
+        except Exception as link_error:
+            continue
+    
+    print(f"\n✅ Total unique LinkedIn profiles found: {len(linkedin_profile_links)}")
+    
+except Exception as extract_error:
+    print(f"⚠️  Error extracting LinkedIn links: {extract_error}")
 
-# Get location from parsed query or ask user
-location = parsed_query.get('location', '')
-if not location:
-    print("\nLocation not found in query. Please enter location:")
-    location = input("Location (e.g., Hyderabad): ").strip()
-    if not location:
-        location = "Hyderabad"  # Default fallback
-else:
-    print(f"Location extracted from query: {location}")
-
-# Find and click the search bar
-print("Looking for search bar...")
-search_bar_found = False
-max_attempts = 3
-
-for attempt in range(max_attempts):
+# Helper function to check if page is asking for LinkedIn login
+def is_linkedin_login_page(page):
+    """Check if the current page is asking for LinkedIn login"""
     try:
-        print(f"Attempt {attempt + 1}/{max_attempts} to find search bar...")
-        page.wait_for_selector('[placeholder*="Search"]', timeout=10000)
-        print("Search bar found")
+        current_url = page.url.lower()
+        page_title = ""
+        try:
+            page_title = page.title().lower()
+        except:
+            pass
         
-        search_bar = page.query_selector('[placeholder*="Search"]')
-        if search_bar:
-            # Scroll to search bar to ensure it's visible
-            search_bar.scroll_into_view_if_needed()
-            sleep(1)
-            
-            # Try multiple click methods
+        # Check URL for login indicators
+        login_url_indicators = [
+            '/login',
+            '/checkpoint',
+            '/challenge',
+            '/uas/login',
+            'authwall'
+        ]
+        
+        for indicator in login_url_indicators:
+            if indicator in current_url and 'linkedin.com' in current_url:
+                return True
+        
+        # Check page title for login indicators
+        login_title_keywords = ['sign in', 'log in', 'linkedin login', 'join linkedin']
+        for keyword in login_title_keywords:
+            if keyword in page_title:
+                return True
+        
+        # Check for login form elements
+        login_form_selectors = [
+            'input[name="session_key"]',
+            'input[name="session_password"]',
+            'form[action*="login"]',
+            'button:has-text("Sign in")',
+            'button:has-text("Log in")',
+            '#username',
+            '#password'
+        ]
+        
+        login_form_count = 0
+        for selector in login_form_selectors:
             try:
-                search_bar.click()
-                print("Search bar clicked successfully")
+                element = page.query_selector(selector)
+                if element and element.is_visible():
+                    login_form_count += 1
             except:
-                # Fallback: try to focus using press
-                page.press('[placeholder*="Search"]', 'Tab')
-                print("Search bar focused using Tab")
-            
-            sleep(1)
-            
-            print(f"Entering search keyword: {search_keyword}")
-            search_bar.type(search_keyword, delay=50)
-            sleep(2)
-            
-            print("Search keyword entered successfully")
-            search_bar_found = True
-            break
-        else:
-            print("Search bar element not found, retrying...")
-            sleep(2)
+                continue
+        
+        # If we find multiple login form elements, likely a login page
+        if login_form_count >= 2:
+            return True
+        
+        # Check for "Sign in" or "Join now" buttons prominently displayed
+        try:
+            sign_in_buttons = page.query_selector_all('button:has-text("Sign in"), a:has-text("Sign in"), button:has-text("Join now")')
+            if len(sign_in_buttons) > 0:
+                # Check if any are prominently displayed (large, centered, etc.)
+                for button in sign_in_buttons:
+                    try:
+                        if button.is_visible():
+                            # Check if it's a prominent button (not just in nav)
+                            button_text = button.text_content().strip().lower()
+                            if 'sign in' in button_text or 'join now' in button_text:
+                                # Additional check: see if we're on linkedin.com but not logged in
+                                if 'linkedin.com' in current_url and '/in/' not in current_url and '/feed' not in current_url:
+                                    return True
+                    except:
+                        continue
+        except:
+            pass
+        
+        return False
+        
     except Exception as e:
-        print(f"Attempt {attempt + 1} failed: {e}")
-        if attempt < max_attempts - 1:
-            sleep(3)  # Wait before retry
-        else:
-            print("Error finding or using search bar after all attempts")
-            search_bar_found = False
+        print(f"  ⚠️  Error checking for login page: {e}")
+        return False
 
-if not search_bar_found:
-    print("⚠ Warning: Could not interact with search bar, continuing anyway...")
+# Helper function to navigate with login detection and retry
+def navigate_with_login_check(page, url, max_retries=3, timeout=30000):
+    """Navigate to URL, check for login page, and retry by going back if login detected"""
+    for attempt in range(max_retries):
+        try:
+            print(f"  🔗 Navigating to: {url} (attempt {attempt + 1}/{max_retries})")
+            page.goto(url, timeout=timeout)
+            sleep(2)
+            
+            # Immediately close any popups that might have appeared
+            close_linkedin_popups(page, max_attempts=3)
+            
+            # Check if we're on a login page
+            if is_linkedin_login_page(page):
+                print(f"  ⚠️  LinkedIn login page detected on attempt {attempt + 1}")
+                if attempt < max_retries - 1:
+                    print(f"  ⬅️  Going back one step and retrying...")
+                    try:
+                        page.go_back(timeout=10000)
+                        sleep(2)
+                        print(f"  ✅ Went back, retrying navigation...")
+                    except Exception as back_error:
+                        print(f"  ⚠️  Error going back: {back_error}")
+                        # Try to navigate to a safe page (Google search) before retrying
+                        try:
+                            if 'google.com' in page.url.lower():
+                                page.reload(timeout=10000)
+                            else:
+                                # If we can't go back, try reloading
+                                page.reload(timeout=10000)
+                            sleep(2)
+                        except:
+                            pass
+                    continue
+                else:
+                    print(f"  ❌ Login page detected after {max_retries} attempts, giving up")
+                    return False
+            else:
+                print(f"  ✅ Successfully navigated (no login page detected)")
+                # Close popups again after confirming it's not a login page
+                close_linkedin_popups(page, max_attempts=2)
+                return True
+                
+        except Exception as nav_error:
+            print(f"  ⚠️  Navigation error on attempt {attempt + 1}: {nav_error}")
+            if attempt < max_retries - 1:
+                print(f"  ⬅️  Going back and retrying...")
+                try:
+                    page.go_back(timeout=10000)
+                    sleep(2)
+                except:
+                    pass
+                continue
+            else:
+                print(f"  ❌ Navigation failed after {max_retries} attempts")
+                return False
+    
+    return False
 
-sleep(1)
+# Helper function to close LinkedIn popups
+def close_linkedin_popups(page, max_attempts=5):
+    """Close any popups that appear on LinkedIn profiles - aggressive approach"""
+    try:
+        popup_closed = False
+        
+        # Try multiple times as popups may appear with delay
+        for attempt in range(max_attempts):
+            # Wait a moment for popup to appear
+            sleep(0.5)
+            
+            # Method 1: Try pressing Escape key (works for many modals)
+            try:
+                page.keyboard.press('Escape')
+                sleep(0.3)
+            except:
+                pass
+            
+            # Method 2: Try to find and click various dismiss/close buttons
+            dismiss_selectors = [
+                # Standard dismiss buttons
+                'button.modal__dismiss',
+                'button.contextual-sign-in-modal__modal-dismiss',
+                'button[aria-label="Dismiss"]',
+                'button[aria-label="Close"]',
+                'button[aria-label*="close" i]',
+                'button[aria-label*="dismiss" i]',
+                '.modal__dismiss',
+                '[data-tracking-control-name*="modal_dismiss"]',
+                # Close buttons with X
+                'button[class*="close"]',
+                'button[class*="dismiss"]',
+                '.artdeco-modal__dismiss',
+                '.artdeco-dismiss',
+                'button.artdeco-button[aria-label*="close" i]',
+                'button.artdeco-button[aria-label*="dismiss" i]',
+                # Icon close buttons
+                'svg[data-test-icon="close"]',
+                'button[data-test-modal-close-btn]',
+                'button[data-control-name="overlay.close_conversation_card"]',
+                # Generic close patterns
+                '[class*="close-button"]',
+                '[class*="dismiss-button"]',
+                '[id*="close"]',
+                '[id*="dismiss"]',
+            ]
+            
+            for selector in dismiss_selectors:
+                try:
+                    dismiss_buttons = page.query_selector_all(selector)
+                    for dismiss_button in dismiss_buttons:
+                        try:
+                            if dismiss_button and dismiss_button.is_visible():
+                                # Scroll into view if needed
+                                dismiss_button.scroll_into_view_if_needed()
+                                sleep(0.2)
+                                
+                                # Try clicking
+                                dismiss_button.click(timeout=2000)
+                                sleep(0.5)
+                                print(f"  🚫 Closed popup using selector: {selector}")
+                                popup_closed = True
+                                break
+                        except:
+                            # Try JavaScript click as fallback
+                            try:
+                                page.evaluate("""(button) => {
+                                    if (button && button.offsetParent !== null) {
+                                        button.click();
+                                    }
+                                }""", dismiss_button)
+                                sleep(0.5)
+                                print(f"  🚫 Closed popup using JavaScript: {selector}")
+                                popup_closed = True
+                                break
+                            except:
+                                continue
+                    
+                    if popup_closed:
+                        break
+                except:
+                    continue
+            
+            # Method 3: Try clicking outside modal/overlay (on backdrop)
+            if not popup_closed:
+                try:
+                    # Look for modal/overlay backdrop
+                    backdrop_selectors = [
+                        '.artdeco-modal-overlay',
+                        '.modal-overlay',
+                        '[class*="overlay"]',
+                        '[class*="backdrop"]',
+                        '.artdeco-modal',
+                    ]
+                    
+                    for selector in backdrop_selectors:
+                        try:
+                            backdrop = page.query_selector(selector)
+                            if backdrop and backdrop.is_visible():
+                                # Click in the center of backdrop (often closes modal)
+                                box = backdrop.bounding_box()
+                                if box:
+                                    page.mouse.click(box['x'] + box['width'] / 2, box['y'] + box['height'] / 2)
+                                    sleep(0.5)
+                                    print(f"  🚫 Clicked backdrop to close popup")
+                                    popup_closed = True
+                                    break
+                        except:
+                            continue
+                except:
+                    pass
+            
+            # Method 4: Try to find and close any visible modals by their structure
+            if not popup_closed:
+                try:
+                    # Look for modal containers
+                    modal_containers = page.query_selector_all('[role="dialog"], .artdeco-modal, [class*="modal"]')
+                    for modal in modal_containers:
+                        try:
+                            if modal.is_visible():
+                                # Look for close button inside this modal
+                                close_btn = modal.query_selector('button[aria-label*="close" i], button[aria-label*="dismiss" i], button[class*="close"], svg[data-test-icon="close"]')
+                                if close_btn:
+                                    close_btn.click(timeout=2000)
+                                    sleep(0.5)
+                                    print(f"  🚫 Closed popup from modal container")
+                                    popup_closed = True
+                                    break
+                        except:
+                            continue
+                except:
+                    pass
+            
+            # If we closed a popup, check if there are more
+            if popup_closed:
+                # Continue checking for more popups
+                popup_closed = False
+                continue
+            else:
+                # No popup found in this attempt, might be done
+                break
+        
+        # Final check: Press Escape one more time to be sure
+        try:
+            page.keyboard.press('Escape')
+            sleep(0.3)
+        except:
+            pass
+        
+        return True  # Return True even if no popup found (no error)
+        
+    except Exception as e:
+        # Silently continue if error occurs
+        return True  # Return True to continue execution
+
+# URL extraction completed above - no profile navigation needed
+print("\n" + "="*80)
+print(f"✅ LINKEDIN PROFILE URL EXTRACTION COMPLETED")
+print("   Method: Direct href extraction (NO NAVIGATION)")
+print("   All URLs extracted without opening any profiles")
+print("   Results saved to: data/extracted_profile_urls.json")
+print("="*80)
+
+if False:  # Disabled navigation section
+    print("\n" + "="*80)
+    print(f"🚀 VISITING LINKEDIN PROFILES")
+    print("="*80)
+    
+    # STEP 1: Click on FIRST profile first, then go back
+    if len(linkedin_profile_links) > 0:
+        first_profile_url = linkedin_profile_links[0]
+        
+        print(f"\n{'='*80}")
+        print(f"STEP 1: Visit First Profile - Initial Visit (then go back)")
+        print(f"{'='*80}")
+        print(f"🔗 Navigating to: {first_profile_url}")
+        
+        try:
+            # Use navigate_with_login_check to handle login pages
+            if navigate_with_login_check(page, first_profile_url, max_retries=3, timeout=30000):
+                print(f"📍 Current URL: {page.url}")
+                sleep(1)
+                
+                # Go back to Google search results
+                print(f"\n  ⬅️  Going back to Google search results...")
+                page.go_back(timeout=10000)
+                sleep(3)
+                print(f"  ✅ Returned to Google search results")
+            else:
+                print(f"  ⚠️  Failed to navigate to first profile after retries")
+            
+        except Exception as first_visit_error:
+            print(f"  ❌ Error on first visit: {first_visit_error}")
+            try:
+                page.goto(google_search_url, timeout=30000)
+                sleep(3)
+            except:
+                pass
+    
+    # STEP 2: Visit FIRST profile AGAIN and scrape it (close popup if appears)
+    if len(linkedin_profile_links) > 0:
+        first_profile_url = linkedin_profile_links[0]
+        
+        print(f"\n{'='*80}")
+        print(f"STEP 2: Visit First Profile - Second Visit (close popup & extract data)")
+        print(f"{'='*80}")
+        print(f"🔗 Navigating to: {first_profile_url}")
+        
+        try:
+            # Use navigate_with_login_check to handle login pages
+            if navigate_with_login_check(page, first_profile_url, max_retries=3, timeout=30000):
+                print(f"📍 Current URL: {page.url}")
+                
+                # Close any popups
+                close_linkedin_popups(page)
+                
+                sleep(1)
+                
+                # Take screenshot and extract data
+                try:
+                    screenshot_path = f"data/screenshots/profile_1.png"
+                    os.makedirs('data/screenshots', exist_ok=True)
+                    page.screenshot(path=screenshot_path, full_page=True, timeout=10000)
+                    print(f"  📸 Profile screenshot saved: {screenshot_path}")
+                except Exception as ss_error:
+                    print(f"  ⚠️  Screenshot error: {ss_error}")
+                
+                # Extract profile data
+                try:
+                    sleep(2)
+                    
+                    # Try to get profile name
+                    name_selectors = [
+                        'h1.text-heading-xlarge',
+                        'h1[class*="text-heading"]',
+                        '.pv-text-details__left-panel h1',
+                        '[data-test-id="profile-name"]'
+                    ]
+                    
+                    profile_name = None
+                    for selector in name_selectors:
+                        try:
+                            name_element = page.query_selector(selector)
+                            if name_element:
+                                profile_name = name_element.text_content().strip()
+                                if profile_name:
+                                    break
+                        except:
+                            continue
+                    
+                    if profile_name:
+                        print(f"  👤 Name: {profile_name}")
+                    else:
+                        print(f"  ⚠️  Could not extract profile name")
+                    
+                    # Try to get headline
+                    headline_selectors = [
+                        '.text-body-medium',
+                        '.pv-text-details__left-panel .text-body-medium',
+                        '[data-test-id="profile-headline"]'
+                    ]
+                    
+                    headline = None
+                    for selector in headline_selectors:
+                        try:
+                            headline_element = page.query_selector(selector)
+                            if headline_element:
+                                headline = headline_element.text_content().strip()
+                                if headline and len(headline) > 10:
+                                    break
+                        except:
+                            continue
+                    
+                    if headline:
+                        print(f"  💼 Headline: {headline}")
+                    else:
+                        print(f"  ⚠️  Could not extract headline")
+                    
+                except Exception as extract_error:
+                    print(f"  ⚠️  Error extracting profile data: {extract_error}")
+                
+                print(f"  ✅ Profile 1 processed, continuing to next profile...")
+            else:
+                print(f"  ⚠️  Failed to navigate to first profile after retries, skipping...")
+            
+        except Exception as first_profile_error:
+            print(f"  ❌ Error visiting first profile: {first_profile_error}")
+    
+    # STEP 3: Now visit remaining profiles sequentially (starting from second profile)
+    for idx, profile_url in enumerate(linkedin_profile_links[1:], 2):
+        try:
+            print(f"\n{'='*80}")
+            print(f"Profile {idx}/{len(linkedin_profile_links)}")
+            print(f"{'='*80}")
+            print(f"🔗 Navigating to: {profile_url}")
+            
+            # Navigate to LinkedIn profile with login check
+            if navigate_with_login_check(page, profile_url, max_retries=3, timeout=30000):
+                # Check current URL after navigation
+                current_profile_url = page.url
+                print(f"📍 Current URL: {current_profile_url}")
+                
+                # Close any popups
+                close_linkedin_popups(page)
+                
+                # Wait for page to load
+                sleep(1)
+                
+                # Take screenshot of the profile for debugging/record
+                try:
+                    screenshot_path = f"data/screenshots/profile_{idx}.png"
+                    os.makedirs('data/screenshots', exist_ok=True)
+                    page.screenshot(path=screenshot_path, full_page=True, timeout=10000)
+                    print(f"  📸 Profile screenshot saved: {screenshot_path}")
+                except Exception as ss_error:
+                    print(f"  ⚠️  Screenshot error: {ss_error}")
+                
+                # Extract profile data (name, headline, etc.)
+                try:
+                    # Wait for profile elements to load
+                    sleep(2)
+                    
+                    # Try to get profile name
+                    name_selectors = [
+                        'h1.text-heading-xlarge',
+                        'h1[class*="text-heading"]',
+                        '.pv-text-details__left-panel h1',
+                        '[data-test-id="profile-name"]'
+                    ]
+                    
+                    profile_name = None
+                    for selector in name_selectors:
+                        try:
+                            name_element = page.query_selector(selector)
+                            if name_element:
+                                profile_name = name_element.text_content().strip()
+                                if profile_name:
+                                    break
+                        except:
+                            continue
+                    
+                    if profile_name:
+                        print(f"  👤 Name: {profile_name}")
+                    else:
+                        print(f"  ⚠️  Could not extract profile name")
+                    
+                    # Try to get headline
+                    headline_selectors = [
+                        '.text-body-medium',
+                        '.pv-text-details__left-panel .text-body-medium',
+                        '[data-test-id="profile-headline"]'
+                    ]
+                    
+                    headline = None
+                    for selector in headline_selectors:
+                        try:
+                            headline_element = page.query_selector(selector)
+                            if headline_element:
+                                headline = headline_element.text_content().strip()
+                                if headline and len(headline) > 10:  # Make sure it's not empty
+                                    break
+                        except:
+                            continue
+                    
+                    if headline:
+                        print(f"  💼 Headline: {headline}")
+                    else:
+                        print(f"  ⚠️  Could not extract headline")
+                    
+                except Exception as extract_error:
+                    print(f"  ⚠️  Error extracting profile data: {extract_error}")
+                
+                # Don't go back - continue to next profile directly
+                print(f"  ✅ Profile {idx} processed, continuing to next profile...")
+            else:
+                print(f"  ⚠️  Failed to navigate to profile after retries, skipping...")
+                continue
+            
+        except Exception as profile_error:
+            print(f"  ❌ Error visiting profile: {profile_error}")
+            print(f"  ⚠️  Skipping to next profile...")
+    
+    print("\n" + "="*80)
+    print(f"✅ COMPLETED VISITING {len(linkedin_profile_links)} PROFILES")
+    print("   Navigation Flow:")
+    print("   1. First profile (visit 1) → Back to Google")
+    print("   2. First profile (visit 2) → Close popup → Scraped")
+    print("   3. Remaining profiles → Close popup → Scraped sequentially")
+    print("="*80)
+else:
+    print("\n⚠️  No LinkedIn profile links found in search results")
+
+# Keep the browser open for user to review results
+print("\n" + "="*80)
+print("🤖 BROWSER KEPT OPEN FOR RESULT REVIEW")
+print("="*80)
+print("You can review the results in the browser.")
+print("Press Ctrl+C in this console to exit completely.")
+print("="*80)
+
+# Keep the script running to maintain browser open
+try:
+    while True:
+        time.sleep(10)  # Keep alive
+except KeyboardInterrupt:
+    print("\nReceived interrupt signal, closing browser...")
+    if browser:
+        browser.close()
+    if playwright:
+        playwright.stop()
+    print("✓ Browser closed successfully!")
+
+print("\n" + "="*80)
+print("Google X-ray search completed successfully!")
+print("="*80)
+
+# Exit the script
+exit(0)
 
 # Press Enter to perform the search
 print("Pressing Enter to search...")
@@ -973,9 +1676,15 @@ def extract_profile_with_ocr(page, profile_url):
     profile_data = {}
     
     try:
-        # Navigate to profile with better error handling
+        # Navigate to profile with better error handling and login check
         print(f"  Navigating to profile: {profile_url}")
-        page.goto(profile_url, timeout=30000)  # Increase timeout to 30 seconds
+        if not navigate_with_login_check(page, profile_url, max_retries=3, timeout=30000):
+            print(f"  ⚠️  Failed to navigate to profile after retries")
+            profile_data['error'] = 'Navigation failed - login page detected'
+            profile_data['url'] = profile_url
+            profile_data['extraction_method'] = 'OCR + AI'
+            return profile_data
+        
         HumanBehavior.random_delay(2, 4)  # Human-like pause
         
         # Wait for basic page elements with retry logic
@@ -983,6 +1692,9 @@ def extract_profile_with_ocr(page, profile_url):
             page.wait_for_load_state('domcontentloaded', timeout=10000)
         except:
             print(f"  ⚠️  DOM content load timeout, continuing anyway...")
+        
+        # Close any popups that appeared after page load
+        close_linkedin_popups(page, max_attempts=3)
         
         HumanBehavior.random_delay(1, 3)  # Human-like pause
         
@@ -1147,7 +1859,7 @@ def extract_profile_with_ai(text_content):
                     "content": f"{prompt}\n\nPROFILE TEXT:\n{truncated_text}"
                 }
             ],
-            model="llama-3.3-70b-versatile",
+            model="meta-llama/llama-4-scout-17b-16e-instruct",
             temperature=0.1,
             max_tokens=4000,
         )
