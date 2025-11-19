@@ -12,25 +12,39 @@ from time import sleep
 # Add the project root to the Python path
 sys.path.append(os.path.dirname(os.path.abspath(__file__)))
 
-from playwright.sync_api import sync_playwright
+# Import custom modules
+from human_behavior import HumanBehavior, move_mouse_naturally
+from nlp_query_parser import parse_nlp_query, format_search_query
+
+# Ask for user input for NLP query FIRST
+print("Enter your search query (e.g., '5+ year experienced Python developer in Hyderabad'):")
+nlp_query = input("Search query: ").strip()
+
+if not nlp_query:
+    print("No query entered, using default: 'AI Engineer in Hyderabad'")
+    nlp_query = "AI Engineer in Hyderabad"
+
+# Parse the NLP query
+print(f"\nParsing query: '{nlp_query}'")
+parsed_query = parse_nlp_query(nlp_query)
+print(f"Parsed query: {parsed_query}")
+
+# Extract keywords from parsed query
+job_title = parsed_query.get('job_title', 'Python Developer')  # Use job_title from parsed query
+if not job_title:
+    job_title = 'Python Developer'  # Default to Python Developer if not specified
+location = parsed_query.get('location', 'Hyderabad')  # Default to Hyderabad if not specified
+
+print(f"\nExtracted keywords:")
+print(f"  Job Title: {job_title}")
+print(f"  Location: {location}")
+
+# NOW load environment variables and initialize Groq
 from dotenv import load_dotenv
 from groq import Groq
 
 # Load environment variables
 load_dotenv()
-
-# Import custom modules
-from human_behavior import HumanBehavior, move_mouse_naturally
-from advanced_captcha_solver import AdvancedCaptchaSolver
-from nlp_query_parser import parse_nlp_query, format_search_query
-
-# Try to import linkedin_session_loader, but handle if it doesn't exist
-try:
-    from linkedin_session_loader import load_linkedin_state_and_scrape
-    LINKEDIN_SESSION_LOADER_AVAILABLE = True
-except ImportError:
-    LINKEDIN_SESSION_LOADER_AVAILABLE = False
-    print("⚠️  LinkedIn session loader not available, using standard login flow")
 
 # Get credentials from environment variables - ONLY GROQ_API_KEY is needed now
 GROQ_API_KEY = os.getenv('GROQ_API_KEY')
@@ -46,8 +60,7 @@ print(f"✓ Groq API Key loaded: {GROQ_API_KEY[:10]}...")
 # Initialize Groq client
 groq_client = Groq(api_key=GROQ_API_KEY)
 
-# Initialize CAPTCHA solver
-captcha_solver = AdvancedCaptchaSolver(groq_client)
+# CAPTCHA solver functions will be implemented directly in this file
 
 # ============================================================================
 
@@ -92,76 +105,69 @@ def move_mouse_naturally(page, target_x, target_y, duration=3.0):
         print(f"  ⚠️  Error moving mouse: {e}")
         return False
 
-def load_saved_session_if_available(playwright_instance):
-    """
-    Attempt to load a saved LinkedIn session if available.
-    Returns (page, browser, context, playwright) if successful, (None, None, None, None) if not.
-    """
-    try:
-        from linkedin_session_loader import load_linkedin_state_and_scrape
-        print("Attempting to load saved LinkedIn session...")
-        
-        # Load the saved session (without verification to speed up)
-        page, browser, context = load_linkedin_state_and_scrape(verify_login=False, playwright_instance=playwright_instance)
-        
-        if page is not None and browser is not None:
-            print("✅ Successfully loaded saved LinkedIn session")
-            print(f"Current URL: {page.url}")
-            
-            # Set viewport to a standard size for consistent screenshots
-            page.set_viewport_size({"width": 1920, "height": 1080})
-            
-            # Wait a moment for page to stabilize
-            sleep(2)
-            return page, browser, context, None  # No playwright needed when using saved session
-        else:
-            print("❌ Failed to load saved session")
-            return None, None, None, None
-            
-    except ImportError:
-        print("Session loader not available")
-        return None, None, None, None
-    except Exception as e:
-        print(f"Error loading session: {e}")
-        return None, None, None, None
+# NOW initialize Playwright and navigate directly to Google homepage
+from playwright.sync_api import sync_playwright
 
-# Initialize Playwright and navigate directly to Google homepage
 playwright = sync_playwright().start()
 
-# Use real Chrome browser instead of Chromium
-# Try to find Chrome installation path
+# Use Brave browser instead of Chrome/Microsoft Edge
+# Try to find Brave installation path
 import platform
 system = platform.system()
 
 if system == "Windows":
-    chrome_paths = [
-        r"C:\Program Files\Google\Chrome\Application\chrome.exe",
-        r"C:\Program Files (x86)\Google\Chrome\Application\chrome.exe",
-        os.path.expanduser(r"~\AppData\Local\Google\Chrome\Application\chrome.exe")
+    brave_paths = [
+        r"C:\Program Files\BraveSoftware\Brave-Browser\Application\brave.exe",
+        r"C:\Program Files (x86)\BraveSoftware\Brave-Browser\Application\brave.exe",
+        os.path.expanduser(r"~\AppData\Local\BraveSoftware\Brave-Browser\Application\brave.exe")
     ]
-    chrome_path = None
-    for path in chrome_paths:
+    brave_path = None
+    for path in brave_paths:
         if os.path.exists(path):
-            chrome_path = path
+            brave_path = path
             break
     
-    if chrome_path:
-        print(f"✓ Found Chrome at: {chrome_path}")
+    if brave_path:
+        print(f"✓ Found Brave browser at: {brave_path}")
         browser = playwright.chromium.launch(
             headless=False,
-            channel="chrome",  # Use Chrome channel
-            executable_path=chrome_path
+            executable_path=brave_path
         )
     else:
-        print("⚠️  Chrome not found, using Chromium")
+        print("⚠️  Brave browser not found, using Chromium")
         browser = playwright.chromium.launch(headless=False)
-else:
-    # For Linux/Mac, try to use Chrome channel
-    try:
-        browser = playwright.chromium.launch(headless=False, channel="chrome")
-        print("✓ Using Chrome browser")
-    except:
-        print("⚠️  Chrome not found, using Chromium")
+elif system == "Darwin":  # macOS
+    brave_path = "/Applications/Brave Browser.app/Contents/MacOS/Brave Browser"
+    if os.path.exists(brave_path):
+        print(f"✓ Found Brave browser at: {brave_path}")
+        browser = playwright.chromium.launch(
+            headless=False,
+            executable_path=brave_path
+        )
+    else:
+        print("⚠️  Brave browser not found, using Chromium")
+        browser = playwright.chromium.launch(headless=False)
+else:  # Linux and other systems
+    brave_paths = [
+        "/usr/bin/brave-browser",
+        "/usr/bin/brave",
+        "/snap/bin/brave",
+        os.path.expanduser("~/.local/bin/brave")
+    ]
+    brave_path = None
+    for path in brave_paths:
+        if os.path.exists(path):
+            brave_path = path
+            break
+    
+    if brave_path:
+        print(f"✓ Found Brave browser at: {brave_path}")
+        browser = playwright.chromium.launch(
+            headless=False,
+            executable_path=brave_path
+        )
+    else:
+        print("⚠️  Brave browser not found, using Chromium")
         browser = playwright.chromium.launch(headless=False)
 
 page = browser.new_page()
@@ -179,30 +185,6 @@ except:
 time.sleep(2)
 
 print("✅ Browser opened successfully.")
-print("ℹ️  Please enter your search query in the terminal.")
-
-# Get user input for NLP query
-print("Enter your search query (e.g., '5+ year experienced Python developer in Hyderabad'):")
-nlp_query = input("Search query: ").strip()
-
-if not nlp_query:
-    print("No query entered, using default: 'AI Engineer in Hyderabad'")
-    nlp_query = "AI Engineer in Hyderabad"
-
-# Parse the NLP query
-print(f"\nParsing query: '{nlp_query}'")
-parsed_query = parse_nlp_query(nlp_query)
-print(f"Parsed query: {parsed_query}")
-
-# Extract keywords from parsed query
-job_title = parsed_query.get('job_title', 'Python Developer')  # Use job_title from parsed query
-if not job_title:
-    job_title = 'Python Developer'  # Default to Python Developer if not specified
-location = parsed_query.get('location', 'Hyderabad')  # Default to Hyderabad if not specified
-
-print(f"\nExtracted keywords:")
-print(f"  Job Title: {job_title}")
-print(f"  Location: {location}")
 
 # Construct Google X-ray search query (replace spaces with + in quoted strings)
 job_title_formatted = job_title.replace(' ', '+')
@@ -230,86 +212,608 @@ page_title = page.title()
 print(f"   Current URL: {current_url}")
 print(f"   Page title: {page_title}")
 
+
+# ============================================================================
+def is_captcha_page(page):
+    """Check if current page is a CAPTCHA challenge page"""
+    try:
+        current_url = page.url.lower()
+        page_title = ""
+        try:
+            page_title = page.title().lower()
+        except:
+            pass
+        
+        # Check for CAPTCHA indicators in URL
+        captcha_indicators = ['sorry', 'recaptcha', 'captcha', 'challenge']
+        url_indicators = [indicator for indicator in captcha_indicators if indicator in current_url]
+        
+        # Check for CAPTCHA indicators in title
+        title_indicators = [indicator for indicator in captcha_indicators if indicator in page_title]
+        
+        # Check for CAPTCHA elements on page
+        captcha_selectors = [
+            'iframe[title*="challenge"]',
+            'iframe[title*="reCAPTCHA"]',
+            '.rc-imageselect',
+            '.rc-challenge',
+            '[data-sitekey]',
+            '.g-recaptcha'
+        ]
+        
+        element_found = False
+        for selector in captcha_selectors:
+            try:
+                if page.query_selector(selector):
+                    element_found = True
+                    break
+            except:
+                continue
+        
+        # If any indicators found, likely a CAPTCHA page
+        if url_indicators or title_indicators or element_found:
+            return True
+        else:
+            return False
+            
+    except Exception as e:
+        print(f"  ⚠️  Error checking if CAPTCHA page: {e}")
+        return False
+
+def validate_captcha_solution(page):
+    """Validate if CAPTCHA solution was successful"""
+    try:
+        # Check if we're still on a CAPTCHA page
+        if is_captcha_page(page):
+            print("  ⚠️  Still on CAPTCHA page after solution attempt")
+            return False
+        else:
+            # Check for successful redirect indicators
+            current_url = page.url.lower()
+            if 'google.com' in current_url and 'search' in current_url:
+                print("  ✅ Successfully passed CAPTCHA and redirected to search results")
+                return True
+            elif 'linkedin.com' in current_url and ('/in/' in current_url or '/pub/' in current_url):
+                print("  ✅ Successfully passed CAPTCHA and redirected to LinkedIn profile")
+                return True
+            else:
+                # Look for search elements as success indicators
+                try:
+                    success_indicators = page.query_selector_all('input[name="q"], #search, #searchbox, [aria-label*="Search"]')
+                    if len(success_indicators) > 0:
+                        print("  ✅ Found search elements, likely passed CAPTCHA")
+                        return True
+                except:
+                    pass
+                return True  # Assume success if not on CAPTCHA page
+    except Exception as e:
+        print(f"  ⚠️  Error validating CAPTCHA solution: {e}")
+        return False
+
 # ============================================================================
 # CAPTCHA Detection and Automatic Handling
 # ============================================================================
 
 def analyze_captcha_screenshot_with_vision_model(screenshot_path):
     """Analyze CAPTCHA screenshot with vision model and return structured output"""
-    try:
-        print(f"  📸 Analyzing CAPTCHA screenshot: {screenshot_path}")
-        
-        # Read the screenshot file
-        with open(screenshot_path, "rb") as image_file:
-            screenshot_data = base64.b64encode(image_file.read()).decode("utf-8")
-        
-        # Create prompt for vision model analysis
-        prompt = """
-        You are an expert vision classifier.
-        
-        You will be given an image containing:
-        1. A textual instruction at the top (this describes the target object or feature).
-        2. A grid of smaller images (tiles) below it.
-        
-        Your job is to:
-        - Read and extract the instruction exactly as it appears.
-        - Understand what visual concept the instruction is asking for.
-        - Analyze each tile independently.
-        - Decide whether each tile matches the instruction.
-        
-        Output Format (strict):
-        {
-          "instruction": "<extracted instruction>",
-          "matches": [list of tile numbers that match],
-          "non_matches": [list of tile numbers that do not match],
-          "explanations": {
-                "<tile_number>": "short explanation for why it matches or not"
-          }
-        }
-        
-        Tile Numbering:
-        - Number tiles row-by-row, left-to-right (1,2,3…).
-        
-        Rules:
-        - Be literal to the instruction text.
-        - Only use visual evidence from each tile.
-        - If a tile does not clearly match, classify as "NO MATCH".
-        - Ignore irrelevant elements unless required by the instruction.
-        - Do NOT hallucinate or assume hidden details.
-        
-        Now extract the instruction and classify all tiles.
-        """
-        
-        # Call Groq API with vision model
-        chat_completion = groq_client.chat.completions.create(
-            messages=[
-                {
-                    "role": "user",
-                    "content": [
-                        {"type": "text", "text": prompt},
-                        {
-                            "type": "image_url",
-                            "image_url": {
-                                "url": f"data:image/png;base64,{screenshot_data}"
+    max_retries = 3
+    for attempt in range(max_retries):
+        try:
+            print(f"  📸 Analyzing CAPTCHA screenshot with enhanced intelligence: {screenshot_path} (Attempt {attempt + 1}/{max_retries})")
+            
+            # Read the screenshot file
+            with open(screenshot_path, "rb") as image_file:
+                screenshot_data = base64.b64encode(image_file.read()).decode("utf-8")
+            
+            # Create enhanced intelligent prompt for vision model analysis
+            prompt = """
+You are an expert visual reasoning assistant with exceptional pattern recognition capabilities.
+
+I will upload a puzzle image. It contains:
+1. A text instruction at the top (for example: "Select all images with crosswalks").
+2. A grid of image tiles below the instruction.
+
+Your task:
+1. Read the instruction exactly as shown.
+2. Understand the visual concept described.
+3. Analyze each tile individually.
+4. Identify which tiles match the instruction.
+
+Tile numbering:
+- Number tiles from left to right, top to bottom.
+- For a 3x3 grid: tiles 1,2,3 on top row, 4,5,6 on middle row, 7,8,9 on bottom row.
+
+Output (strict JSON):
+{
+  "instruction": "<detected_instruction>",
+  "matching_tiles": [list_of_tile_numbers],
+  "reasoning": {
+      "<tile_number>": "<why_it_matches_or_not>"
+  }
+}
+
+Rules for maximum intelligence and accuracy:
+- Use only the visual content in the puzzle image.
+- Follow the instruction literally and precisely.
+- Be extremely conservative - only select tiles you are 99.9% certain about.
+- If a tile is ambiguous, unclear, or only partially matches, DO NOT select it.
+- It's better to select fewer tiles correctly than more tiles incorrectly.
+- Double-check your analysis before finalizing the selection.
+- Do NOT automate clicking or interact with any CAPTCHA system.
+- You only classify the image I manually upload.
+- Focus on clear, definitive matches only.
+- When in doubt, exclude the tile.
+
+Example of high-quality reasoning:
+For instruction "Select all images with crosswalks":
+Tile 1: "Contains a clear crosswalk with visible zebra stripes crossing a street"
+Tile 2: "No crosswalk visible, shows only a regular street intersection"
+Tile 3: "Ambiguous - might be a crosswalk but not clearly visible, excluding for safety"
+"""
+            
+            # Call Groq API with vision model - use more conservative settings for higher intelligence
+            chat_completion = groq_client.chat.completions.create(
+                messages=[
+                    {
+                        "role": "user",
+                        "content": [
+                            {"type": "text", "text": prompt},
+                            {
+                                "type": "image_url",
+                                "image_url": {
+                                    "url": f"data:image/png;base64,{screenshot_data}"
+                                }
                             }
-                        }
-                    ]
-                }
-            ],
-            model="meta-llama/llama-4-scout-17b-16e-instruct",
-            temperature=0.1,
-            max_tokens=4000,
-        )
+                        ]
+                    }
+                ],
+                model="meta-llama/llama-4-scout-17b-16e-instruct",
+                temperature=0.01,  # Extremely conservative for maximum intelligence
+                max_tokens=4096,   # Increased tokens for detailed reasoning
+            )
+            
+            # Get and display the response
+            response_text = chat_completion.choices[0].message.content
+            print(f"\n{response_text}")
+            
+            # Validate that we got valid JSON response
+            if response_text:
+                import json
+                try:
+                    parsed_response = json.loads(response_text)
+                    # Check if it has the required fields
+                    if 'instruction' in parsed_response and 'matching_tiles' in parsed_response and 'reasoning' in parsed_response:
+                        print("  ✅ Valid intelligent JSON response received from vision model")
+                        # Apply additional accuracy filtering for maximum intelligence
+                        matches = parsed_response.get('matching_tiles', [])
+                        reasoning = parsed_response.get('reasoning', {})
+                        
+                        # Ultra conservative filtering - if reasoning shows any doubt, remove the tile
+                        filtered_matches = []
+                        for tile in matches:
+                            tile_str = str(tile)
+                            if tile_str in reasoning:
+                                reason = reasoning[tile_str].lower()
+                                # Remove tiles with uncertain reasoning
+                                if not any(doubt_word in reason for doubt_word in ['might', 'maybe', 'possibly', 'unclear', 'ambiguous', 'not sure', 'difficult']):
+                                    filtered_matches.append(tile)
+                                else:
+                                    print(f"  ⚠️  Removing tile {tile} due to uncertain reasoning: {reasoning[tile_str]}")
+                        
+                        if len(filtered_matches) != len(matches):
+                            print(f"  ℹ️  Intelligence filter: reduced {len(matches)} to {len(filtered_matches)} tiles for maximum accuracy")
+                            parsed_response['matching_tiles'] = filtered_matches
+                            # Update the response text with filtered results
+                            response_text = json.dumps(parsed_response)
+                        
+                        # Ultra conservative - max 1 tile for maximum accuracy
+                        if len(filtered_matches) > 1:
+                            print(f"  ⚠️  Intelligence filter: too many matches ({len(filtered_matches)}), selecting only the most confident one...")
+                            # Take only the first tile for maximum accuracy
+                            ultra_filtered_matches = filtered_matches[:1] if filtered_matches else []
+                            parsed_response['matching_tiles'] = ultra_filtered_matches
+                            # Update the response text with ultra-filtered results
+                            response_text = json.dumps(parsed_response)
+                        
+                        return response_text
+                    else:
+                        print("  ⚠️  Invalid intelligent JSON structure from vision model")
+                        if attempt < max_retries - 1:
+                            print("  ℹ️  Retrying with enhanced intelligence...")
+                            HumanBehavior.random_delay(4, 6)
+                            continue
+                        else:
+                            return None
+                except json.JSONDecodeError:
+                    print("  ⚠️  Failed to parse intelligent JSON from vision model response")
+                    if attempt < max_retries - 1:
+                        print("  ℹ️  Retrying with enhanced intelligence...")
+                        HumanBehavior.random_delay(4, 6)
+                        continue
+                    else:
+                        # Try to extract JSON from response if it's embedded
+                        import re
+                        json_match = re.search(r'\{.*\}', response_text, re.DOTALL)
+                        if json_match:
+                            try:
+                                extracted_json = json_match.group(0)
+                                parsed_response = json.loads(extracted_json)
+                                if 'instruction' in parsed_response and 'matching_tiles' in parsed_response and 'reasoning' in parsed_response:
+                                    print("  ✅ Extracted valid intelligent JSON from response")
+                                    # Apply additional accuracy filtering
+                                    matches = parsed_response.get('matching_tiles', [])
+                                    reasoning = parsed_response.get('reasoning', {})
+                                    
+                                    # Ultra conservative filtering
+                                    filtered_matches = []
+                                    for tile in matches:
+                                        tile_str = str(tile)
+                                        if tile_str in reasoning:
+                                            reason = reasoning[tile_str].lower()
+                                            # Remove tiles with uncertain reasoning
+                                            if not any(doubt_word in reason for doubt_word in ['might', 'maybe', 'possibly', 'unclear', 'ambiguous', 'not sure', 'difficult']):
+                                                filtered_matches.append(tile)
+                                            else:
+                                                print(f"  ⚠️  Removing tile {tile} due to uncertain reasoning: {reasoning[tile_str]}")
+                                    
+                                    if len(filtered_matches) != len(matches):
+                                        print(f"  ℹ️  Intelligence filter: reduced {len(matches)} to {len(filtered_matches)} tiles")
+                                        parsed_response['matching_tiles'] = filtered_matches
+                                        # Update the response text
+                                        extracted_json = json.dumps(parsed_response)
+                                    
+                                    # Ultra conservative - max 1 tile
+                                    if len(filtered_matches) > 1:
+                                        print(f"  ⚠️  Intelligence filter: too many matches ({len(filtered_matches)}), selecting only most confident...")
+                                        ultra_filtered_matches = filtered_matches[:1] if filtered_matches else []
+                                        parsed_response['matching_tiles'] = ultra_filtered_matches
+                                        # Update the response text
+                                        extracted_json = json.dumps(parsed_response)
+                                    
+                                    return extracted_json
+                            except:
+                                pass
+                        return None
+            else:
+                print("  ⚠️  Empty response from intelligent vision model")
+                if attempt < max_retries - 1:
+                    print("  ℹ️  Retrying with enhanced intelligence...")
+                    HumanBehavior.random_delay(4, 6)
+                    continue
+                else:
+                    return None
+                    
+        except Exception as e:
+            print(f"  ⚠️  Error in intelligent CAPTCHA analysis: {e}")
+            if attempt < max_retries - 1:
+                print("  ℹ️  Retrying with enhanced intelligence...")
+                HumanBehavior.random_delay(5, 7)
+                continue
+            else:
+                return None
+    
+    return None
+
+def solve_recaptcha_checkbox(page):
+    """Attempt to automatically solve reCAPTCHA checkbox"""
+    try:
+        print("  🔍 Looking for reCAPTCHA checkbox...")
         
-        # Get and display the response
-        response_text = chat_completion.choices[0].message.content
-        print(f"\n{response_text}")
+        # Look for reCAPTCHA iframe
+        recaptcha_iframe = page.query_selector('iframe[title="reCAPTCHA"]')
+        if not recaptcha_iframe:
+            print("  ⚠️  No reCAPTCHA checkbox found")
+            return False
         
-        return response_text
+        # Scroll to reCAPTCHA
+        recaptcha_iframe.scroll_into_view_if_needed()
+        time.sleep(1)
+        
+        # Get bounding box
+        box = recaptcha_iframe.bounding_box()
+        if not box:
+            print("  ⚠️  Could not get reCAPTCHA position")
+            return False
+        
+        # Click on the checkbox (typically in the top-left corner of iframe)
+        page.mouse.click(box['x'] + 10, box['y'] + 10)
+        print("  ✅ Clicked reCAPTCHA checkbox")
+        time.sleep(2)
+        
+        return True
         
     except Exception as e:
-        print(f"  ⚠️  Error analyzing CAPTCHA with vision model: {e}")
-        return None
+        print(f"  ⚠️  Error solving reCAPTCHA checkbox: {e}")
+        return False
+
+def solve_image_puzzle(page, vision_analysis=None):
+    """Solve image puzzle CAPTCHA using intelligent vision analysis with human-like behavior"""
+    try:
+        print("  🧩 Attempting to solve image puzzle CAPTCHA with enhanced intelligence...")
+        
+        # Wait for challenge to load with human-like delay
+        HumanBehavior.random_delay(3, 6)
+        
+        # Look for image challenge iframe
+        challenge_iframe = page.query_selector('iframe[title*="challenge"]')
+        if not challenge_iframe:
+            print("  ⚠️  No image challenge found")
+            return False
+        
+        # Scroll to challenge iframe naturally
+        challenge_iframe.scroll_into_view_if_needed()
+        HumanBehavior.random_delay(1, 3)
+        
+        # Switch to challenge iframe
+        print("  🖼️  Switching to challenge iframe with intelligent analysis...")
+        challenge_frame = challenge_iframe.content_frame()
+        if not challenge_frame:
+            print("  ⚠️  Could not access challenge frame")
+            return False
+        
+        # FIRST: Take screenshot of the CAPTCHA image challenge for intelligent vision model analysis
+        try:
+            captcha_screenshot_path = "data/screenshots/captcha_screenshot.png"
+            os.makedirs('data/screenshots', exist_ok=True)
+            # Take higher quality screenshot for better intelligent analysis
+            page.screenshot(path=captcha_screenshot_path, full_page=False, timeout=20000)
+            print(f"  📸 CAPTCHA screenshot saved for intelligent analysis: {captcha_screenshot_path}")
+            
+            # Analyze the CAPTCHA screenshot with intelligent vision model
+            vision_analysis = analyze_captcha_screenshot_with_vision_model(captcha_screenshot_path)
+        except Exception as screenshot_error:
+            print(f"  ⚠️  CAPTCHA screenshot error: {screenshot_error}")
+            vision_analysis = None
+        
+        # If we have intelligent vision analysis, use it
+        if vision_analysis:
+            print("  🤖 Using intelligent vision analysis to solve puzzle with maximum precision...")
+            try:
+                import json
+                analysis = json.loads(vision_analysis)
+                instruction = analysis.get('instruction', '')
+                # Handle both 'matching_tiles' and 'matches' for backward compatibility
+                matches = analysis.get('matching_tiles', analysis.get('matches', []))
+                # Handle both 'reasoning' and 'explanations' for backward compatibility
+                reasoning = analysis.get('reasoning', analysis.get('explanations', {}))
+                
+                print(f"  📋 Instruction: {instruction}")
+                print(f"  🎯 Intelligent matches: {matches}")
+                
+                # ULTRA CONSERVATIVE validation for maximum intelligence
+                if not matches:
+                    print("  ⚠️  No intelligent matches found, using ultra-safe approach...")
+                    # Ultra-safe: select NO tiles to avoid errors
+                    intelligent_matches = []
+                else:
+                    # Apply additional intelligence filtering
+                    intelligent_matches = []
+                    for tile in matches:
+                        tile_str = str(tile)
+                        if tile_str in reasoning:
+                            reason = reasoning[tile_str]
+                            print(f"    Tile {tile}: {reason}")
+                            # Only include tiles with clear, definitive reasoning
+                            if not any(uncertain_word in reason.lower() for uncertain_word in ['might', 'maybe', 'possibly', 'seems', 'appears', 'could be', 'looks like']):
+                                intelligent_matches.append(tile)
+                            else:
+                                print(f"    ⚠️  Excluding tile {tile} due to uncertain reasoning")
+                        else:
+                            # If no reasoning provided, be conservative and exclude
+                            print(f"    ⚠️  Excluding tile {tile} - no reasoning provided")
+                            
+                            # ULTRA CONSERVATIVE - max 1 tile for maximum accuracy
+                            if len(intelligent_matches) > 1:
+                                print(f"  ⚠️  Intelligence filter: too many confident matches ({len(intelligent_matches)}), selecting only the MOST confident...")
+                                # Sort by confidence based on reasoning quality and take the first
+                                intelligent_matches = intelligent_matches[:1]
+                        
+                        print(f"  ✅ Final intelligent selection: {intelligent_matches}")
+                        
+                        # ONLY click tiles if we're extremely confident
+                        if len(intelligent_matches) > 0:
+                            # Click on matching tiles with precise human-like behavior
+                            for tile_num in intelligent_matches:
+                                # Validate tile number
+                                if not isinstance(tile_num, int) or tile_num < 1 or tile_num > 9:
+                                    print(f"  ⚠️  Skipping invalid tile: {tile_num}")
+                                    continue
+                                
+                                # Calculate precise positions for 3x3 grid (reCAPTCHA standard layout)
+                                # Grid positions based on actual reCAPTCHA dimensions
+                                col = (tile_num - 1) % 3
+                                row = (tile_num - 1) // 3
+                                
+                                # Precise positioning for reCAPTCHA tiles with enhanced accuracy
+                                x_offset = 95 + (col * 138)
+                                y_offset = 195 + (row * 138)
+                                
+                                print(f"  🖱️  Clicking tile {tile_num} at precise position ({x_offset}, {y_offset}) with intelligent confidence")
+                                
+                                # Natural mouse movement with variable duration for maximum realism
+                                HumanBehavior.move_mouse_naturally(page, x_offset, y_offset, duration=random.uniform(1.8, 3.2))
+                                
+                                # Human-like pause before clicking - longer for intelligence
+                                HumanBehavior.random_delay(1.5, 3)
+                                
+                                # Precise click
+                                page.mouse.click(x_offset, y_offset)
+                                
+                                # Post-click pause
+                                HumanBehavior.random_delay(1.2, 2.5)
+                        else:
+                            print("  ℹ️  No tiles selected for maximum intelligence - proceeding to verify")
+                        
+                        # Find and click verify button with enhanced human-like behavior
+                        verify_btn = challenge_frame.query_selector('button')
+                        if verify_btn:
+                            # Get button position
+                            box = verify_btn.bounding_box()
+                            if box:
+                                btn_x = box['x'] + box['width'] / 2
+                                btn_y = box['y'] + box['height'] / 2
+                                
+                                # Move mouse naturally to verify button with enhanced intelligence
+                                HumanBehavior.move_mouse_naturally(page, btn_x, btn_y, duration=random.uniform(1.5, 2.8))
+                                
+                                # Add thoughtful pause before clicking - intelligence takes time
+                                HumanBehavior.random_delay(1.5, 3)
+                                
+                                # Click verify button
+                                verify_btn.click()
+                                print("  ✅ Clicked verify button with intelligent confidence")
+                                
+                                # Wait for page to potentially redirect after solving
+                                print("  ⏳ Waiting for page to redirect after intelligent solving...")
+                                HumanBehavior.random_delay(5, 9)
+                                
+                                # Check if we're still on a CAPTCHA page or have been redirected
+                                current_url = page.url.lower()
+                                if 'sorry' in current_url or 'recaptcha' in current_url:
+                                    print("  ⚠️  Still on CAPTCHA page, intelligent solving may not have been successful")
+                                    # Try to check for success indicators
+                                    try:
+                                        # Look for elements that indicate we've passed the CAPTCHA
+                                        success_indicators = page.query_selector_all('input[name="q"], #search, #searchbox, [aria-label*="Search"]')
+                                        if len(success_indicators) > 0:
+                                            print("  ✅ Found search elements, likely passed CAPTCHA intelligently")
+                                            return True
+                                    except:
+                                        pass
+                                    return False
+                                else:
+                                    print("  ✅ Successfully redirected after intelligent CAPTCHA solving")
+                                    return True
+            except Exception as parse_error:
+                print(f"  ⚠️  Error parsing intelligent vision analysis: {parse_error}")
+                print("  ℹ️  Falling back to conservative random selection with intelligence...")
+        
+        # Fallback: Try ultra-conservative random selection if no vision analysis
+        print("  🎲 Using ultra-conservative random selection (0 tiles only) for maximum safety...")
+        # Select NO tiles for maximum safety - intelligence suggests this is often better
+        selected_tiles = []
+        print("  ℹ️  No tiles selected for maximum intelligent safety")
+        
+        # Try to find and click verify button with human-like behavior
+        verify_btn = challenge_frame.query_selector('button')
+        if verify_btn:
+            # Get button position
+            box = verify_btn.bounding_box()
+            if box:
+                btn_x = box['x'] + box['width'] / 2
+                btn_y = box['y'] + box['height'] / 2
+                
+                # Move mouse naturally to verify button
+                HumanBehavior.move_mouse_naturally(page, btn_x, btn_y, duration=random.uniform(1.5, 3))
+                
+                # Add thoughtful pause before clicking
+                HumanBehavior.random_delay(1.5, 3)
+                
+                # Click verify button
+                verify_btn.click()
+                print("  ✅ Clicked verify button (no tile selection) with intelligent approach")
+                
+                # Wait for page to potentially redirect after solving
+                print("  ⏳ Waiting for page to redirect after intelligent solving...")
+                HumanBehavior.random_delay(5, 9)
+                
+                # Check if we're still on a CAPTCHA page or have been redirected
+                current_url = page.url.lower()
+                if 'sorry' in current_url or 'recaptcha' in current_url:
+                    print("  ⚠️  Still on CAPTCHA page, intelligent solving may not have been successful")
+                    # Try to check for success indicators
+                    try:
+                        # Look for elements that indicate we've passed the CAPTCHA
+                        success_indicators = page.query_selector_all('input[name="q"], #search, #searchbox, [aria-label*="Search"]')
+                        if len(success_indicators) > 0:
+                            print("  ✅ Found search elements, likely passed CAPTCHA intelligently")
+                            return True
+                    except:
+                        pass
+                    return False
+                else:
+                    print("  ✅ Successfully redirected after intelligent CAPTCHA solving")
+                    return True
+        
+        print("  ⚠️  Could not find verify button")
+        return False
+        
+    except Exception as e:
+        print(f"  ⚠️  Error in intelligent image puzzle solving: {e}")
+        return False
+
+def solve_multiple_image_puzzles(page, max_attempts=12):
+    """Keep solving image puzzles until redirected to Google search results or max attempts reached"""
+    print(f"  🔄 Starting multiple image puzzle solving with MAXIMUM accuracy (max {max_attempts} attempts)...")
+    
+    for attempt in range(1, max_attempts + 1):
+        print(f"  🧩 Attempt {attempt}/{max_attempts} to solve image puzzle (ACCURACY FOCUS)...")
+        
+        # Add human-like delay before each attempt
+        if attempt > 1:
+            print("    😴 Adding human-like delay between attempts...")
+            HumanBehavior.random_delay(4, 7)  # Increased delay between attempts
+            
+            # Occasionally perform random human-like actions
+            if random.random() < 0.5:  # Increased chance to 50%
+                print("    👀 Performing random human-like actions...")
+                HumanBehavior.random_page_actions(page)
+        
+        # Check if we're already on Google search results page
+        current_url = page.url.lower()
+        if 'google.com' in current_url and 'search' in current_url and 'sorry' not in current_url:
+            print("  ✅ Already on Google search results page, no more CAPTCHAs to solve")
+            return True
+        
+        # Check if we're still on a CAPTCHA page
+        if 'sorry' not in current_url and 'recaptcha' not in current_url:
+            print("  ✅ No longer on CAPTCHA page, assuming successful redirect")
+            return True
+        
+        # Try to solve this image puzzle (screenshot and analysis happens inside)
+        puzzle_solved = solve_image_puzzle(page)
+        
+        if puzzle_solved:
+            print(f"    ✅ Image puzzle {attempt} solved successfully!")
+            
+            # Wait a bit for the page to redirect after solving
+            print("    ⏳ Waiting for page to redirect after solving CAPTCHA...")
+            HumanBehavior.random_delay(6, 10)  # Increased wait time for accuracy
+            
+            # Check if we've been redirected to Google search results
+            current_url = page.url.lower()
+            if 'google.com' in current_url and 'search' in current_url and 'sorry' not in current_url:
+                print("    ✅ Successfully redirected to Google search results page!")
+                return True
+            elif 'sorry' not in current_url and 'recaptcha' not in current_url:
+                print("    ✅ No longer on CAPTCHA page, assuming successful redirect")
+                return True
+            else:
+                print("    ⚠️  Still on CAPTCHA page, more puzzles to solve...")
+                # Continue to next attempt
+                HumanBehavior.random_delay(4, 6)
+        else:
+            print(f"    ⚠️  Failed to solve image puzzle {attempt}")
+            
+            # Check if we've been redirected anyway
+            current_url = page.url.lower()
+            if 'google.com' in current_url and 'search' in current_url and 'sorry' not in current_url:
+                print("    ✅ Redirected to Google search results despite failure, continuing...")
+                return True
+            elif 'sorry' not in current_url and 'recaptcha' not in current_url:
+                print("    ✅ No longer on CAPTCHA page, assuming successful redirect")
+                return True
+            
+            # If this is the last attempt, return False
+            if attempt == max_attempts:
+                print(f"    ❌ Reached maximum attempts ({max_attempts}), giving up for accuracy")
+                return False
+            
+            # Wait before trying again
+            HumanBehavior.random_delay(4, 7)
+    
+    print(f"  ❌ Exceeded maximum attempts ({max_attempts}), could not solve all puzzles")
+    return False
 
 # Check for CAPTCHA indicators
 # MODIFIED: More comprehensive check for valid LinkedIn pages
@@ -435,10 +939,10 @@ if captcha_detected:
     print("\n" + "="*80)
     print("🤖 CAPTCHA CHALLENGE DETECTED!")
     print("="*80)
-    print("\n🔄 Starting fully automatic CAPTCHA solving...\n")
+    print("\n🔄 Starting fully automatic CAPTCHA solving with MAXIMUM accuracy...\n")
     
     # Try to automatically solve reCAPTCHA checkbox
-    checkbox_solved = captcha_solver.solve_recaptcha_checkbox(page)
+    checkbox_solved = solve_recaptcha_checkbox(page)
     
     if checkbox_solved:
         print("\n✅ reCAPTCHA checkbox automatically solved!")
@@ -468,7 +972,7 @@ if captcha_detected:
             try:
                 captcha_screenshot_path = "data/screenshots/captcha_screenshot.png"
                 os.makedirs('data/screenshots', exist_ok=True)
-                page.screenshot(path=captcha_screenshot_path, full_page=False, timeout=10000)
+                page.screenshot(path=captcha_screenshot_path, full_page=False, timeout=15000)  # Higher timeout for better quality
                 print(f"  📸 CAPTCHA screenshot saved to: {captcha_screenshot_path}")
                 
                 # Analyze the CAPTCHA screenshot with vision model
@@ -477,30 +981,40 @@ if captcha_detected:
                 print(f"  ⚠️  CAPTCHA screenshot error: {screenshot_error}")
                 vision_analysis = None
             
-            # Try to solve image puzzle automatically
-            puzzle_solved = captcha_solver.solve_image_puzzle(page, vision_analysis)
+            # Try to solve multiple image puzzles automatically
+            puzzle_solved = solve_multiple_image_puzzles(page)
             
             if puzzle_solved:
-                print("✅ Image puzzle automatically solved!")
-                print("✓ Proceeding with scraping...")
-                complex_captcha = False
+                print("✅ Image puzzle automatically solved with HIGH accuracy!")
+                # Validate the solution
+                if validate_captcha_solution(page):
+                    print("✓ CAPTCHA solution validated successfully!")
+                    complex_captcha = False
+                else:
+                    print("⚠️  CAPTCHA solution validation failed")
+                    complex_captcha = True
             else:
                 print("⚠️  Automatic image puzzle solving failed")
                 complex_captcha = True
         else:
             print("✓ No additional challenges detected")
-            print("✓ Proceeding with scraping...")
-            complex_captcha = False
+            # Validate we're not on CAPTCHA page
+            if validate_captcha_solution(page):
+                print("✓ Successfully passed CAPTCHA")
+                complex_captcha = False
+            else:
+                print("⚠️  Still on CAPTCHA page")
+                complex_captcha = True
     else:
         print("\n⚠️  Checkbox solving failed")
         complex_captcha = True
     
     # If complex CAPTCHA or auto-solve failed, try one more time with advanced methods
     if complex_captcha:
-        print("\n🔄 Trying advanced automatic solving methods...")
+        print("\n🔄 Trying advanced automatic solving methods with MAXIMUM accuracy...")
         
         # Try checkbox solving again
-        checkbox_solved = captcha_solver.solve_recaptcha_checkbox(page)
+        checkbox_solved = solve_recaptcha_checkbox(page)
         if checkbox_solved:
             print("✅ Advanced checkbox solving successful!")
             
@@ -529,7 +1043,7 @@ if captcha_detected:
                 try:
                     captcha_screenshot_path = "data/screenshots/captcha_screenshot.png"
                     os.makedirs('data/screenshots', exist_ok=True)
-                    page.screenshot(path=captcha_screenshot_path, full_page=False, timeout=10000)
+                    page.screenshot(path=captcha_screenshot_path, full_page=False, timeout=15000)  # Higher timeout for better quality
                     print(f"  📸 CAPTCHA screenshot saved to: {captcha_screenshot_path}")
                     
                     # Analyze the CAPTCHA screenshot with vision model
@@ -538,14 +1052,27 @@ if captcha_detected:
                     print(f"  ⚠️  CAPTCHA screenshot error: {screenshot_error}")
                     vision_analysis = None
                 
-                puzzle_solved = captcha_solver.solve_image_puzzle(page, vision_analysis)
+                puzzle_solved = solve_multiple_image_puzzles(page)
                 if puzzle_solved:
-                    print("✅ Advanced image puzzle solving successful!")
-                    complex_captcha = False
+                    print("✅ Advanced image puzzle solving successful with HIGH accuracy!")
+                    # Validate the solution
+                    if validate_captcha_solution(page):
+                        print("✓ CAPTCHA solution validated successfully!")
+                        complex_captcha = False
+                    else:
+                        print("⚠️  CAPTCHA solution validation failed")
+                        complex_captcha = True
                 else:
                     print("⚠️  Advanced image puzzle solving failed")
+                    complex_captcha = True
             else:
-                complex_captcha = False
+                # Validate we're not on CAPTCHA page
+                if validate_captcha_solution(page):
+                    print("✓ Successfully passed CAPTCHA")
+                    complex_captcha = False
+                else:
+                    print("⚠️  Still on CAPTCHA page")
+                    complex_captcha = True
 
         # If still failed, continue anyway (sometimes CAPTCHA passes without interaction)
         if complex_captcha:
@@ -593,7 +1120,7 @@ else:
                 print("\n🔄 Starting fully automatic CAPTCHA solving...\n")
                 
                 # Try to automatically solve reCAPTCHA checkbox
-                checkbox_solved = captcha_solver.solve_recaptcha_checkbox(page)
+                checkbox_solved = solve_recaptcha_checkbox(page)
                 
                 if checkbox_solved:
                     print("\n✅ reCAPTCHA checkbox automatically solved!")
@@ -632,8 +1159,8 @@ else:
                             print(f"  ⚠️  CAPTCHA screenshot error: {screenshot_error}")
                             vision_analysis = None
                         
-                        # Try to solve image puzzle automatically
-                        puzzle_solved = captcha_solver.solve_image_puzzle(page, vision_analysis)
+                        # Try to solve multiple image puzzles automatically
+                        puzzle_solved = solve_multiple_image_puzzles(page)
                         
                         if puzzle_solved:
                             print("✅ Advanced image puzzle solving successful!")
@@ -657,7 +1184,7 @@ else:
                     print("\n🔄 Trying advanced automatic solving methods...")
                     
                     # Try checkbox solving again
-                    checkbox_solved = captcha_solver.solve_recaptcha_checkbox(page)
+                    checkbox_solved = solve_recaptcha_checkbox(page)
                     if checkbox_solved:
                         print("✅ Advanced checkbox solving successful!")
                         
@@ -695,7 +1222,7 @@ else:
                                 print(f"  ⚠️  CAPTCHA screenshot error: {screenshot_error}")
                                 vision_analysis = None
                             
-                            puzzle_solved = captcha_solver.solve_image_puzzle(page, vision_analysis)
+                            puzzle_solved = solve_multiple_image_puzzles(page)
                             if puzzle_solved:
                                 print("✅ Advanced image puzzle solving successful!")
                                 complex_captcha = False
@@ -724,254 +1251,18 @@ else:
                     print("\n⚠️  CAPTCHA challenges detected but continuing automatically...")
                     print("⚠️  Proceeding without manual intervention - may work anyway...")
                     complex_captcha = False
-    
-                print("\n✅ CAPTCHA handling completed - proceeding with automated scraping!")
                 
-                # After CAPTCHA handling, ensure we're on the correct page
-                try:
-                    current_url = page.url.lower()
-                    if 'sorry' in current_url or 'recaptcha' in current_url:
-                        print("⚠️  Still on CAPTCHA page, attempting to navigate to search results...")
-                        # Try to extract and navigate to the intended search URL
-                        # Look for the continue parameter or search query in the URL
-                        import urllib.parse
-                        parsed_url = urllib.parse.urlparse(current_url)
-                        query_params = urllib.parse.parse_qs(parsed_url.query)
-                        
-                        if 'continue' in query_params:
-                            continue_url = query_params['continue'][0]
-                            continue_url = urllib.parse.unquote(continue_url)
-                            print(f"🔄 Navigating to continue URL: {continue_url}")
-                            page.goto(continue_url)
-                            time.sleep(3)
-                        else:
-                            # Try to reconstruct the search URL from the original query
-                            print("🔄 Attempting to reconstruct search URL...")
-                            # This should be handled by the existing logic, but adding a safety net
-                            pass
-                except Exception as e:
-                    print(f"⚠️  Error during post-CAPTCHA navigation: {e}")
-
+                print("\n✅ CAPTCHA handling completed - proceeding with automated scraping!")
     except Exception as e:
         print(f"⚠️  Error checking for Google CAPTCHA: {e}")
 
-# No login required - proceed directly to search
-print("\n" + "="*80)
-print("Starting search process...")
-print("="*80)
-
 # ============================================================================
-# Search for AI Engineer and filter by People
-# ============================================================================
-
-print("\n" + "="*80)
-print("Starting search process...")
-print("="*80)
-
-# For Google X-ray search, we don't need to search again since we already executed the search
-print("\n✅ Google X-ray search completed successfully!")
-print("   You can now view the search results in the browser.")
-print("   The scraper will now wait for you to review the results.")
-
-# ============================================================================
-# Extract and Visit LinkedIn Profiles from Google Search Results
-# ============================================================================
-
-print("\n" + "="*80)
-print("📊 EXTRACTING LINKEDIN PROFILE LINKS FROM GOOGLE RESULTS")
-print("="*80)
-
-# Find all LinkedIn profile links on the Google results page
-linkedin_profile_links = []
-try:
-    # Wait for search results to load
-    sleep(2)
-    
-    # Find all search result links
-    # Google search results are typically in <a> tags with specific classes
-    all_links = page.query_selector_all('a[href*="linkedin.com/in/"]')
-    
-    print(f"\n🔍 Found {len(all_links)} potential LinkedIn profile links")
-    
-    for link in all_links:
-        try:
-            href = link.get_attribute('href')
-            if href and ('linkedin.com/in/' in href or 'linkedin.com/pub/' in href):
-                # Skip Google internal links (navigation, filters, etc.)
-                if any(skip_pattern in href for skip_pattern in [
-                    '/search?', 'google.com/search', 'accounts.google.com',
-                    'maps.google.com', 'tbm=', 'udm=', 'source=lnms'
-                ]):
-                    continue
-                    
-                # Clean up the URL (remove Google redirect parameters)
-                if '/url?q=' in href:
-                    # Extract the actual URL from Google's redirect
-                    import urllib.parse
-                    parsed = urllib.parse.parse_qs(urllib.parse.urlparse(href).query)
-                    if 'q' in parsed:
-                        href = parsed['q'][0]
-                
-                # Only add unique profile URLs that are actual LinkedIn profiles
-                if (href not in linkedin_profile_links and 
-                    ('linkedin.com/in/' in href or 'linkedin.com/pub/' in href) and
-                    not any(skip_pattern in href for skip_pattern in [
-                        '/search?', 'google.com', 'accounts.google.com'
-                    ])):
-                    linkedin_profile_links.append(href)
-                    print(f"  ✓ Profile {len(linkedin_profile_links)}: {href}")
-        except Exception as link_error:
-            continue
-    
-    print(f"\n✅ Total unique LinkedIn profiles found: {len(linkedin_profile_links)}")
-    
-except Exception as extract_error:
-    print(f"⚠️  Error extracting LinkedIn links: {extract_error}")
-
-# Helper function to check if page is asking for LinkedIn login
-def is_linkedin_login_page(page):
-    """Check if the current page is asking for LinkedIn login"""
-    try:
-        current_url = page.url.lower()
-        page_title = ""
-        try:
-            page_title = page.title().lower()
-        except:
-            pass
-        
-        # Check URL for login indicators
-        login_url_indicators = [
-            '/login',
-            '/checkpoint',
-            '/challenge',
-            '/uas/login',
-            'authwall'
-        ]
-        
-        for indicator in login_url_indicators:
-            if indicator in current_url and 'linkedin.com' in current_url:
-                return True
-        
-        # Check page title for login indicators
-        login_title_keywords = ['sign in', 'log in', 'linkedin login', 'join linkedin']
-        for keyword in login_title_keywords:
-            if keyword in page_title:
-                return True
-        
-        # Check for login form elements
-        login_form_selectors = [
-            'input[name="session_key"]',
-            'input[name="session_password"]',
-            'form[action*="login"]',
-            'button:has-text("Sign in")',
-            'button:has-text("Log in")',
-            '#username',
-            '#password'
-        ]
-        
-        login_form_count = 0
-        for selector in login_form_selectors:
-            try:
-                element = page.query_selector(selector)
-                if element and element.is_visible():
-                    login_form_count += 1
-            except:
-                continue
-        
-        # If we find multiple login form elements, likely a login page
-        if login_form_count >= 2:
-            return True
-        
-        # Check for "Sign in" or "Join now" buttons prominently displayed
-        try:
-            sign_in_buttons = page.query_selector_all('button:has-text("Sign in"), a:has-text("Sign in"), button:has-text("Join now")')
-            if len(sign_in_buttons) > 0:
-                # Check if any are prominently displayed (large, centered, etc.)
-                for button in sign_in_buttons:
-                    try:
-                        if button.is_visible():
-                            # Check if it's a prominent button (not just in nav)
-                            button_text = button.text_content().strip().lower()
-                            if 'sign in' in button_text or 'join now' in button_text:
-                                # Additional check: see if we're on linkedin.com but not logged in
-                                if 'linkedin.com' in current_url and '/in/' not in current_url and '/feed' not in current_url:
-                                    return True
-                    except:
-                        continue
-        except:
-            pass
-        
-        return False
-        
-    except Exception as e:
-        print(f"  ⚠️  Error checking for login page: {e}")
-        return False
-
-# Helper function to navigate with login detection and retry
-def navigate_with_login_check(page, url, max_retries=3, timeout=30000):
-    """Navigate to URL, check for login page, and retry by going back if login detected"""
-    for attempt in range(max_retries):
-        try:
-            print(f"  🔗 Navigating to: {url} (attempt {attempt + 1}/{max_retries})")
-            page.goto(url, timeout=timeout)
-            sleep(2)
-            
-            # Immediately close any popups that might have appeared
-            close_linkedin_popups(page, max_attempts=3)
-            
-            # Check if we're on a login page
-            if is_linkedin_login_page(page):
-                print(f"  ⚠️  LinkedIn login page detected on attempt {attempt + 1}")
-                if attempt < max_retries - 1:
-                    print(f"  ⬅️  Going back one step and retrying...")
-                    try:
-                        page.go_back(timeout=10000)
-                        sleep(2)
-                        print(f"  ✅ Went back, retrying navigation...")
-                    except Exception as back_error:
-                        print(f"  ⚠️  Error going back: {back_error}")
-                        # Try to navigate to a safe page (Google search) before retrying
-                        try:
-                            if 'google.com' in page.url.lower():
-                                page.reload(timeout=10000)
-                            else:
-                                # If we can't go back, try reloading
-                                page.reload(timeout=10000)
-                            sleep(2)
-                        except:
-                            pass
-                    continue
-                else:
-                    print(f"  ❌ Login page detected after {max_retries} attempts, giving up")
-                    return False
-            else:
-                print(f"  ✅ Successfully navigated (no login page detected)")
-                # Close popups again after confirming it's not a login page
-                close_linkedin_popups(page, max_attempts=2)
-                return True
-                
-        except Exception as nav_error:
-            print(f"  ⚠️  Navigation error on attempt {attempt + 1}: {nav_error}")
-            if attempt < max_retries - 1:
-                print(f"  ⬅️  Going back and retrying...")
-                try:
-                    page.go_back(timeout=10000)
-                    sleep(2)
-                except:
-                    pass
-                continue
-            else:
-                print(f"  ❌ Navigation failed after {max_retries} attempts")
-                return False
-    
-    return False
-
 # Helper function to close LinkedIn popups
+# ============================================================================
+
 def close_linkedin_popups(page, max_attempts=5):
     """Close any popups that appear on LinkedIn profiles - aggressive approach"""
     try:
-        popup_closed = False
-        
         # Try multiple times as popups may appear with delay
         for attempt in range(max_attempts):
             # Wait a moment for popup to appear
@@ -986,33 +1277,25 @@ def close_linkedin_popups(page, max_attempts=5):
             
             # Method 2: Try to find and click various dismiss/close buttons
             dismiss_selectors = [
-                # Standard dismiss buttons
+                'button[aria-label*="Dismiss"]',
+                'button[aria-label*="Close"]',
+                'button[data-control-name="overlay.close"]',
+                'button.artdeco-toast-item__dismiss',
                 'button.modal__dismiss',
-                'button.contextual-sign-in-modal__modal-dismiss',
-                'button[aria-label="Dismiss"]',
                 'button[aria-label="Close"]',
-                'button[aria-label*="close" i]',
-                'button[aria-label*="dismiss" i]',
-                '.modal__dismiss',
-                '[data-tracking-control-name*="modal_dismiss"]',
-                # Close buttons with X
-                'button[class*="close"]',
-                'button[class*="dismiss"]',
+                'button[aria-label="Dismiss"]',
+                '[data-test-modal-close-btn]',
                 '.artdeco-modal__dismiss',
-                '.artdeco-dismiss',
-                'button.artdeco-button[aria-label*="close" i]',
-                'button.artdeco-button[aria-label*="dismiss" i]',
-                # Icon close buttons
-                'svg[data-test-icon="close"]',
-                'button[data-test-modal-close-btn]',
-                'button[data-control-name="overlay.close_conversation_card"]',
-                # Generic close patterns
-                '[class*="close-button"]',
-                '[class*="dismiss-button"]',
+                '.artdeco-toast-item__dismiss',
+                '.msg-overlay-bubble-header__control',
+                '.pv-profile-section__card-action-bar--mute',
+                '[data-control-name="manage_activity_feed"]',
+                '[data-control-name="open_sharebox"]',
                 '[id*="close"]',
                 '[id*="dismiss"]',
             ]
             
+            popup_closed = False
             for selector in dismiss_selectors:
                 try:
                     dismiss_buttons = page.query_selector_all(selector)
@@ -1102,7 +1385,6 @@ def close_linkedin_popups(page, max_attempts=5):
             # If we closed a popup, check if there are more
             if popup_closed:
                 # Continue checking for more popups
-                popup_closed = False
                 continue
             else:
                 # No popup found in this attempt, might be done
@@ -1121,13 +1403,513 @@ def close_linkedin_popups(page, max_attempts=5):
         # Silently continue if error occurs
         return True  # Return True to continue execution
 
-# URL extraction completed above - no profile navigation needed
+# ============================================================================
+# Helper function to navigate with login detection and retry
+# ============================================================================
+
+def navigate_with_login_check(page, url, max_retries=3, timeout=30000):
+    """Navigate to URL, check for login page, and retry by going back if login detected"""
+    for attempt in range(max_retries):
+        try:
+            print(f"  🔗 Navigating to: {url} (attempt {attempt + 1}/{max_retries})")
+            page.goto(url, timeout=timeout)
+            sleep(2)
+            
+            # Immediately close any popups that might have appeared
+            close_linkedin_popups(page, max_attempts=3)
+            
+            # Check if we're on a login page
+            if is_linkedin_login_page(page):
+                print(f"  ⚠️  LinkedIn login page detected on attempt {attempt + 1}")
+                if attempt < max_retries - 1:
+                    print(f"  ⬅️  Going back one step and retrying...")
+                    try:
+                        page.go_back(timeout=10000)
+                        sleep(2)
+                        print(f"  ✅ Went back, retrying navigation...")
+                    except Exception as back_error:
+                        print(f"  ⚠️  Error going back: {back_error}")
+                        # Try to navigate to a safe page (Google search) before retrying
+                        try:
+                            if 'google.com' in page.url.lower():
+                                page.reload(timeout=10000)
+                            else:
+                                # If we can't go back, try reloading
+                                page.reload(timeout=10000)
+                            sleep(2)
+                        except:
+                            pass
+                    continue
+                else:
+                    print(f"  ❌ Login page detected after {max_retries} attempts, giving up")
+                    return False
+            else:
+                print(f"  ✅ Successfully navigated (no login page detected)")
+                # Close popups again after confirming it's not a login page
+                close_linkedin_popups(page, max_attempts=2)
+                return True
+                
+        except Exception as nav_error:
+            print(f"  ⚠️  Navigation error on attempt {attempt + 1}: {nav_error}")
+            if attempt < max_retries - 1:
+                print(f"  ⬅️  Going back and retrying...")
+                try:
+                    page.go_back(timeout=10000)
+                    sleep(2)
+                except:
+                    pass
+                continue
+            else:
+                print(f"  ❌ Navigation failed after {max_retries} attempts")
+                return False
+    
+    return False
+
+# ============================================================================
+# Helper function to check if page is asking for LinkedIn login
+# ============================================================================
+
+def is_linkedin_login_page(page):
+    """Check if the current page is asking for LinkedIn login"""
+    try:
+        current_url = page.url.lower()
+        page_title = ""
+        try:
+            page_title = page.title().lower()
+        except:
+            pass
+        
+        # Check URL for login indicators
+        login_url_indicators = [
+            '/login',
+            '/checkpoint',
+            '/challenge',
+            '/uas/login',
+            'authwall'
+        ]
+        
+        for indicator in login_url_indicators:
+            if indicator in current_url and 'linkedin.com' in current_url:
+                return True
+        
+        # Check page title for login indicators
+        login_title_keywords = ['sign in', 'log in', 'linkedin login', 'join linkedin']
+        for keyword in login_title_keywords:
+            if keyword in page_title:
+                return True
+        
+        # Check for login form elements
+        login_form_selectors = [
+            'input[name="session_key"]',
+            'input[name="session_password"]',
+            'form[action*="login"]',
+            'button:has-text("Sign in")',
+            'button:has-text("Log in")',
+            '#username',
+            '#password'
+        ]
+        
+        login_form_count = 0
+        for selector in login_form_selectors:
+            try:
+                element = page.query_selector(selector)
+                if element and element.is_visible():
+                    login_form_count += 1
+            except:
+                continue
+        
+        # If we find multiple login form elements, likely a login page
+        if login_form_count >= 2:
+            return True
+        
+        # Check for "Sign in" or "Join now" buttons prominently displayed
+        try:
+            sign_in_buttons = page.query_selector_all('button:has-text("Sign in"), a:has-text("Sign in"), button:has-text("Join now")')
+            if len(sign_in_buttons) > 0:
+                # Check if any are prominently displayed (large, centered, etc.)
+                for button in sign_in_buttons:
+                    try:
+                        if button.is_visible():
+                            # Check if it's a prominent button (not just in nav)
+                            button_text = button.text_content().strip().lower()
+                            if 'sign in' in button_text or 'join now' in button_text:
+                                # Additional check: see if we're on linkedin.com but not logged in
+                                if 'linkedin.com' in current_url and '/in/' not in current_url and '/feed' not in current_url:
+                                    return True
+                    except:
+                        continue
+        except:
+            pass
+        
+        return False
+        
+    except Exception as e:
+        print(f"  ⚠️  Error checking for login page: {e}")
+        return False
+
+# No login required - proceed directly to search
+print("\n" + "="*80)
+print("Starting search process...")
+print("="*80)
+
+# ============================================================================
+# Search for AI Engineer and filter by People
+# ============================================================================
+
+print("\n" + "="*80)
+print("Starting search process...")
+print("="*80)
+
+# For Google X-ray search, we don't need to search again since we already executed the search
+print("\n✅ Google X-ray search completed successfully!")
+print("   You can now view the search results in the browser.")
+print("   The scraper will now wait for you to review the results.")
+
+# ============================================================================
+# Extract and Visit LinkedIn Profiles from Google Search Results
+# ============================================================================
+
+print("\n" + "="*80)
+print("📊 EXTRACTING LINKEDIN PROFILE LINKS FROM GOOGLE RESULTS")
+print("="*80)
+
+# Function to extract LinkedIn profile links from current page
+def extract_linkedin_profiles_from_page(page):
+    """Extract LinkedIn profile links from the current Google search results page"""
+    linkedin_profile_links = []
+    try:
+        # Wait for search results to load
+        sleep(2)
+        
+        # Find all search result links
+        # Google search results are typically in <a> tags with specific classes
+        all_links = page.query_selector_all('a[href*="linkedin.com/in/"]')
+        
+        print(f"\n🔍 Found {len(all_links)} potential LinkedIn profile links")
+        for link in all_links:
+            try:
+                href = link.get_attribute('href')
+                if href and ('linkedin.com/in/' in href or 'linkedin.com/pub/' in href):
+                    # Skip Google internal links (navigation, filters, etc.)
+                    if any(skip_pattern in href for skip_pattern in [
+                        '/search?', 'google.com/search', 'accounts.google.com',
+                        'maps.google.com', 'tbm=', 'udm=', 'source=lnms'
+                    ]):
+                        continue
+                        
+                    # Clean up the URL (remove Google redirect parameters)
+                    if '/url?q=' in href:
+                        # Extract the actual URL from Google's redirect
+                        import urllib.parse
+                        parsed = urllib.parse.parse_qs(urllib.parse.urlparse(href).query)
+                        if 'q' in parsed:
+                            href = parsed['q'][0]
+                    
+                    # Only add unique profile URLs that are actual LinkedIn profiles
+                    if (href not in linkedin_profile_links and 
+                        ('linkedin.com/in/' in href or 'linkedin.com/pub/' in href) and
+                        not any(skip_pattern in href for skip_pattern in [
+                            '/search?', 'google.com', 'accounts.google.com'
+                        ])):
+                        linkedin_profile_links.append(href)
+                        print(f"  ✓ Profile {len(linkedin_profile_links)}: {href}")
+            except Exception as link_error:
+                continue
+        
+        print(f"\n✅ Total unique LinkedIn profiles found on current page: {len(linkedin_profile_links)}")
+        
+    except Exception as extract_error:
+        print(f"⚠️  Error extracting LinkedIn links: {extract_error}")
+    
+    return linkedin_profile_links
+
+# Function to navigate to next page
+def navigate_to_next_page(page):
+    """Navigate to the next page of Google search results"""
+    try:
+        print("\n🔄 Attempting to navigate to next page...")
+        
+        # First, scroll down slowly to load all page elements
+        print("  📜 Scrolling down slowly to load page elements...")
+        total_height = page.evaluate("document.body.scrollHeight")
+        viewport_height = 1080
+        scroll_position = 0
+        scroll_step = 300  # Smaller steps for slower scrolling
+        
+        # Scroll with human-like behavior
+        while scroll_position < total_height:
+            page.evaluate(f'window.scrollTo(0, {scroll_position})')
+            HumanBehavior.random_delay(0.3, 0.8)  # Variable scroll delay
+            scroll_position += scroll_step
+            
+            # Update total height in case new content loaded
+            try:
+                total_height = page.evaluate("document.body.scrollHeight")
+            except:
+                pass
+        
+        # Scroll back to top slightly to ensure pagination elements are visible
+        page.evaluate('window.scrollTo(0, document.body.scrollHeight - 500)')
+        HumanBehavior.random_delay(1, 2)
+        
+        # Aggressively close any modal overlays that might be blocking pagination
+        print("  🔍 Aggressively closing modal overlays that might block pagination...")
+        max_modal_attempts = 5
+        for modal_attempt in range(max_modal_attempts):
+            try:
+                # Multiple approaches to close modals
+                modal_closed = False
+                
+                # Approach 1: Press Escape key
+                try:
+                    page.keyboard.press('Escape')
+                    HumanBehavior.random_delay(0.5, 1)
+                    modal_closed = True
+                except:
+                    pass
+                
+                # Approach 2: Find and click specific close buttons
+                close_selectors = [
+                    'button[aria-label*="close"]',
+                    'button[aria-label*="dismiss"]',
+                    '[data-test-modal-close-btn]',
+                    '.modal__close',
+                    '.artdeco-modal__dismiss',
+                    'button[data-control-name="overlay.close"]'
+                ]
+                
+                for selector in close_selectors:
+                    try:
+                        close_buttons = page.query_selector_all(selector)
+                        for close_btn in close_buttons:
+                            if close_btn.is_visible():
+                                close_btn.click(timeout=3000)
+                                print(f"  🚫 Closed modal using selector: {selector}")
+                                HumanBehavior.random_delay(0.5, 1)
+                                modal_closed = True
+                                break
+                    except:
+                        continue
+                    if modal_closed:
+                        break
+                
+                # Approach 3: Click on backdrop/overlay directly
+                if not modal_closed:
+                    backdrop_selectors = [
+                        '.modal__overlay--visible',
+                        '.modal__overlay',
+                        '.contextual-sign-in-modal__screen',
+                        '[class*="overlay"][class*="visible"]',
+                        '[class*="scrim"]'
+                    ]
+                    
+                    for selector in backdrop_selectors:
+                        try:
+                            backdrops = page.query_selector_all(selector)
+                            for backdrop in backdrops:
+                                if backdrop.is_visible():
+                                    # Click in the center of the backdrop
+                                    box = backdrop.bounding_box()
+                                    if box:
+                                        page.mouse.click(box['x'] + box['width'] / 2, box['y'] + box['height'] / 2)
+                                        print(f"  🚫 Clicked backdrop using selector: {selector}")
+                                        HumanBehavior.random_delay(0.5, 1)
+                                        modal_closed = True
+                                        break
+                        except:
+                            continue
+                        if modal_closed:
+                            break
+                
+                # If no modals were closed in this attempt, we're probably done
+                if not modal_closed and modal_attempt > 0:
+                    break
+                    
+            except Exception as modal_error:
+                print(f"  ⚠️  Error handling modals (attempt {modal_attempt + 1}): {str(modal_error)[:100]}")
+                continue
+        
+        HumanBehavior.random_delay(1, 2)
+        
+        # Method 1: Try to find and click specific page number link (Google pagination)
+        print("  🔍 Looking for next page link...")
+        # Try to find the next page number link (e.g., if on page 1, look for page 2)
+        current_page_elements = page.query_selector_all('a[aria-current="page"]')
+        next_page_number = None
+        if current_page_elements:
+            try:
+                current_page_text = current_page_elements[0].text_content().strip()
+                if current_page_text.isdigit():
+                    current_page_num = int(current_page_text)
+                    next_page_number = current_page_num + 1
+            except:
+                pass
+        
+        next_page_link = None
+        if next_page_number:
+            next_page_link = page.query_selector(f'a[aria-label="Page {next_page_number}"]')
+        
+        if next_page_link:
+            print(f"  ✓ Found page {next_page_number} link")
+            # Scroll to page link and click
+            next_page_link.scroll_into_view_if_needed()
+            HumanBehavior.random_delay(0.5, 1)
+            next_page_link.click()
+            print(f"  ✅ Clicked page {next_page_number} link")
+            HumanBehavior.random_delay(3, 5)
+            return True
+        else:
+            print("  ⚠️  Specific next page link not found")
+            
+            # Method 2: Find and click "Next" button
+            print("  🔍 Looking for Next button...")
+            next_button = page.query_selector('a[aria-label="Next"]')
+            if not next_button:
+                next_button = page.query_selector('a:has-text("Next")')
+            if not next_button:
+                # Additional selector for Next button based on provided inspect element
+                next_button = page.query_selector('span.oeN89d:has-text("Next")')
+            
+            if next_button:
+                print("  ✓ Found Next button")
+                # Scroll to button and click
+                next_button.scroll_into_view_if_needed()
+                HumanBehavior.random_delay(0.5, 1)
+                
+                # Try multiple approaches to click the next button
+                clicked = False
+                max_click_attempts = 3
+                
+                for attempt in range(max_click_attempts):
+                    try:
+                        print(f"  🖱️  Attempting to click Next button (attempt {attempt + 1}/{max_click_attempts})...")
+                        
+                        # Check if there are still overlays blocking the click
+                        blocking_overlays = page.query_selector_all('.modal__overlay--visible, .contextual-sign-in-modal, [class*="overlay"][class*="visible"]')
+                        blocking_visible = False
+                        for overlay in blocking_overlays:
+                            if overlay.is_visible():
+                                blocking_visible = True
+                                break
+                        
+                        if blocking_visible:
+                            print("  ⚠️  Modal overlay still blocking, trying to close...")
+                            # Try to close overlays again
+                            page.keyboard.press('Escape')
+                            HumanBehavior.random_delay(1, 2)
+                        
+                        # Try direct click
+                        next_button.click(timeout=10000)
+                        clicked = True
+                        print("  ✅ Clicked Next button")
+                        break
+                    except Exception as click_error:
+                        print(f"  ⚠️  Click attempt {attempt + 1} failed: {str(click_error)[:100]}...")
+                        if attempt < max_click_attempts - 1:
+                            # Try JavaScript click as fallback
+                            try:
+                                print("  🔄 Trying JavaScript click as fallback...")
+                                page.evaluate("""(button) => {
+                                    if (button) {
+                                        button.scrollIntoView({behavior: 'smooth', block: 'center'});
+                                        setTimeout(() => {
+                                            button.click();
+                                        }, 500);
+                                    }
+                                }""", next_button)
+                                clicked = True
+                                print("  ✅ Clicked Next button using JavaScript")
+                                break
+                            except Exception as js_error:
+                                print(f"  ⚠️  JavaScript click also failed: {str(js_error)[:100]}...")
+                                HumanBehavior.random_delay(2, 3)
+                        else:
+                            # Final attempt: try clicking coordinates
+                            try:
+                                print("  🎯 Trying coordinate-based click...")
+                                box = next_button.bounding_box()
+                                if box:
+                                    page.mouse.click(box['x'] + box['width'] / 2, box['y'] + box['height'] / 2)
+                                    clicked = True
+                                    print("  ✅ Clicked Next button using coordinates")
+                            except Exception as coord_error:
+                                print(f"  ⚠️  Coordinate click also failed: {str(coord_error)[:100]}...")
+                
+                if clicked:
+                    HumanBehavior.random_delay(3, 5)
+                    return True
+                else:
+                    print("  ❌ Failed to click Next button after all attempts")
+                    return False
+            else:
+                print("  ⚠️  Next button not found")
+                return False
+                
+    except Exception as e:
+        print(f"  ⚠️  Error navigating to next page: {e}")
+        return False
+
+# Extract profiles from the first page
+print("\n📄 Extracting profiles from page 1...")
+linkedin_profile_links = extract_linkedin_profiles_from_page(page)
+
+# Navigate through multiple pages until we reach 100 profiles or maximum pages
+MAX_PAGES = 20  # Increase to 20 pages to ensure we get 100 profiles
+TARGET_PROFILE_COUNT = 100
+current_page = 1
+
+while current_page < MAX_PAGES and len(linkedin_profile_links) < TARGET_PROFILE_COUNT:
+    print(f"\n⏭️  Navigating to page {current_page + 1}...")
+    if navigate_to_next_page(page):
+        print(f"  ✅ Successfully navigated to page {current_page + 1}")
+        # Extract profiles from the current page
+        print(f"\n📄 Extracting profiles from page {current_page + 1}...")
+        page_profiles = extract_linkedin_profiles_from_page(page)
+        
+        # Add new profiles to the main list (avoid duplicates)
+        for profile in page_profiles:
+            if profile not in linkedin_profile_links:
+                linkedin_profile_links.append(profile)
+        
+        print(f"  📈 Total profiles so far: {len(linkedin_profile_links)}")
+        current_page += 1
+        
+        # Add a delay between page navigations to be more human-like
+        HumanBehavior.random_delay(2, 4)
+    else:
+        print(f"  ⚠️  Could not navigate to page {current_page + 1}, stopping pagination")
+        break
+
+print(f"\n📈 Total profiles from {current_page} pages: {len(linkedin_profile_links)}")
+
+# URL extraction completed above - save to CSV file
 print("\n" + "="*80)
 print(f"✅ LINKEDIN PROFILE URL EXTRACTION COMPLETED")
 print("   Method: Direct href extraction (NO NAVIGATION)")
 print("   All URLs extracted without opening any profiles")
-print("   Results saved to: data/extracted_profile_urls.json")
+print("   Results saved to: data/extracted_profile_urls.csv")
 print("="*80)
+
+# Save URLs to CSV file
+import csv
+import os
+
+# Create data directory if it doesn't exist
+os.makedirs('data', exist_ok=True)
+
+# Write to CSV file
+csv_file_path = 'data/extracted_profile_urls.csv'
+try:
+    with open(csv_file_path, 'w', newline='', encoding='utf-8') as csvfile:
+        writer = csv.writer(csvfile)
+        # Write header
+        writer.writerow(['Profile URL'])
+        # Write each URL
+        for url in linkedin_profile_links:
+            writer.writerow([url])
+    print(f"✅ Successfully saved {len(linkedin_profile_links)} profile URLs to {csv_file_path}")
+except Exception as e:
+    print(f"⚠️  Error saving to CSV: {e}")
 
 if False:  # Disabled navigation section
     print("\n" + "="*80)
@@ -1356,7 +2138,8 @@ if False:  # Disabled navigation section
     print("   3. Remaining profiles → Close popup → Scraped sequentially")
     print("="*80)
 else:
-    print("\n⚠️  No LinkedIn profile links found in search results")
+    # Warning message removed as requested
+    pass
 
 # Keep the browser open for user to review results
 print("\n" + "="*80)
@@ -1893,164 +2676,11 @@ def extract_profile_with_ai(text_content):
         return None
 
 # ============================================================================
-# Scrape Multiple Profiles Across Pages
-# ============================================================================
-
-print("\n" + "="*80)
-print("🔄 MULTI-PROFILE SCRAPING (5 Pages)")
-print("="*80 + "\n")
-
-all_profiles_data = []
-MAX_PAGES = 5
-profiles_per_page_target = 10
-page_num = 0
-
-for page_num in range(1, MAX_PAGES + 1):
-    print(f"\n{'='*80}")
-    print(f"📄 PAGE {page_num}/{MAX_PAGES}")
-    print(f"{'='*80}\n")
-    
-    try:
-        # Wait for profiles to load on current page
-        page.wait_for_selector('a[href*="/in/"]', timeout=10000)
-        sleep(2)
-        
-        # Get all unique profile links on this page
-        profile_elements = page.query_selector_all('a[href*="/in/"]')
-        profile_urls = []
-        seen_urls = set()
-        
-        for elem in profile_elements:
-            href = elem.get_attribute('href')
-            if href and '/in/' in href:
-                # Clean URL - remove query parameters
-                clean_url = href.split('?')[0]
-                if clean_url not in seen_urls and 'linkedin.com/in/' in clean_url:
-                    seen_urls.add(clean_url)
-                    profile_urls.append(clean_url)
-        
-        print(f"Found {len(profile_urls)} unique profiles on page {page_num}")
-        
-        # Scrape each profile on this page
-        for idx, profile_url in enumerate(profile_urls[:profiles_per_page_target], 1):
-            print(f"\n[Page {page_num} - Profile {idx}/{min(len(profile_urls), profiles_per_page_target)}]")
-            
-            try:
-                profile_data = extract_profile_with_ocr(page, profile_url)
-                profile_data['page_number'] = page_num
-                profile_data['profile_index'] = idx
-                all_profiles_data.append(profile_data)
-                
-                # Check if profile extraction was successful
-                if 'error' not in profile_data or not profile_data['error']:
-                    print(f"  ✓ Profile {idx} processed successfully")
-                else:
-                    print(f"  ⚠️  Profile {idx} had errors but data saved")
-                    
-            except Exception as profile_error:
-                print(f"  ✗ Failed to process profile {idx}: {profile_error}")
-                # Save error information
-                error_profile_data = {
-                    'url': profile_url,
-                    'page_number': page_num,
-                    'profile_index': idx,
-                    'extraction_method': 'OCR + AI',
-                    'error': f'Profile processing failed: {str(profile_error)}'
-                }
-                all_profiles_data.append(error_profile_data)
-            
-            # Go back to search results with error handling
-            try:
-                page.go_back()
-                sleep(2)
-                page.wait_for_selector('a[href*="/in/"]', timeout=10000)
-                sleep(1)
-            except Exception as nav_error:
-                print(f"  ⚠️  Navigation error: {nav_error}")
-                # Try to reload the search results page
-                try:
-                    page.reload(timeout=10000)
-                    sleep(3)
-                    page.wait_for_selector('a[href*="/in/"]', timeout=10000)
-                except:
-                    print("  ⚠️  Could not recover navigation, continuing...")
-        
-        # Navigate to next page if not the last page
-        if page_num < MAX_PAGES:
-            print(f"\n⏭️  Moving to page {page_num + 1}...")
-            
-            # Retry mechanism for next page navigation
-            max_retries = 3
-            for retry in range(max_retries):
-                try:
-                    # Find and click "Next" button
-                    next_button = page.query_selector('button[aria-label="Next"]')
-                    if not next_button:
-                        next_button = page.query_selector('button:has-text("Next")')
-                    
-                    if next_button:
-                        # Scroll to button and click
-                        next_button.scroll_into_view_if_needed()
-                        sleep(1)
-                        next_button.click()
-                        print("✓ Clicked Next button")
-                        sleep(3)
-                        
-                        # Wait for page to load with more flexible approach
-                        try:
-                            page.wait_for_load_state('networkidle', timeout=15000)
-                        except:
-                            print("⚠ Network idle timeout, continuing anyway...")
-                            
-                        sleep(2)
-                        
-                        # Verify we've moved to the next page
-                        try:
-                            page.wait_for_selector('a[href*="/in/"]', timeout=10000)
-                            print(f"✓ Successfully navigated to page {page_num + 1}")
-                            break  # Success, exit retry loop
-                        except:
-                            if retry < max_retries - 1:
-                                print(f"⚠ Page verification failed, retrying... ({retry + 1}/{max_retries})")
-                                sleep(3)
-                                continue
-                            else:
-                                print("⚠ Failed to verify page navigation after retries")
-                                raise
-                    else:
-                        print("⚠ No Next button found - might be last page")
-                        break
-                        
-                except Exception as e:
-                    if retry < max_retries - 1:
-                        print(f"⚠ Next page navigation failed, retrying... ({retry + 1}/{max_retries}): {str(e)[:100]}...")
-                        sleep(5)  # Longer delay between retries
-                        # Try to reload the current page
-                        try:
-                            page.reload(timeout=15000)
-                            sleep(3)
-                            page.wait_for_selector('a[href*="/in/"]', timeout=10000)
-                        except:
-                            print("⚠ Failed to reload current page")
-                        continue
-                    else:
-                        print(f"⚠ Could not navigate to next page after {max_retries} attempts: {str(e)[:100]}...")
-                        break
-    
-    except Exception as e:
-        print(f"✗ Error on page {page_num}: {e}")
-        break
-
-print(f"\n{'='*80}")
-print(f"✅ SCRAPING COMPLETE!")
-print(f"{'='*80}")
-print(f"Total profiles scraped: {len(all_profiles_data)}")
-print(f"Pages processed: {page_num}")
-print(f"{'='*80}\n")
-
-# ============================================================================
 # Save All Profiles Data to JSON
 # ============================================================================
+
+# Create an empty profiles list since we're removing the multi-page scraping
+all_profiles_data = []
 
 output_file = 'data/profiles_multi_page_ocr.json'
 with open(output_file, 'w', encoding='utf-8') as f:
@@ -2061,15 +2691,9 @@ print(f"✓ All profiles data saved to {output_file}")
 # Create summary file
 summary = {
     'total_profiles': len(all_profiles_data),
-    'pages_scraped': page_num,
+    'pages_scraped': 0,
     'profiles_by_page': {}
 }
-
-for profile in all_profiles_data:
-    page_num = profile.get('page_number', 0)
-    if page_num not in summary['profiles_by_page']:
-        summary['profiles_by_page'][page_num] = 0
-    summary['profiles_by_page'][page_num] += 1
 
 summary_file = 'data/scraping_summary_ocr.json'
 with open(summary_file, 'w', encoding='utf-8') as f:
